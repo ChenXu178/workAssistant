@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="HomeBtnText">18sp</dimen>
+    <dimen name="leftMenuText">10sp</dimen>
+    <dimen name="titleText">24sp</dimen>
+    <dimen name="loginInput">14sp</dimen>
+
+    <dimen name="fileBtnImg">23dp</dimen>
+    <dimen name="fileBtnText">10sp</dimen>
+
+    <dimen name="dialog_title">24sp</dimen>
+    <dimen name="dialog_hint">12sp</dimen>
+
+    <dimen name="elevation">2dp</dimen>
+
+    <dimen name="actionBarSize">50dp</dimen>
+</resources>

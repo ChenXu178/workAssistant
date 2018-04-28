@@ -1,0 +1,218 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="max">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="min">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="PermissionBlueStyle">
+        <item name="PermissionTitleColor">@color/barText</item>
+        <item name="PermissionMsgColor">@color/barText</item>
+        <item name="PermissionItemTextColor">@color/loginInput</item>
+        <item name="PermissionButtonBackground">@drawable/main_btn_selector</item>
+        <item name="PermissionBackround">@drawable/base_dialog_bg</item>
+        <item name="PermissionButtonTextColor">@color/white</item>
+    </style>
+
+    <!--首页-->
+    <style name="HomeBtnFrame">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">520dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="HomeBtnLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="HomeBtnView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="HomeBtnImg">
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+    </style>
+
+    <style name="HomeBtnText" parent="min">
+        <item name="android:textSize">@dimen/HomeBtnText</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@drawable/home_btn_text_selector</item>
+    </style>
+
+    <style name="leftMenuView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+
+    <style name="leftMenuViewL" parent="min">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="leftMenuImg">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+    </style>
+
+    <style name="leftMenuText" parent="min">
+        <item name="android:textColor">@color/leftMenu</item>
+        <item name="android:layout_marginTop">@dimen/leftMenuText</item>
+    </style>
+
+    <style name="leftMenuLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:src">@color/mainBtnLine</item>
+    </style>
+
+    <!--登录-->
+    <style name="loginInput">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/main_input_bg</item>
+        <item name="android:textSize">@dimen/loginInput</item>
+        <item name="android:textColor">@color/loginInput</item>
+        <item name="android:textColorHint">@color/loginInputHint</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <!--文件管理-->
+    <style name="fileBtnView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/menu_btn_bg</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingBottom">7dp</item>
+    </style>
+
+    <style name="fileBtnViewImg">
+        <item name="android:layout_width">@dimen/fileBtnImg</item>
+        <item name="android:layout_height">@dimen/fileBtnImg</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <style name="fileBtnViewText" parent="min">
+        <item name="android:textSize">@dimen/fileBtnText</item>
+        <item name="android:textColor">@drawable/file_btn_selector</item>
+        <item name="android:layout_marginTop">3dp</item>
+    </style>
+
+    <style name="fileInquiryBtn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/menu_btn_bg</item>
+        <item name="android:textColor">@drawable/btn_inquiry_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--item-->
+    <style name="catalog" parent="min">
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:paddingBottom">13dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/menu_btn_bg</item>
+    </style>
+
+    <style name="catalog.text" parent="min">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/barText</item>
+        <item name="android:layout_marginRight">5dp</item>
+    </style>
+
+    <!--窗口动画-->
+    <style name="baseDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_out</item>
+    </style>
+
+    <style name="deleteDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
+
+    <style name="fadeDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/dialog_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_fade_out</item>
+    </style>
+
+    <!--弹窗-->
+    <style name="deleteDialogItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">65dp</item>
+        <item name="android:background">@drawable/menu_btn_bg</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="deleteDialogItem.Text" parent="min">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="dialogDetailOption">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+    <style name="dialogDetailOptionIcon">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_marginRight">5dp</item>
+    </style>
+
+    <style name="dialogDetailOptionTitle">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dialogDetailOption</item>
+    </style>
+
+    <style name="dialogDetailOptionText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/dialogDetailText</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+</resources>

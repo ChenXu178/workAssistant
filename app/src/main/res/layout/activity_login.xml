@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context="com.chenxu.workassistant.LoginActivity">
+
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/waveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleY="1"
+            app:mwhVelocity="1"
+            app:mwhProgress="1"
+            app:mwhGradientAngle="45"
+            app:mwhWaveHeight="60dp"
+            app:mwhColorAlpha="0.45"
+            app:mwhStartColor="@color/loginMultiWaveColor1"
+            app:mwhCloseColor="@color/loginMultiWaveColor2"
+            app:mwhWaves="MultiWave"
+            android:fitsSystemWindows="true">
+
+        </com.scwang.wave.MultiWaveHeader>
+
+        <FrameLayout
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="70dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:id="@+id/linearLayout">
+
+                <TextView
+                    style="@style/min"
+                    android:text="@string/login_title"
+                    android:textColor="@color/barText"
+                    android:textSize="@dimen/titleText"
+                    android:layout_marginBottom="30dp"/>
+
+                <EditText
+                    style="@style/loginInput"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/login_hint_email"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/et_email"/>
+
+                <EditText
+                    style="@style/loginInput"
+                    android:inputType="textPassword"
+                    android:hint="@string/login_hint_password"
+                    android:id="@+id/et_password"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:id="@+id/ll_save">
+
+
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@drawable/main_btn_selector"
+                    android:text="@string/login_btn_login"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/loginInput"
+                    android:elevation="@dimen/elevation"
+                    android:layout_marginBottom="20dp"
+                    android:id="@+id/btn_login"/>
+
+                <Button
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:background="@color/white"
+                    android:text="@string/login_btn_cancel"
+                    android:textColor="@color/barText"
+                    android:textSize="@dimen/loginInput"
+                    android:id="@+id/btn_cancel"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="-10dp">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:lottie_loop="false"
+                    app:lottie_autoPlay="false"
+                    app:lottie_fileName="image_checkbox.json"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/lav_save"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_is_save"
+                    android:textSize="12sp"
+                    android:textColor="@color/barText"
+                    android:layout_toRightOf="@id/lav_save"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="-20dp"/>
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+
+
+    </RelativeLayout>
+
+</layout>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/base_dialog_bg"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi_load"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="visible"
+            app:indicatorName="LineSpinFadeLoaderIndicator"
+            app:indicatorColor="@color/mainBlue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/avi_load"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/barText"
+            android:textSize="14sp"
+            android:id="@+id/tv_title"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

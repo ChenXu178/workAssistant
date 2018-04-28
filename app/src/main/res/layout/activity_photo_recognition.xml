@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        tools:context=".PhotoRecognition.PhotoRecognitionActivity">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/rl_bar">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/back"
+                android:scaleType="fitXY"
+                android:padding="16dp"
+                android:background="@drawable/menu_btn_bg"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/btn_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/photo_title"
+                android:textSize="20sp"
+                android:textColor="@color/barText"
+                android:id="@+id/tv_bar_title"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/reset"
+                android:scaleType="fitXY"
+                android:padding="16dp"
+                android:background="@drawable/menu_btn_bg"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_reset"/>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rl_bar"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:padding="10dp"
+                android:animateLayoutChanges="true"
+                android:id="@+id/rl_image">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"
+                    android:id="@+id/iv_image"/>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible"
+                    android:id="@+id/iv_icon"
+                    app:lottie_fileName="image_icon_tadah.json"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_repeatMode="reverse"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.05">
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true"
+                    android:id="@+id/ll_bottom">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        android:id="@+id/rv_text">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        android:id="@+id/rl_retry">
+
+                        <Button
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_centerInParent="true"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:background="@drawable/main_btn_selector"
+                            android:text="@string/photo_btn_retry"
+                            android:textColor="@color/white"
+                            android:elevation="@dimen/elevation"
+                            android:textSize="@dimen/loginInput"
+                            android:visibility="visible"
+                            android:id="@+id/btn_retry"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:visibility="visible"
+                        android:id="@+id/ll_btns">
+
+                        <Button
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:background="@drawable/main_btn_selector"
+                            android:text="@string/photo_select_file_btn"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/loginInput"
+                            android:visibility="visible"
+                            android:elevation="@dimen/elevation"
+                            android:id="@+id/btn_select"/>
+
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+                        <Button
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:background="@drawable/main_btn_selector"
+                            android:text="@string/photo_photo_file_btn"
+                            android:textColor="@color/white"
+                            android:elevation="@dimen/elevation"
+                            android:textSize="@dimen/loginInput"
+                            android:visibility="visible"
+                            android:id="@+id/btn_photo"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_centerInParent="true"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:text="@string/photo_btn_copy"
+                        android:textSize="12sp"
+                        android:enabled="false"
+                        android:textColor="@drawable/photo_btn_text_selector"
+                        android:background="@drawable/photo_btn_oval_selector"
+                        android:elevation="@dimen/elevation"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/btn_copy"/>
+                    
+                </LinearLayout>
+                
+            </LinearLayout>
+            
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

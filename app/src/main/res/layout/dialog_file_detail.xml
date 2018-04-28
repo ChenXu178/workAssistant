@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/base_dialog_bg"
+    android:gravity="center_horizontal">
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_file_detail_title"
+            android:textSize="18sp"
+            android:textColor="@color/barText"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/close"
+            android:padding="5dp"
+            android:id="@+id/iv_detail_close"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dialog_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="@string/dialog_file_detail_name"
+            android:textSize="20dp"
+            android:textColor="@color/mainBlue"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:text="adsaaaaa敖德萨aaaaaaaaaaaaaaaaaaaaaaaa"
+            android:textSize="14sp"
+            android:textColor="@color/dialogDetailText"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="310dp"
+        android:layout_height="1dp"
+        android:background="@color/dialog_line"/>
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_detail_content_bg"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/dialogDetailOption"
+            android:id="@+id/ll_detail_time">
+
+            <ImageView
+                style="@style/dialogDetailOptionIcon"
+                android:src="@drawable/fiel_detail_update"/>
+
+            <TextView
+                style="@style/dialogDetailOptionTitle"
+                android:text="@string/dialog_file_detail_option_time"/>
+
+            <TextView
+                style="@style/dialogDetailOptionText"
+                android:id="@+id/tv_detail_time"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dialog_line"/>
+
+        <LinearLayout
+            style="@style/dialogDetailOption"
+            android:id="@+id/ll_detail_size">
+
+            <ImageView
+                style="@style/dialogDetailOptionIcon"
+                android:src="@drawable/file_detail_size"/>
+
+            <TextView
+                style="@style/dialogDetailOptionTitle"
+                android:text="@string/dialog_file_detail_option_size"/>
+
+            <TextView
+                style="@style/dialogDetailOptionText"
+                android:id="@+id/tv_detail_size"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dialog_line"/>
+
+        <LinearLayout
+            style="@style/dialogDetailOption"
+            android:id="@+id/ll_detail_number">
+
+            <ImageView
+                style="@style/dialogDetailOptionIcon"
+                android:src="@drawable/file_detail_number"/>
+
+            <TextView
+                style="@style/dialogDetailOptionTitle"
+                android:text="@string/dialog_file_detail_option_number"/>
+
+            <TextView
+                style="@style/dialogDetailOptionText"
+                android:id="@+id/tv_detail_number"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dialog_line"/>
+
+        <LinearLayout
+            style="@style/dialogDetailOption"
+            android:id="@+id/ll_detail_path">
+
+            <ImageView
+                style="@style/dialogDetailOptionIcon"
+                android:src="@drawable/file_detail_location"/>
+
+            <TextView
+                style="@style/dialogDetailOptionTitle"
+                android:text="@string/dialog_file_detail_option_path"/>
+
+            <TextView
+                style="@style/dialogDetailOptionText"
+                android:id="@+id/tv_detail_path"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/main_btn_selector"
+        android:text="@string/dialog_file_rename_btn"
+        android:textColor="@color/white"
+        android:textSize="@dimen/loginInput"
+        android:elevation="@dimen/elevation"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="17dp"
+        android:id="@+id/btn_detail_confirm"/>
+
+</LinearLayout>

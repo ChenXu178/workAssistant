@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#FF3AA7FF</color>
+
+    <color name="mainBlue">#FF3AA7FF</color>
+    <color name="mainBtnRelease">#FF3AA7FF</color>
+    <color name="mainBtnPress">#2d94e7</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#e10206</color>
+
+    <color name="barText">#232323</color>
+    <color name="leftMenu">#B2B2B2</color>
+    <color name="loginInput">#6e6e6e</color>
+    <color name="loginInputHint">#B2B2B2</color>
+
+    <color name="mianBtnText">#FF204C6A</color>
+
+    <color name="file_size_text">#a6a6a6</color>
+    <color name="file_name_text">#393939</color>
+    <color name="file_btn_light">#A5B7CD</color>
+    <color name="file_btn">#172434</color>
+
+    <color name="mainBtnLine">#FFE0E0E0</color>
+
+    <color name="gray1">#dedede</color>
+    <color name="gray2">#91AFC7</color>
+
+    <color name="dialog_line">#E4E4E4</color>
+
+    <color name="fileCatalogBg">#f9f9f9</color>
+    <color name="fileDivider">#e9e9e9</color>
+
+
+    <color name="dialogInput">#6e6e6e</color>
+    <color name="dialogInputHint">#B2B2B2</color>
+
+    <color name="dialogDetailText">#FF232323</color>
+    <color name="dialogDetailOption">#FFB2B2B2</color>
+
+    <color name="camera_top">#FF11F8FF</color>
+    <color name="camera_bottom">#FF20C5FF</color>
+    <color name="camera_top_on">#0cdde2</color>
+    <color name="camera_bottom_on">#16abdf</color>
+
+    <color name="fileRightItemCollectionBG">#ff423b</color>
+    <color name="fileRightItemEnclosureBG">#FF3AA7FF</color>
+
+    <color name="SnackBarBG">#FF3AA7FF</color>
+    <color name="SnackBarText">#FFFFFF</color>
+    
+    <color name="loginMultiWaveColor1">#FF3AA7FF</color>
+    <color name="loginMultiWaveColor2">#3aceff</color>
+</resources>

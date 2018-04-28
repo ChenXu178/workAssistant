@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+    <android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:id="@+id/dl_main"
+        tools:context="com.chenxu.workassistant.Home.HomeActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rl_home">
+
+            <FrameLayout
+                style="@style/max">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <ImageButton
+                        android:layout_width="55dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/menu"
+                        android:scaleType="fitXY"
+                        android:padding="17dp"
+                        android:background="@drawable/menu_btn_bg"
+                        android:id="@+id/btn_menu"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/app_name"
+                        android:textSize="20sp"
+                        android:textColor="@color/barText"/>
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                style="@style/HomeBtnFrame">
+
+                <LinearLayout
+                    style="@style/max"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        style="@style/HomeBtnLine">
+
+                        <LinearLayout
+                            style="@style/HomeBtnView"
+                            android:background="@drawable/home_btn_bg_selector"
+                            android:id="@+id/ll_files">
+
+                            <ImageView
+                                style="@style/HomeBtnImg"
+                                android:src="@drawable/btn_files_selector"/>
+
+                            <TextView
+                                style="@style/HomeBtnText"
+                                android:text="@string/btn_title_files"
+                                android:id="@+id/tv_file"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/HomeBtnView"
+                            android:background="@drawable/home_btn_bg_selector"
+                            android:id="@+id/ll_email">
+
+                            <ImageView
+                                style="@style/HomeBtnImg"
+                                android:src="@drawable/btn_email_selector"/>
+
+                            <TextView
+                                style="@style/HomeBtnText"
+                                android:text="@string/btn_title_email"
+                                android:id="@+id/tv_email"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="295dp"
+                            android:layout_height="0.5dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@color/mainBtnLine"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        style="@style/HomeBtnLine">
+
+                        <LinearLayout
+                            style="@style/HomeBtnView"
+                            android:background="@drawable/home_btn_bg_selector"
+                            android:id="@+id/ll_collection">
+
+                            <ImageView
+                                style="@style/HomeBtnImg"
+                                android:src="@drawable/btn_collection_selector"/>
+
+                            <TextView
+                                style="@style/HomeBtnText"
+                                android:text="@string/btn_title_collection"
+                                android:id="@+id/tv_collection"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/HomeBtnView"
+                            android:background="@drawable/home_btn_bg_selector"
+                            android:id="@+id/ll_history">
+
+                            <ImageView
+                                style="@style/HomeBtnImg"
+                                android:src="@drawable/btn_history_selector"/>
+
+                            <TextView
+                                style="@style/HomeBtnText"
+                                android:text="@string/btn_title_history"
+                                android:id="@+id/tv_history"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="295dp"
+                            android:layout_height="0.5dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@color/mainBtnLine"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        style="@style/HomeBtnLine">
+
+                        <LinearLayout
+                            style="@style/HomeBtnView"
+                            android:background="@drawable/home_btn_bg_selector"
+                            android:id="@+id/ll_photo">
+
+                            <ImageView
+                                style="@style/HomeBtnImg"
+                                android:src="@drawable/btn_photo_selector"/>
+
+                            <TextView
+                                style="@style/HomeBtnText"
+                                android:text="@string/btn_title_photo"
+                                android:id="@+id/tv_photo"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/HomeBtnView">
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/HomeBtnFrame">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="0.5dp"
+                        android:layout_height="435dp"
+                        android:layout_centerInParent="true"
+                        android:src="@color/mainBtnLine"/>
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                style="@style/max">
+
+                <FrameLayout
+                    style="@style/max">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="bottom|right"
+                        android:src="@drawable/search_bg"
+                        android:id="@+id/iv_search_bg"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    style="@style/max">
+
+                    <RelativeLayout
+                        style="@style/max"
+                        android:paddingRight="30dp"
+                        android:paddingBottom="30dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/search"
+                            android:id="@+id/iv_search"/>
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_gravity="left"
+            android:id="@+id/rl_left">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        style="@style/leftMenuViewL">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/history"/>
+
+                        <TextView
+                            style="@style/leftMenuText"
+                            android:text="@string/left_menu_user_name"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <ImageView
+                    style="@style/leftMenuLine"/>
+
+                <RelativeLayout
+                    style="@style/leftMenuView"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        style="@style/leftMenuViewL">
+
+                        <ImageView
+                            style="@style/leftMenuImg"
+                            android:src="@drawable/history"/>
+
+                        <TextView
+                            style="@style/leftMenuText"
+                            android:text="@string/left_menu_availabl_storage"/>
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+                <ImageView
+                    style="@style/leftMenuLine"/>
+
+                <RelativeLayout
+                    style="@style/leftMenuView"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        style="@style/leftMenuViewL">
+
+                        <ImageView
+                            style="@style/leftMenuImg"
+                            android:src="@drawable/history"/>
+
+                        <TextView
+                            style="@style/leftMenuText"
+                            android:text="@string/left_menu_alternative"/>
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+                <ImageView
+                    style="@style/leftMenuLine"/>
+
+                <RelativeLayout
+                    style="@style/leftMenuView"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        style="@style/leftMenuViewL">
+
+                        <ImageView
+                            style="@style/leftMenuImg"
+                            android:src="@drawable/history"/>
+
+                        <TextView
+                            style="@style/leftMenuText"
+                            android:text="@string/left_menu_Inbox"/>
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+                <ImageView
+                    style="@style/leftMenuLine"/>
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                style="@style/leftMenuView"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:id="@+id/rl_login">
+
+                <LinearLayout
+                    style="@style/leftMenuViewL">
+
+                    <ImageView
+                        style="@style/leftMenuImg"
+                        android:src="@drawable/history"/>
+
+                    <TextView
+                        style="@style/leftMenuText"
+                        android:text="@string/left_menu_login"/>
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_above="@id/rl_login"
+                style="@style/leftMenuLine"/>
+
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.DrawerLayout>
+</layout>
+

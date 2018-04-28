@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        style="@style/max"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/rl_bar">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/back"
+                android:scaleType="fitXY"
+                android:padding="16dp"
+                android:background="@drawable/menu_btn_bg"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/btn_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/file_reader_title"
+                android:textSize="20sp"
+                android:textColor="@color/barText"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:src="@color/fileDivider"
+            android:layout_below="@id/rl_bar"
+            android:id="@+id/iv_line"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/iv_line"
+            android:id="@+id/rl_main">
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

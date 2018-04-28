@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/catalog">
+
+    <TextView
+        style="@style/catalog.text"
+        android:id="@+id/tv_catalog_name"/>
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/right_arrow"
+        android:layout_toRightOf="@id/tv_catalog_name"/>
+
+</RelativeLayout>
