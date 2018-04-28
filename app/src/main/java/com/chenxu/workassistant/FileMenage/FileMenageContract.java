@@ -38,7 +38,7 @@ public interface FileMenageContract {
 
         void openImageFile(String filePath, android.view.View view); //打开image文件
 
-        void setLoadViewDisplay(boolean display);
+        void setLoadViewDisplay(boolean display); //设置加载视图显示
 
         void setFileSelectViewDisplay(boolean display); //设置选择文件界面是否显示
 
