@@ -3,6 +3,7 @@ package com.chenxu.workassistant.FileMenage;
 import android.app.Activity;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.chenxu.workassistant.utils.FileUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -37,8 +39,9 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
     private ArrayList<FileBean> fileList,selectedFiles;
     private ArrayList<CatalogBean> catalogList; //目录
     private int showIndex = 0; //浏览位置
-    private boolean isRetainOldFile = false; //是否保留老文件（移动）
-
+    private boolean isRetainOldFile = false,isRunFileNumber = true; //是否保留老文件（移动）
+    private int fileNumber,folderNumber;
+    private static final int HANDLER_FILE_NUMBER = 1;
 
     public FileMenagePresenter(FileMenageContract.View view){
         mView = view;
@@ -419,6 +422,65 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
             mView.showCollectionDialog();
         }
     }
+
+    @Override
+    public void getFileDetail() {
+        File file = selectedFiles.get(0).getFile();
+        if (file.isDirectory()){
+            //是目录，遍历文件数
+            mView.showDetailDialog(2,file.getName(),FileUtil.convertFileTime(file.lastModified()),"",file.getPath());
+            fileNumber = 0;
+            folderNumber = 0;
+            isRunFileNumber = true;
+            new Thread(){
+                @Override
+                public void run() {
+                    super.run();
+                    if (recursionFileNumber(file)){
+                        handler.sendEmptyMessage(HANDLER_FILE_NUMBER);
+                    }
+                }
+            }.start();
+        }else {
+            //是文件
+            mView.showDetailDialog(1,file.getName(),FileUtil.convertFileTime(file.lastModified()),FileUtil.convertFileSize(file.length()),file.getPath());
+        }
+    }
+
+    @Override
+    public void setRunFileNumber(boolean isRun) {
+        this.isRunFileNumber = isRun;
+    }
+
+    private boolean recursionFileNumber(File file){
+        File[] files = file.listFiles();
+        for (File item : files){
+            if (isRunFileNumber){
+                if (item.isDirectory()){
+                    folderNumber ++;
+                    recursionFileNumber(item);
+                }else {
+                    fileNumber ++;
+                }
+            }else {
+                return false;
+            }
+        }
+        files = null;
+        return true;
+    }
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case HANDLER_FILE_NUMBER:
+                    mView.setDialogDetailFileNumber(fileNumber,folderNumber);
+                    break;
+            }
+        }
+    };
 
 
 }

@@ -7,9 +7,9 @@
     android:gravity="center_horizontal">
 
     <RelativeLayout
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="50dp"
-        android:paddingRight="15dp">
+        android:paddingRight="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,15 +25,12 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/close"
+            android:scaleType="fitXY"
             android:padding="5dp"
             android:id="@+id/iv_detail_close"/>
 
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/dialog_line"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,38 +38,38 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingRight="20dp"
+        android:layout_marginTop="-10dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_weight="0.2"
             android:text="@string/dialog_file_detail_name"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="@color/mainBlue"/>
 
-        <TextView
+        <com.chenxu.workassistant.widget.MarqueeTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7"
+            android:layout_weight="0.8"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:text="adsaaaaa敖德萨aaaaaaaaaaaaaaaaaaaaaaaa"
             android:textSize="14sp"
-            android:textColor="@color/dialogDetailText"/>
+            android:textColor="@color/dialogDetailText"
+            android:gravity="center"
+            android:id="@+id/tv_detail_name"/>
 
     </LinearLayout>
 
     <View
-        android:layout_width="310dp"
+        android:layout_width="290dp"
         android:layout_height="1dp"
         android:background="@color/dialog_line"/>
 
     <LinearLayout
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/dialog_detail_content_bg"
         android:layout_marginTop="15dp"
@@ -90,7 +87,7 @@
                 style="@style/dialogDetailOptionTitle"
                 android:text="@string/dialog_file_detail_option_time"/>
 
-            <TextView
+            <com.chenxu.workassistant.widget.MarqueeTextView
                 style="@style/dialogDetailOptionText"
                 android:id="@+id/tv_detail_time"/>
 
@@ -113,16 +110,13 @@
                 style="@style/dialogDetailOptionTitle"
                 android:text="@string/dialog_file_detail_option_size"/>
 
-            <TextView
+            <com.chenxu.workassistant.widget.MarqueeTextView
                 style="@style/dialogDetailOptionText"
                 android:id="@+id/tv_detail_size"/>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dialog_line"/>
+
 
         <LinearLayout
             style="@style/dialogDetailOption"
@@ -136,9 +130,10 @@
                 style="@style/dialogDetailOptionTitle"
                 android:text="@string/dialog_file_detail_option_number"/>
 
-            <TextView
+            <com.chenxu.workassistant.widget.MarqueeTextView
                 style="@style/dialogDetailOptionText"
-                android:id="@+id/tv_detail_number"/>
+                android:id="@+id/tv_detail_number"
+                android:text="@string/dialog_file_detail_number_hint"/>
 
         </LinearLayout>
 
@@ -159,7 +154,7 @@
                 style="@style/dialogDetailOptionTitle"
                 android:text="@string/dialog_file_detail_option_path"/>
 
-            <TextView
+            <com.chenxu.workassistant.widget.MarqueeTextView
                 style="@style/dialogDetailOptionText"
                 android:id="@+id/tv_detail_path"/>
 
@@ -168,7 +163,7 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         style="?android:attr/borderlessButtonStyle"
         android:background="@drawable/main_btn_selector"

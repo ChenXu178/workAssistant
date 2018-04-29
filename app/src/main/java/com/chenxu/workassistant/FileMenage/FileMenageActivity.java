@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -20,6 +21,7 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -62,7 +64,7 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
     private LinearLayoutManager catalogManager; //列表布局
     private ScrollSpeedLinearLayoutManger fileManager; //列表布局
     private LayoutAnimationController fileInAnim,fileOutAnim,fileFadeAnim; //列表加载动画
-    private PopupWindow dialogNewFile,dialogRename,dialogDelete,dialogLoading,dialogCollection; //弹出窗口
+    private PopupWindow dialogNewFile,dialogRename,dialogDelete,dialogLoading,dialogCollection,dialogDetail; //弹出窗口
     private boolean isFileSelect = false;  //是否选择文件模式
     private boolean isLoad = false;  //是否正在加载
 
@@ -180,7 +182,7 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
                 showRenameDialog(mPresenter.getSelectFileName());
                 break;
             case R.id.ll_detail: // 详情
-
+                mPresenter.getFileDetail();
                 break;
             case R.id.btn_inquiry_confirm: // 选择目录确定
                 showLoadingDialog();
@@ -720,6 +722,53 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
     }
 
     /**
+     * 显示文件详情窗口
+     * @param type 文件类型 1文件 2文件夹
+     * @param name 文件名
+     * @param time 修改时间
+     * @param size 大小 目录时不显示
+     * @param path 路径
+     */
+    @Override
+    public void showDetailDialog(int type, String name,String time, String size, String path) {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_file_detail,null);
+        ImageView ivClose = view.findViewById(R.id.iv_detail_close);
+        TextView tvName = view.findViewById(R.id.tv_detail_name);
+        TextView tvTime = view.findViewById(R.id.tv_detail_time);
+        TextView tvSize = view.findViewById(R.id.tv_detail_size);
+        TextView tvPath = view.findViewById(R.id.tv_detail_path);
+        if (type == 1){
+            LinearLayout llNumber = view.findViewById(R.id.ll_detail_number);
+            llNumber.setVisibility(View.GONE);
+        }if (type == 2){
+            LinearLayout llSize = view.findViewById(R.id.ll_detail_size);
+            llSize.setVisibility(View.GONE);
+        }
+        tvName.setText(name);
+        tvTime.setText(time);
+        tvSize.setText(size);
+        tvPath.setText(path);
+        Button btnConfirm = view.findViewById(R.id.btn_detail_confirm);
+        btnConfirm.setOnClickListener(dialogViewClickListener);
+        ivClose.setOnClickListener(dialogViewClickListener);
+        dialogDetail = DialogUtil.initDialog(view);
+        dialogDetail.setOnDismissListener(()->{
+            BackgroundUtil.setBackgroundAlpha(1f,FileMenageActivity.this);
+            mPresenter.setRunFileNumber(false);
+        });
+        BackgroundUtil.setBackgroundAlpha(0.5f,this);
+        dialogDetail.showAtLocation(mBinding.rlBar,Gravity.CENTER,0,0);
+    }
+
+    @Override
+    public void setDialogDetailFileNumber(int fileNumber, int folderNumber) {
+        if (dialogDetail!=null && dialogDetail.isShowing()){
+            TextView tvNumber = dialogDetail.getContentView().findViewById(R.id.tv_detail_number);
+            tvNumber.setText(fileNumber+this.getResources().getString(R.string.dialog_file_detail_number_text1)+folderNumber+this.getResources().getString(R.string.dialog_file_detail_number_text2));
+        }
+    }
+
+    /**
      * 弹出窗口点击事件
      */
     class DialogViewClickListener implements View.OnClickListener{
@@ -748,6 +797,12 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
                     EditText etFileName = (EditText)dialogRename.getContentView().findViewById(R.id.et_rename_name);
                     String fileName = etFileName.getText().toString().trim();
                     mPresenter.renameSelectFile(fileName);
+                    break;
+                case R.id.btn_detail_confirm:
+                    dialogDetail.dismiss();
+                    break;
+                case R.id.iv_detail_close:
+                    dialogDetail.dismiss();
                     break;
             }
         }

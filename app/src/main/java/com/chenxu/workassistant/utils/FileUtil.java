@@ -14,13 +14,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Android on 2018/3/26.
  */
 
 public class FileUtil {
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 格式化文件大小
@@ -43,6 +46,10 @@ public class FileUtil {
             return String.format(f > 100 ? "%.0f KB" : "%.1f KB", f);
         } else
             return String.format("%d B", size);
+    }
+
+    public static String convertFileTime(long time){
+        return dateFormat.format(new Date(time));
     }
 
     /**

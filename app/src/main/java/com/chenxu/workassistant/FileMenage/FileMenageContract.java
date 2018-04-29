@@ -76,7 +76,11 @@ public interface FileMenageContract {
 
         void showSnackBar(int msg, int snackBarMSGColor, int snackBarBGColor);
 
-        void showCollectionDialog();
+        void showCollectionDialog(); //显示收藏成功窗口
+
+        void showDetailDialog(int type,String name,String time,String size,String path); //显示文件详情窗口 type 1文件 2文件夹
+
+        void setDialogDetailFileNumber(int fileNumber,int folderNumber); //设置详情窗口文件数量
     }
 
     interface Presenter extends BasePresenter{
@@ -117,6 +121,10 @@ public interface FileMenageContract {
 
         void addFolder(String name); //新建文件夹
 
-        void swipeMenuItemClick(int adapterPosition,int menuPosition);
+        void swipeMenuItemClick(int adapterPosition,int menuPosition);//列表侧滑菜单点击
+
+        void getFileDetail(); //获得文件详情
+
+        void setRunFileNumber(boolean isRun);
     }
 }

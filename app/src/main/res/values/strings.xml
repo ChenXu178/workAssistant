@@ -88,6 +88,9 @@
     <string name="dialog_file_detail_option_number">文件数量</string>
     <string name="dialog_file_detail_option_path">文件路径</string>
     <string name="dialog_file_detail_btn">确定</string>
+    <string name="dialog_file_detail_number_hint">加载中...</string>
+    <string name="dialog_file_detail_number_text1">个文件，</string>
+    <string name="dialog_file_detail_number_text2">个文件夹</string>
 
 
     <!--其他-->
