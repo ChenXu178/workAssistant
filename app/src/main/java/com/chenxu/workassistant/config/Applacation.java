@@ -31,6 +31,8 @@ public class Applacation extends Application {
         instance = this;
         Constant.spPermission = getSharedPreferences("permission",MODE_PRIVATE);
         Constant.permissionEditor = Constant.spPermission.edit();
+        Constant.spSetting = getSharedPreferences("setting",MODE_PRIVATE);
+        Constant.editorSetting = Constant.spSetting.edit();
 
         initOCRAccessToken();
 

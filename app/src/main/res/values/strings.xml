@@ -14,6 +14,7 @@
     <string name="btn_title_collection">收藏夹</string>
     <string name="btn_title_history">浏览历史</string>
     <string name="btn_title_photo">图片解析</string>
+    <string name="btn_title_setting">软件设置</string>
 
     <!--登录-->
     <string name="login_title">登录</string>
@@ -67,6 +68,10 @@
     <string name="photo_select_all">全选</string>
     <string name="photo_btn_copy_hint">文本已复制到剪切板中</string>
 
+    <string name="setting_title">软件设置</string>
+    <string name="setting_option1">显示隐藏文件</string>
+    <string name="setting_option2">搜索时过滤缓存文件</string>
+
     <!--弹窗-->
     <string name="dialog_file_rename_title">重命名</string>
     <string name="dialog_file_rename_hint">请在下方输入新文件名</string>
@@ -100,7 +105,7 @@
 
     <string name="folder_detail">个文件</string>
     <string name="root_catalog">内部存储</string>
-    
+
     <string name="error_110">Access Token过期失效	</string>
     <string name="error_1">服务器内部错误，请再次请求</string>
     <string name="error_2">服务暂不可用，请再次请求</string>
@@ -124,4 +129,9 @@
     <string name="error_parse_no_text">未识别出任何信息</string>
     <string name="error_parse">解析失败</string>
     <string name="error_ok">成功</string>
+
+    <string name="shortcut_search">文件搜索</string>
+    <string name="shortcut_search_message">文件搜索暂时无法使用</string>
+    <string name="shortcut_email">发邮件</string>
+    <string name="shortcut_email_message">邮件发送暂时无法使用</string>
 </resources>

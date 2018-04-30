@@ -22,31 +22,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".EmailActivity" />
-        <activity
-            android:name=".FileReader.OfficeFileReaderActivity" />
-        <activity
-            android:name=".FileReader.ImageFileReaderActivity" />
-        <activity
-            android:name=".Home.HomeActivity">
+        <activity android:name=".EmailActivity" />
+        <activity android:name=".fileReader.OfficeFileReaderActivity" />
+        <activity android:name=".fileReader.ImageFileReaderActivity" />
+        <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts"/>
+
         </activity>
-        <activity
-            android:name=".FileMenage.FileMenageActivity"/>
-        <activity
-            android:name=".LoginActivity"/>
-        <activity
-            android:name=".PhotoRecognition.PhotoRecognitionActivity"/>
-
-
-        <activity android:name="com.linchaolong.android.imagepicker.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
-
+        <activity android:name=".fileMenage.FileMenageActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".photoRecognition.PhotoRecognitionActivity" />
+        <activity android:name=".setting.SettingActivity"/>
+        <activity android:name=".fileSearch.FileSearchActivity"/>
     </application>
 
 </manifest>

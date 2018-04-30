@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".setting.SettingActivity"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        android:background="@color/white">
+
+        <RelativeLayout
+            style="@style/bar"
+            android:id="@+id/rl_bar">
+
+            <ImageButton
+                style="@style/barBack"
+                android:id="@+id/btn_back"/>
+
+            <TextView
+                style="@style/barText"
+                android:text="@string/setting_title"
+                android:id="@+id/tv_bar_title"/>
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            style="@style/settingOption">
+
+            <TextView
+                style="@style/settingOptionTitle"
+                android:text="@string/setting_option1"/>
+
+            <Switch
+                style="@style/settingOptionSwitch"
+                android:id="@+id/sw_show"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/settingOption">
+
+            <TextView
+                style="@style/settingOptionTitle"
+                android:text="@string/setting_option2"/>
+
+            <Switch
+                style="@style/settingOptionSwitch"
+                android:id="@+id/sw_filter"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

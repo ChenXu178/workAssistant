@@ -16,8 +16,7 @@
             style="@style/max">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                style="@style/bar"
                 android:id="@+id/rl_bar">
 
                 <LinearLayout
@@ -28,11 +27,7 @@
                     android:animateLayoutChanges="true">
 
                     <ImageButton
-                        style="@style/max"
-                        android:src="@drawable/back"
-                        android:scaleType="fitXY"
-                        android:padding="16dp"
-                        android:background="@drawable/menu_btn_bg"
+                        style="@style/barBack"
                         android:visibility="visible"
                         android:id="@+id/btn_back"/>
 
@@ -56,11 +51,8 @@
                     android:animateLayoutChanges="true">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/barText"
                         android:text="@string/file_menage_title"
-                        android:textSize="20sp"
-                        android:textColor="@color/barText"
                         android:id="@+id/tv_bar_title"/>
 
                     <TextView
@@ -157,7 +149,7 @@
                         <RelativeLayout
                             style="@style/catalog"
                             android:clickable="true"
-                            android:background="@drawable/menu_btn_bg"
+                            android:background="@drawable/base_btn_bg"
                             android:id="@+id/rl_root_catalog">
 
                             <TextView

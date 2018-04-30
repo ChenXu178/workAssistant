@@ -8,8 +8,7 @@
 
     <RelativeLayout
         android:layout_width="330dp"
-        android:layout_height="50dp"
-        android:paddingRight="10dp">
+        android:layout_height="50dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -20,13 +19,14 @@
             android:layout_centerInParent="true"/>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/close"
+            android:background="@drawable/menu_btn_bg"
             android:scaleType="fitXY"
-            android:padding="5dp"
+            android:padding="15dp"
             android:id="@+id/iv_detail_close"/>
 
     </RelativeLayout>

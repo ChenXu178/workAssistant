@@ -1,13 +1,9 @@
 package com.chenxu.workassistant.utils;
 
 import android.graphics.Bitmap;
-import android.util.Log;
-import android.widget.EditText;
 
-import com.chenxu.workassistant.FileMenage.FileBean;
+import com.chenxu.workassistant.fileMenage.FileBean;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;

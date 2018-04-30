@@ -11,31 +11,20 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:fitsSystemWindows="true"
-        tools:context=".PhotoRecognition.PhotoRecognitionActivity">
+        tools:context=".photoRecognition.PhotoRecognitionActivity">
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            style="@style/bar"
             android:id="@+id/rl_bar">
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/back"
-                android:scaleType="fitXY"
-                android:padding="16dp"
-                android:background="@drawable/menu_btn_bg"
-                android:layout_alignParentLeft="true"
+                style="@style/barBack"
                 android:id="@+id/btn_back"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                style="@style/barText"
                 android:text="@string/photo_title"
-                android:textSize="20sp"
-                android:textColor="@color/barText"
                 android:id="@+id/tv_bar_title"/>
 
             <ImageButton
