@@ -82,31 +82,28 @@
         <item name="android:textColor">@drawable/home_btn_text_selector</item>
     </style>
 
-    <style name="leftMenuView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">80dp</item>
+    <style name="HomeMenuView">
+        <item name="android:layout_width">230dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
-    <style name="leftMenuViewL" parent="min">
-        <item name="android:layout_centerInParent">true</item>
-        <item name="android:orientation">vertical</item>
+    <style name="HomeMenuTitle" parent="min">
+        <item name="android:textColor">@color/barText</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+    </style>
+
+    <style name="HomeMenuNumber">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@drawable/sign_number</item>
         <item name="android:gravity">center</item>
-    </style>
-
-    <style name="leftMenuImg">
-        <item name="android:layout_width">25dp</item>
-        <item name="android:layout_height">25dp</item>
-    </style>
-
-    <style name="leftMenuText" parent="min">
-        <item name="android:textColor">@color/leftMenu</item>
-        <item name="android:layout_marginTop">@dimen/leftMenuText</item>
-    </style>
-
-    <style name="leftMenuLine">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
-        <item name="android:src">@color/mainBtnLine</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <!--登录-->

@@ -3,8 +3,7 @@
 
     <!--首页-->
     <string name="left_menu_user_name">未登陆</string>
-    <string name="left_menu_availabl_storage">可用存储</string>
-    <string name="left_menu_alternative">备选附件</string>
+    <string name="left_menu_enclosure">备选附件</string>
     <string name="left_menu_Inbox">收件箱</string>
     <string name="left_menu_login">登陆</string>
     <string name="left_menu_logout">注销</string>

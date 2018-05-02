@@ -4,20 +4,86 @@
 
     </data>
 
-    <android.support.v4.widget.DrawerLayout
+    <com.chenxu.workassistant.widget.SlideMenu
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:fitsSystemWindows="true"
-        android:id="@+id/dl_main"
+        android:background="@drawable/home_bg"
+        android:id="@+id/sm_main"
         tools:context="com.chenxu.workassistant.home.HomeActivity">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="100dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/left_menu_user_name"
+                android:textSize="16sp"
+                android:textColor="@color/barText"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/tv_username"/>
+
+            <LinearLayout
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/tv_username"
+                android:layout_marginTop="40dp">
+
+                <LinearLayout
+                    style="@style/HomeMenuView"
+                    android:id="@+id/ll_enclosure">
+
+                    <TextView
+                        style="@style/HomeMenuTitle"
+                        android:text="@string/left_menu_enclosure"/>
+
+                    <TextView
+                        style="@style/HomeMenuNumber"
+                        android:id="@+id/tv_enclosure_number"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/HomeMenuView"
+                    android:id="@+id/ll_inbox">
+
+                    <TextView
+                        style="@style/HomeMenuTitle"
+                        android:text="@string/left_menu_Inbox"/>
+
+                    <TextView
+                        style="@style/HomeMenuNumber"
+                        android:id="@+id/tv_inbox_number"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:text="@string/left_menu_login"
+                android:textSize="18sp"
+                android:textColor="@color/barText"
+                android:paddingLeft="20dp"
+                android:id="@+id/tv_user_state"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
             android:id="@+id/rl_home">
 
             <FrameLayout
@@ -26,18 +92,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
-
-                    <ImageButton
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/menu"
-                        android:scaleType="fitXY"
-                        android:paddingTop="17dp"
-                        android:paddingBottom="17dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:background="@drawable/menu_btn_bg"
-                        android:id="@+id/btn_menu"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -254,144 +308,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:layout_gravity="left"
-            android:id="@+id/rl_left">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        style="@style/leftMenuViewL">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/history"/>
-
-                        <TextView
-                            style="@style/leftMenuText"
-                            android:text="@string/left_menu_user_name"/>
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <ImageView
-                    style="@style/leftMenuLine"/>
-
-                <RelativeLayout
-                    style="@style/leftMenuView"
-                    android:layout_gravity="center">
-
-                    <LinearLayout
-                        style="@style/leftMenuViewL">
-
-                        <ImageView
-                            style="@style/leftMenuImg"
-                            android:src="@drawable/history"/>
-
-                        <TextView
-                            style="@style/leftMenuText"
-                            android:text="@string/left_menu_availabl_storage"/>
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-                <ImageView
-                    style="@style/leftMenuLine"/>
-
-                <RelativeLayout
-                    style="@style/leftMenuView"
-                    android:layout_gravity="center">
-
-                    <LinearLayout
-                        style="@style/leftMenuViewL">
-
-                        <ImageView
-                            style="@style/leftMenuImg"
-                            android:src="@drawable/history"/>
-
-                        <TextView
-                            style="@style/leftMenuText"
-                            android:text="@string/left_menu_alternative"/>
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-                <ImageView
-                    style="@style/leftMenuLine"/>
-
-                <RelativeLayout
-                    style="@style/leftMenuView"
-                    android:layout_gravity="center">
-
-                    <LinearLayout
-                        style="@style/leftMenuViewL">
-
-                        <ImageView
-                            style="@style/leftMenuImg"
-                            android:src="@drawable/history"/>
-
-                        <TextView
-                            style="@style/leftMenuText"
-                            android:text="@string/left_menu_Inbox"/>
-
-                    </LinearLayout>
-
-
-
-                </RelativeLayout>
-                <ImageView
-                    style="@style/leftMenuLine"/>
-
-            </LinearLayout>
-
-
-            <RelativeLayout
-                style="@style/leftMenuView"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center"
-                android:id="@+id/rl_login">
-
-                <LinearLayout
-                    style="@style/leftMenuViewL">
-
-                    <ImageView
-                        style="@style/leftMenuImg"
-                        android:src="@drawable/history"/>
-
-                    <TextView
-                        style="@style/leftMenuText"
-                        android:text="@string/left_menu_login"/>
-
-                </LinearLayout>
-
-
-
-            </RelativeLayout>
-
-            <ImageView
-                android:layout_above="@id/rl_login"
-                style="@style/leftMenuLine"/>
-
-        </RelativeLayout>
-
-
-    </android.support.v4.widget.DrawerLayout>
+    </com.chenxu.workassistant.widget.SlideMenu>
 </layout>
 

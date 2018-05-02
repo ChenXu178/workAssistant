@@ -2,6 +2,7 @@ package com.chenxu.workassistant.home;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -50,15 +51,12 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
     @Override
     protected void initView() {
         mPresenter = new HomePresenter(this,this);
-
         StatusBarUtil.darkMode(this);
-
         mPresenter.start();
     }
 
     @Override
     protected void bindEvent() {
-        mBinding.btnMenu.setOnClickListener(this);
         mBinding.llFiles.setOnClickListener(this);
         mBinding.llEmail.setOnClickListener(this);
         mBinding.llCollection.setOnClickListener(this);
@@ -94,27 +92,6 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
             }
         }.clickAntiShake(mBinding.ivSearchBg);
 
-        mBinding.dlMain.setDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-
-            }
-        });
     }
 
     @Override
@@ -155,9 +132,6 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_menu:
-                mBinding.dlMain.openDrawer(Gravity.LEFT);
-                break;
             case R.id.ll_files:
                 if (Constant.spPermission.getBoolean("storage",true)){
                     Intent intent = new Intent(this, FileMenageActivity.class);
