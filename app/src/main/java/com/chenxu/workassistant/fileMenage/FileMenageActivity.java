@@ -60,7 +60,7 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
     private LinearLayoutManager catalogManager; //列表布局
     private ScrollSpeedLinearLayoutManger fileManager; //列表布局
     private LayoutAnimationController fileInAnim,fileOutAnim,fileFadeAnim; //列表加载动画
-    private PopupWindow dialogNewFile,dialogRename,dialogDelete,dialogLoading,dialogCollection,dialogDetail; //弹出窗口
+    private PopupWindow dialogNewFile,dialogRename,dialogDelete,dialogLoading,dialogCollection,dialogEnclosure,dialogDetail; //弹出窗口
     private boolean isFileSelect = false;  //是否选择文件模式
     private boolean isLoad = false;  //是否正在加载
 
@@ -714,6 +714,26 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
         dialogCollection.showAtLocation(mBinding.rlBar,Gravity.CENTER,0,0);
         new Handler().postDelayed(()->{
             dialogCollection.dismiss();
+        },1500);
+    }
+
+    /**
+     * 显示添加附件成功
+     */
+    @Override
+    public void showEnclosureDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_file_enclosure,null);
+        dialogEnclosure = DialogUtil.initDialog(view);
+        BackgroundUtil.setBackgroundAlpha(0.7f,this);
+        dialogEnclosure.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                BackgroundUtil.setBackgroundAlpha(1f,FileMenageActivity.this);
+            }
+        });
+        dialogEnclosure.showAtLocation(mBinding.rlBar,Gravity.CENTER,0,0);
+        new Handler().postDelayed(()->{
+            dialogEnclosure.dismiss();
         },1500);
     }
 

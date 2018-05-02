@@ -48,6 +48,8 @@
     <string name="file_dialog_err3">文件重命名失败</string>
     <string name="file_dialog_err4">新建文件夹失败</string>
     <string name="file_right_menu_err1">文件目录无法加入至附件</string>
+    <string name="file_right_menu_err2">文件已经收藏过了</string>
+    <string name="file_right_menu_err3">文件已经在代发附件列表了</string>
     <string name="file_right_collection_item_name">收藏</string>
     <string name="file_right_enclosure_item_name">附件</string>
 
@@ -84,6 +86,7 @@
     <string name="dialog_file_new_file_btn">确定</string>
 
     <string name="file_dialog_collection_title">收藏成功</string>
+    <string name="file_dialog_enclosure_title">添加成功</string>
 
     <string name="dialog_file_detail_title">文件详情</string>
     <string name="dialog_file_detail_name">文件名</string>

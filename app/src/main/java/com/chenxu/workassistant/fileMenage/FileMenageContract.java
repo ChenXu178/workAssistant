@@ -4,9 +4,14 @@ import android.content.Context;
 
 import com.chenxu.workassistant.BasePresenter;
 import com.chenxu.workassistant.BaseView;
+import com.chenxu.workassistant.dao.CollectionEntity;
+import com.chenxu.workassistant.dao.EnclosureEntity;
+import com.chenxu.workassistant.dao.HistoryEntity;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import io.reactivex.Observable;
 
 /**
  * Created by Android on 2018/3/26.
@@ -76,6 +81,8 @@ public interface FileMenageContract {
 
         void showCollectionDialog(); //显示收藏成功窗口
 
+        void showEnclosureDialog(); //显示收藏成功窗口
+
         void showDetailDialog(int type,String name,String time,String size,String path); //显示文件详情窗口 type 1文件 2文件夹
 
         void setDialogDetailFileNumber(int fileNumber,int folderNumber); //设置详情窗口文件数量
@@ -124,5 +131,21 @@ public interface FileMenageContract {
         void getFileDetail(); //获得文件详情
 
         void setRunFileNumber(boolean isRun);
+
+        void insertHistory(File file);//添加历史记录
+
+        void insertCollection(File file);//添加收藏
+
+        void insertEnclosure(File file);
+
+    }
+
+    interface Model{
+
+        Observable insertHistory(HistoryEntity entity);
+
+        Observable<Boolean> insertCollection(CollectionEntity entity);
+
+        Observable<Boolean> insertEnclosure(EnclosureEntity entity);
     }
 }

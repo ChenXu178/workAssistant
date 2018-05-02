@@ -41,6 +41,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
         super.onResume();
         mBinding.ivSearch.clearAnimation();
         mBinding.ivSearchBg.clearAnimation();
+        mPresenter.start();
     }
 
     @Override
@@ -52,7 +53,6 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
     protected void initView() {
         mPresenter = new HomePresenter(this,this);
         StatusBarUtil.darkMode(this);
-        mPresenter.start();
     }
 
     @Override
@@ -94,6 +94,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
 
     }
 
+
     @Override
     public void showJurisdictionDialog(List<PermissionItem> permissionItems) {
         BackgroundUtil.setBackgroundAlpha(0.5f,this);
@@ -127,6 +128,16 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
                 BackgroundUtil.setBackgroundAlpha(1f,HomeActivity.this);
             }
         });
+    }
+
+    @Override
+    public void setEnclosureCount(int count) {
+        if (count == 0){
+            mBinding.tvEnclosureNumber.setVisibility(View.GONE);
+        }else {
+            mBinding.tvEnclosureNumber.setVisibility(View.VISIBLE);
+            mBinding.tvEnclosureNumber.setText(count+"");
+        }
     }
 
     @Override

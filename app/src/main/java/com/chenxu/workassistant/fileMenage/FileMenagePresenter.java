@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.chenxu.workassistant.R;
 import com.chenxu.workassistant.config.Applacation;
 import com.chenxu.workassistant.config.Constant;
+import com.chenxu.workassistant.dao.CollectionEntity;
+import com.chenxu.workassistant.dao.EnclosureEntity;
+import com.chenxu.workassistant.dao.HistoryEntity;
 import com.chenxu.workassistant.setting.SettingActivity;
 import com.chenxu.workassistant.utils.FileUtil;
 
@@ -19,6 +22,7 @@ import java.util.ArrayList;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -30,6 +34,7 @@ import io.reactivex.schedulers.Schedulers;
 public class FileMenagePresenter implements FileMenageContract.Presenter {
 
     private FileMenageContract.View mView;
+    private FileMenageContract.Model mModel;
     private File currentFile;  //当前文件
     private File rootFile; //根目录
     private ArrayList<FileBean> fileList,selectedFiles;
@@ -41,12 +46,13 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
     private boolean showHideFile;
 
     public FileMenagePresenter(FileMenageContract.View view){
-        mView = view;
-        fileList = new ArrayList<>();
-        selectedFiles = new ArrayList<>();
-        catalogList = new ArrayList<>();
-        rootFile = new File(Environment.getExternalStorageDirectory().toString());
-        showHideFile = Constant.spSetting.getBoolean(SettingActivity.SP_SHOW_HIDE_FILE,false);
+        this.mView = view;
+        this.mModel = new FileManageModel(this);
+        this.fileList = new ArrayList<>();
+        this.selectedFiles = new ArrayList<>();
+        this.catalogList = new ArrayList<>();
+        this.rootFile = new File(Environment.getExternalStorageDirectory().toString());
+        this.showHideFile = Constant.spSetting.getBoolean(SettingActivity.SP_SHOW_HIDE_FILE,false);
     }
 
     @Override
@@ -123,13 +129,13 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
                 case 2: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
                 case 3: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
                 case 4: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
-                case 5: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
-                case 6: mView.openImageFile(fileBean.getFile().toString(),view); break;
-                case 7: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
-                case 8: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
-                case 9: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
+                case 5: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
+                case 6: mView.openImageFile(fileBean.getFile().toString(),view);insertHistory(fileBean.getFile()); break;
+                case 7: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
+                case 8: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
+                case 9: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
                 case 10: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
-                case 11: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
+                case 11: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
                 case 12: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
             }
         }
@@ -416,12 +422,12 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
             if (file.isDirectory()){
                 mView.showSnackBar(R.string.file_right_menu_err1,R.color.SnackBarText,R.color.SnackBarBG);
             }else {
-
+                insertEnclosure(file);
             }
         }
         if (menuPosition == 1){
             //收藏
-            mView.showCollectionDialog();
+            insertCollection(file);
         }
     }
 
@@ -452,6 +458,55 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
     @Override
     public void setRunFileNumber(boolean isRun) {
         this.isRunFileNumber = isRun;
+    }
+
+    @Override
+    public void insertHistory(File file) {
+        HistoryEntity entity = new HistoryEntity(null,file.getPath(),System.currentTimeMillis());
+        mModel.insertHistory(entity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer() {
+            @Override
+            public void accept(Object o) throws Exception {
+            }
+        });
+    }
+
+    @Override
+    public void insertCollection(File file) {
+        CollectionEntity entity = new CollectionEntity(null,file.getPath(),System.currentTimeMillis());
+        mModel.insertCollection(entity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (aBoolean){
+                            mView.showCollectionDialog();
+                        }else {
+                            mView.showSnackBar(R.string.file_right_menu_err2,R.color.SnackBarText,R.color.SnackBarBG);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void insertEnclosure(File file) {
+        EnclosureEntity entity = new EnclosureEntity(null,file.getPath(),System.currentTimeMillis());
+        mModel.insertEnclosure(entity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (aBoolean){
+                            mView.showEnclosureDialog();
+                        }else {
+                            mView.showSnackBar(R.string.file_right_menu_err3,R.color.SnackBarText,R.color.SnackBarBG);
+                        }
+                    }
+                });
     }
 
     private boolean recursionFileNumber(File file){

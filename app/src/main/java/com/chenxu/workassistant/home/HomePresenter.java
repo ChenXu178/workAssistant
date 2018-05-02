@@ -11,6 +11,9 @@ import com.chenxu.workassistant.config.Constant;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import me.weyye.hipermission.PermissionItem;
 
 /**
@@ -20,16 +23,28 @@ import me.weyye.hipermission.PermissionItem;
 public class HomePresenter implements HomeContract.Presenter {
 
     private HomeContract.View mView;
+    private HomeContract.Model mModel;
     private Context mContext;
 
     public HomePresenter(HomeContract.View view,Context context){
-        mView = view;
-        mContext = context;
+        this.mView = view;
+        this.mModel = new HomeModel(this);
+        this.mContext = context;
     }
 
     @Override
     public void start() {
         checkPermission();
+
+        mModel.queryEnclosureCount()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        mView.setEnclosureCount(integer);
+                    }
+                });
     }
 
     @Override

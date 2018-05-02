@@ -13,6 +13,7 @@ import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
 import com.chenxu.workassistant.R;
+import com.chenxu.workassistant.dao.GreenDaoManager;
 
 
 /**
@@ -33,6 +34,8 @@ public class Applacation extends Application {
         Constant.permissionEditor = Constant.spPermission.edit();
         Constant.spSetting = getSharedPreferences("setting",MODE_PRIVATE);
         Constant.editorSetting = Constant.spSetting.edit();
+
+        GreenDaoManager.getInstance();
 
         initOCRAccessToken();
 
