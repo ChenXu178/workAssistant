@@ -18,6 +18,7 @@ import com.chenxu.workassistant.utils.FileUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -129,13 +130,13 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
                 case 2: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
                 case 3: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
                 case 4: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
-                case 5: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
-                case 6: mView.openImageFile(fileBean.getFile().toString(),view);insertHistory(fileBean.getFile()); break;
-                case 7: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
-                case 8: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
-                case 9: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
+                case 5: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
+                case 6: mView.openImageFile(fileBean.getFile().toString(),view); break;
+                case 7: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
+                case 8: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
+                case 9: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
                 case 10: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
-                case 11: mView.openOfficeFile(fileBean.getFile().getPath(),view);insertHistory(fileBean.getFile()); break;
+                case 11: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
                 case 12: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
             }
         }
@@ -461,19 +462,6 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
     }
 
     @Override
-    public void insertHistory(File file) {
-        HistoryEntity entity = new HistoryEntity(null,file.getPath(),System.currentTimeMillis());
-        mModel.insertHistory(entity)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer() {
-            @Override
-            public void accept(Object o) throws Exception {
-            }
-        });
-    }
-
-    @Override
     public void insertCollection(File file) {
         CollectionEntity entity = new CollectionEntity(null,file.getPath(),System.currentTimeMillis());
         mModel.insertCollection(entity)
@@ -507,6 +495,23 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void loadingTheSpecifiedDirectory(String path) {
+        currentFile = new File(path);
+        loadFiles(currentFile,1);
+        File temp = new File(path);
+        List<CatalogBean> catalogBeans = new ArrayList<>();
+        while (!rootFile.getPath().equals(temp.getPath())){
+            catalogBeans.add(new CatalogBean(temp,0));
+            temp = temp.getParentFile();
+        }
+        for (int i = 0; i < catalogBeans.size(); i++) {
+            CatalogBean bean = catalogBeans.get(catalogBeans.size()-i-1);
+            catalogList.add(bean);
+            mView.addCatalog(bean,catalogList.size());
+        }
     }
 
     private boolean recursionFileNumber(File file){

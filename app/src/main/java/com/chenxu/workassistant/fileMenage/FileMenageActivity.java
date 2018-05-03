@@ -51,6 +51,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> implements FileMenageContract.View,View.OnClickListener{
 
     public static final String OPEN_TYPE = "OPEN_TYPE:FILE_MENAGE";//打开方式 1首页打开 2收藏
+    public static final String FILE_PATH = "FILE_PATH:FILE_MENAGE";
     public static final String VIEW_ANIM = "VIEW_ANIM:FILE_MENAGE";
 
 
@@ -103,6 +104,9 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
         if (openType == 1){ //判断进入方式
             ViewCompat.setTransitionName(mBinding.tvBarTitle,this.VIEW_ANIM);
             new Handler().postDelayed(()->{ mPresenter.start(); },300);
+        }else if (openType == 2){
+            String filePath = getIntent().getStringExtra(this.FILE_PATH);
+            mPresenter.loadingTheSpecifiedDirectory(filePath);
         }
     }
 

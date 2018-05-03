@@ -2,6 +2,7 @@ package com.chenxu.workassistant.utils;
 
 import android.graphics.Bitmap;
 
+import com.chenxu.workassistant.R;
 import com.chenxu.workassistant.fileMenage.FileBean;
 
 import java.io.ByteArrayOutputStream;
@@ -209,6 +210,124 @@ public class FileUtil {
 
                 default:
                     type = 3;
+                    break;
+            }
+            return type;
+        }
+    }
+
+    public static int fileIconForType(File file) {
+        if (file.isDirectory()) {
+            return R.drawable.file_folder;
+        } else {
+            String suffix = file.getName().substring(file.getName().lastIndexOf(".") + 1);
+            int type;
+            switch (suffix) {
+                case "mp3":
+                    type = R.drawable.file_audio;
+                    break;
+                case "wav":
+                    type = R.drawable.file_audio;
+                    break;
+                case "flac":
+                    type = R.drawable.file_audio;
+                    break;
+                case "ape":
+                    type = R.drawable.file_audio;
+                    break;
+
+                case "java":
+                    type = R.drawable.file_code;
+                    break;
+                case "html":
+                    type = R.drawable.file_code;
+                    break;
+                case "js":
+                    type = R.drawable.file_code;
+                    break;
+                case "css":
+                    type = R.drawable.file_code;
+                    break;
+                case "json":
+                    type = R.drawable.file_code;
+                    break;
+                case "xml":
+                    type = R.drawable.file_code;
+                    break;
+
+                case "xlsx":
+                    type = R.drawable.file_excel;
+                    break;
+                case "xls":
+                    type = R.drawable.file_excel;
+                    break;
+
+                case "png":
+                    type = R.drawable.file_img;
+                    break;
+                case "jpg":
+                    type = R.drawable.file_img;
+                    break;
+                case "gif":
+                    type = R.drawable.file_img;
+                    break;
+                case "bmp":
+                    type = R.drawable.file_img;
+                    break;
+
+                case "pdf":
+                    type = R.drawable.file_pdf;
+                    break;
+
+                case "ppt":
+                    type = R.drawable.file_ppt;
+                    break;
+                case "pptx":
+                    type = R.drawable.file_ppt;
+                    break;
+
+                case "txt":
+                    type = R.drawable.file_txt;
+                    break;
+
+                case "mp4":
+                    type = R.drawable.file_video;
+                    break;
+                case "flv":
+                    type = R.drawable.file_video;
+                    break;
+                case "avi":
+                    type = R.drawable.file_video;
+                    break;
+                case "3gp":
+                    type = R.drawable.file_video;
+                    break;
+                case "mkv":
+                    type = R.drawable.file_video;
+                    break;
+                case "rmvb":
+                    type = R.drawable.file_video;
+                    break;
+                case "wmv":
+                    type = R.drawable.file_video;
+                    break;
+
+                case "doc":
+                    type = R.drawable.file_word;
+                    break;
+                case "docx":
+                    type = R.drawable.file_word;
+                    break;
+
+                case "rar":
+                    type = R.drawable.file_zip;
+                    break;
+                case "zip":
+                    type = R.drawable.file_zip;
+                    break;
+
+                default:
+                    type = R.drawable.file_blank;
                     break;
             }
             return type;

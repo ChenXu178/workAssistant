@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/bar"
+            android:id="@+id/rl_bar">
+
+            <ImageButton
+                style="@style/barBack"
+                android:id="@+id/btn_back"/>
+
+            <TextView
+                style="@style/barText"
+                android:text="@string/collection_title"
+                android:textColor="@color/barText"
+                android:id="@+id/tv_bar_title"/>
+
+        </RelativeLayout>
+
+        <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/smrv_main">
+
+        </com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+
+    </LinearLayout>
+
+</layout>

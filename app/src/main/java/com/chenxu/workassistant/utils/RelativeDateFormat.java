@@ -1,5 +1,6 @@
 package com.chenxu.workassistant.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -19,6 +20,8 @@ public class RelativeDateFormat {
     private static final String ONE_MONTH_AGO = "月前";
 
     private static final String ONE_YEAR_AGO = "年前";
+
+    private static SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 
 
     /**
@@ -79,6 +82,10 @@ public class RelativeDateFormat {
 
     private static long toYears(long date) {
         return toMonths(date) / 365L;
+    }
+
+    public static String ordinaryFormat(long time){
+        return format.format(new Date(time));
     }
 
 }

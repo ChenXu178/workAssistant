@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/base_btn_bg"
+        android:padding="7dp">
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:scaleType="fitXY"
+            android:layout_centerVertical="true"
+            tools:src="@drawable/file_folder"
+            android:id="@+id/iv_collection_icon"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_collection_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/file_name_text"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="15sp"
+                tools:text="文件名"
+                android:id="@+id/tv_collection_name"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/file_size_text"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="15sp"
+                tools:text="2018.6.31 18:35"
+                android:id="@+id/tv_collection_time"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

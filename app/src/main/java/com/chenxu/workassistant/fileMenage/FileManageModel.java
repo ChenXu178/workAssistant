@@ -24,22 +24,6 @@ public class FileManageModel implements FileMenageContract.Model {
         this.mPresenter = presenter;
     }
 
-
-    @Override
-    public synchronized Observable insertHistory(HistoryEntity entity) {
-        return Observable.create(new ObservableOnSubscribe<Object>() {
-            @Override
-            public void subscribe(ObservableEmitter<Object> e) throws Exception {
-                HistoryEntity historyEntity = GreenDaoManager.getHistoryEntityDao().queryBuilder().where(HistoryEntityDao.Properties.Path.eq(entity.getPath())).unique();
-                if (historyEntity!=null){
-                    GreenDaoManager.getHistoryEntityDao().delete(historyEntity);
-                }
-                GreenDaoManager.getHistoryEntityDao().insert(entity);
-                e.onNext("");
-            }
-        });
-    }
-
     @Override
     public Observable<Boolean> insertCollection(CollectionEntity entity) {
         return Observable.create(new ObservableOnSubscribe<Boolean>() {

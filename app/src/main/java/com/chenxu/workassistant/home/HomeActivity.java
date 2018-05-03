@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.chenxu.workassistant.BaseActivity;
+import com.chenxu.workassistant.collection.CollectionActivity;
 import com.chenxu.workassistant.fileMenage.FileMenageActivity;
 import com.chenxu.workassistant.LoginActivity;
 import com.chenxu.workassistant.photoRecognition.PhotoRecognitionActivity;
@@ -60,7 +61,6 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
         mBinding.llFiles.setOnClickListener(this);
         mBinding.llEmail.setOnClickListener(this);
         mBinding.llCollection.setOnClickListener(this);
-        mBinding.llHistory.setOnClickListener(this);
         mBinding.llPhoto.setOnClickListener(this);
         mBinding.llSetting.setOnClickListener(this);
 
@@ -142,12 +142,14 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
 
     @Override
     public void onClick(View v) {
+        Intent intent = null;
+        ActivityOptionsCompat compat = null;
         switch (v.getId()){
             case R.id.ll_files:
                 if (Constant.spPermission.getBoolean("storage",true)){
-                    Intent intent = new Intent(this, FileMenageActivity.class);
+                    intent = new Intent(this, FileMenageActivity.class);
                     intent.putExtra(FileMenageActivity.OPEN_TYPE,1);
-                    ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvFile, FileMenageActivity.VIEW_ANIM));
+                    compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvFile, FileMenageActivity.VIEW_ANIM));
                     ActivityCompat.startActivity(this, intent, compat.toBundle());
                 }else {
                     mPresenter.checkPermission();
@@ -156,19 +158,24 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
             case R.id.ll_email:
                 startActivity(new Intent(this,LoginActivity.class));
                 break;
+            case R.id.ll_collection:
+                intent = new Intent(this, CollectionActivity.class);
+                compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvCollection, CollectionActivity.VIEW_ANIM));
+                ActivityCompat.startActivity(this, intent, compat.toBundle());
+                break;
             case R.id.ll_photo:
                 if (Constant.spPermission.getBoolean("camera",true)){
-                    Intent intent = new Intent(this, PhotoRecognitionActivity.class);
+                    intent = new Intent(this, PhotoRecognitionActivity.class);
                     intent.putExtra(PhotoRecognitionActivity.OPEN_TYPE,1);
-                    ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvPhoto, PhotoRecognitionActivity.VIEW_ANIM));
+                    compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvPhoto, PhotoRecognitionActivity.VIEW_ANIM));
                     ActivityCompat.startActivity(this, intent, compat.toBundle());
                 }else {
                     mPresenter.checkPermission();
                 }
                 break;
             case R.id.ll_setting:
-                Intent intent = new Intent(this, SettingActivity.class);
-                ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvSetting, SettingActivity.VIEW_ANIM));
+                intent = new Intent(this, SettingActivity.class);
+                compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvSetting, SettingActivity.VIEW_ANIM));
                 ActivityCompat.startActivity(this, intent, compat.toBundle());
                 break;
         }

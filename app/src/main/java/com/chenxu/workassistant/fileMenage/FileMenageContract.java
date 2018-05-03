@@ -132,17 +132,15 @@ public interface FileMenageContract {
 
         void setRunFileNumber(boolean isRun);
 
-        void insertHistory(File file);//添加历史记录
-
         void insertCollection(File file);//添加收藏
 
         void insertEnclosure(File file);
 
+        void loadingTheSpecifiedDirectory(String path);
+
     }
 
     interface Model{
-
-        Observable insertHistory(HistoryEntity entity);
 
         Observable<Boolean> insertCollection(CollectionEntity entity);
 

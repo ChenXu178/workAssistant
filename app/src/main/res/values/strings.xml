@@ -12,7 +12,7 @@
     <string name="btn_title_email">邮件中心</string>
     <string name="btn_title_collection">收藏夹</string>
     <string name="btn_title_history">浏览历史</string>
-    <string name="btn_title_photo">图片解析</string>
+    <string name="btn_title_photo">图像解析</string>
     <string name="btn_title_setting">软件设置</string>
 
     <!--登录-->
@@ -60,7 +60,7 @@
     <string name="file_reader_photo_analysis">解析</string>
 
     <!--图片解析-->
-    <string name="photo_title">图片解析</string>
+    <string name="photo_title">图像解析</string>
     <string name="photo_select_file_btn">选择图片</string>
     <string name="photo_photo_file_btn">拍照</string>
     <string name="photo_photo_loading">解析中</string>
@@ -72,6 +72,10 @@
     <string name="setting_title">软件设置</string>
     <string name="setting_option1">显示隐藏文件</string>
     <string name="setting_option2">搜索时过滤缓存文件</string>
+
+    <!--我的收藏-->
+    <string name="collection_title">收藏夹</string>
+    <string name="item_collection_btn">取消收藏</string>
 
     <!--弹窗-->
     <string name="dialog_file_rename_title">重命名</string>
