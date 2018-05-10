@@ -22,7 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmailActivity" />
+        <activity android:name=".email.EmailActivity" />
         <activity android:name=".fileReader.OfficeFileReaderActivity" />
         <activity android:name=".fileReader.ImageFileReaderActivity" />
         <activity android:name=".home.HomeActivity">
@@ -38,11 +38,13 @@
 
         </activity>
         <activity android:name=".fileMenage.FileMenageActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".login.LoginActivity" />
         <activity android:name=".photoRecognition.PhotoRecognitionActivity" />
         <activity android:name=".setting.SettingActivity"/>
         <activity android:name=".fileSearch.FileSearchActivity"/>
         <activity android:name=".collection.CollectionActivity"/>
+        <activity android:name=".readEmail.ReadEmailActivity"/>
+        <activity android:name=".sendEmail.SendEmailActivity"/>
     </application>
 
 </manifest>

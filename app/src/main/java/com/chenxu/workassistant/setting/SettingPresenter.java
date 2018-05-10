@@ -22,6 +22,7 @@ public class SettingPresenter implements SettingContract.Presenter {
         if (Constant.spSetting != null){
             mView.setShowHideFileState(Constant.spSetting.getBoolean(SP_SHOW_HIDE_FILE,false));
             mView.setFilterFileState(Constant.spSetting.getBoolean(SP_FILTER_FILE,false));
+            mView.setExitButtonVisibility(Constant.spSetting.getBoolean(Constant.EMAIL_SAVE_ACCOUNT,false));
         }
     }
 

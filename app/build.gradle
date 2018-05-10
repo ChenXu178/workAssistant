@@ -78,6 +78,9 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.5.4'
     //RecyclerView侧滑菜单，Item拖拽，滑动删除Item，自动加载更多，HeaderView，FooterView，Item分组黏贴。
     implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
+    //下拉刷新加载更多
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-5'
     //多重水波纹
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
     //数据库

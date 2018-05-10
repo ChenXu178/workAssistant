@@ -10,9 +10,121 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.chenxu.workassistant.EmailActivity">
+        android:fitsSystemWindows="true"
+        android:background="@color/white"
+        tools:context="com.chenxu.workassistant.email.EmailActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                style="@style/bar"
+                android:id="@+id/rl_bar">
+
+                <ImageButton
+                    style="@style/barBack"
+                    android:id="@+id/btn_back"/>
+
+                <TextView
+                    style="@style/barText"
+                    android:text="@string/email_title"
+                    android:id="@+id/tv_bar_title"/>
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/send"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/menu_btn_bg"
+                    android:padding="16dp"
+                    android:id="@+id/btn_send"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dialog_line"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:visibility="gone"
+                android:focusableInTouchMode="true">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/search_email"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:background="@null"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:hint="@string/email_search_hint"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:textColor="@color/barText"
+                    android:id="@+id/et_search"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dialog_line"/>
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:id="@+id/srl_refresh">
+                
+                <com.scwang.smartrefresh.header.DropBoxHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.scwang.smartrefresh.header.DropBoxHeader>
+
+                <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/smrv_email">
+
+                </com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
+            <RelativeLayout
+                style="@style/max"
+                android:visibility="visible"
+                android:id="@+id/rl_loading">
+
+                <com.wang.avi.AVLoadingIndicatorView
+                    android:id="@+id/avi_load"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    style="@style/AVLoadingIndicatorView"
+                    app:indicatorName="BallScaleMultipleIndicator"
+                    app:indicatorColor="@color/mainBlue"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </FrameLayout>
 </layout>

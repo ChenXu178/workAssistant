@@ -1,13 +1,14 @@
 package com.chenxu.workassistant.home;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.IntentFilter;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -15,8 +16,9 @@ import android.widget.Toast;
 
 import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.collection.CollectionActivity;
+import com.chenxu.workassistant.email.EmailActivity;
 import com.chenxu.workassistant.fileMenage.FileMenageActivity;
-import com.chenxu.workassistant.LoginActivity;
+import com.chenxu.workassistant.login.LoginActivity;
 import com.chenxu.workassistant.photoRecognition.PhotoRecognitionActivity;
 import com.chenxu.workassistant.R;
 import com.chenxu.workassistant.config.Constant;
@@ -24,6 +26,7 @@ import com.chenxu.workassistant.databinding.ActivityHomeBinding;
 import com.chenxu.workassistant.setting.SettingActivity;
 import com.chenxu.workassistant.utils.BackgroundUtil;
 import com.chenxu.workassistant.utils.ClickUtil;
+import com.chenxu.workassistant.utils.SnackBarUtils;
 import com.chenxu.workassistant.utils.StatusBarUtil;
 
 import java.util.List;
@@ -36,6 +39,8 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
 
     private HomeContract.Presenter mPresenter;
     private Animation ivSearchAnimation,ivSearchBgAnimation;
+    private EmailLoginBroadcastReceiver emailLoginBroadcastReceiver;
+    private EmailExitBroadcastReceiver emailExitBroadcastReceiver;
 
     @Override
     protected void onResume() {
@@ -43,6 +48,27 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
         mBinding.ivSearch.clearAnimation();
         mBinding.ivSearchBg.clearAnimation();
         mPresenter.start();
+    }
+
+    @Override
+    protected void onStart() {
+        IntentFilter loginFilter = new IntentFilter(Constant.BC_LOGIN);
+        emailLoginBroadcastReceiver = new EmailLoginBroadcastReceiver();
+        registerReceiver(emailLoginBroadcastReceiver,loginFilter);
+
+        IntentFilter exitFilter = new IntentFilter(Constant.BC_EXIT);
+        emailExitBroadcastReceiver = new EmailExitBroadcastReceiver();
+        registerReceiver(emailExitBroadcastReceiver,exitFilter);
+
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(emailLoginBroadcastReceiver);
+        unregisterReceiver(emailExitBroadcastReceiver);
+
+        super.onStop();
     }
 
     @Override
@@ -54,15 +80,20 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
     protected void initView() {
         mPresenter = new HomePresenter(this,this);
         StatusBarUtil.darkMode(this);
+
+
+        if (Constant.spSetting.getBoolean(Constant.EMAIL_SAVE_ACCOUNT,false)){
+            mPresenter.startPollingEmail();
+        }
     }
 
     @Override
     protected void bindEvent() {
-        mBinding.llFiles.setOnClickListener(this);
-        mBinding.llEmail.setOnClickListener(this);
-        mBinding.llCollection.setOnClickListener(this);
-        mBinding.llPhoto.setOnClickListener(this);
-        mBinding.llSetting.setOnClickListener(this);
+        mBinding.llFiles.setOnClickListener(this::onClick);
+        mBinding.llEmail.setOnClickListener(this::onClick);
+        mBinding.llCollection.setOnClickListener(this::onClick);
+        mBinding.llPhoto.setOnClickListener(this::onClick);
+        mBinding.llSetting.setOnClickListener(this::onClick);
 
         new ClickUtil() {
             @Override
@@ -131,14 +162,20 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
     }
 
     @Override
-    public void setEnclosureCount(int count) {
-        if (count == 0){
-            mBinding.tvEnclosureNumber.setVisibility(View.GONE);
+    public void setEmailCountVisibility(int count) {
+        if (count >= 1){
+            mBinding.tvEmailCount.setVisibility(View.VISIBLE);
+            mBinding.tvEmailCount.setText(count+"");
         }else {
-            mBinding.tvEnclosureNumber.setVisibility(View.VISIBLE);
-            mBinding.tvEnclosureNumber.setText(count+"");
+            mBinding.tvEmailCount.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onEmailAutoLoginError() {
+        SnackBarUtils.showSnackBarMSG(mBinding.rlHome,R.string.home_email_login_err,R.color.white,R.color.red);
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -156,7 +193,15 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
                 }
                 break;
             case R.id.ll_email:
-                startActivity(new Intent(this,LoginActivity.class));
+                boolean isSave = Constant.spSetting.getBoolean(Constant.EMAIL_SAVE_ACCOUNT,false);
+                if (isSave){
+                    intent = new Intent(this, EmailActivity.class);
+                    intent.putExtra(EmailActivity.OPEN_TYPE,1);
+                    compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvEmail, EmailActivity.VIEW_ANIM));
+                    ActivityCompat.startActivity(this, intent, compat.toBundle());
+                }else {
+                    startActivity(new Intent(this,LoginActivity.class));
+                }
                 break;
             case R.id.ll_collection:
                 intent = new Intent(this, CollectionActivity.class);
@@ -178,6 +223,32 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
                 compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvSetting, SettingActivity.VIEW_ANIM));
                 ActivityCompat.startActivity(this, intent, compat.toBundle());
                 break;
+        }
+    }
+
+    /**
+     * 登录邮箱广播
+     */
+    public class EmailLoginBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //登录邮箱，开始轮询未读邮件
+            Log.e("EmailLoginReceiver","接收登录邮箱广播");
+            mPresenter.startPollingEmail();
+        }
+    }
+
+    /**
+     * 退出邮箱广播
+     */
+    public class EmailExitBroadcastReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.e("EmailExitReceiver","接收退出邮箱广播");
+            mPresenter.exitEmail();
+            setEmailCountVisibility(0);
         }
     }
 }

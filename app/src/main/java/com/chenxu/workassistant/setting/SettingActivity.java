@@ -1,5 +1,6 @@
 package com.chenxu.workassistant.setting;
 
+import android.content.Intent;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.CompoundButton;
 
 import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.R;
+import com.chenxu.workassistant.config.Constant;
 import com.chenxu.workassistant.databinding.ActivitySettingBinding;
 import com.chenxu.workassistant.utils.StatusBarUtil;
 
@@ -34,6 +36,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> implem
     @Override
     protected void bindEvent() {
         mBinding.btnBack.setOnClickListener(this::onClick);
+        mBinding.btnExit.setOnClickListener(this::onClick);
         mBinding.swShow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -54,6 +57,13 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> implem
             case R.id.btn_back:
                 onBackPressed();
                 break;
+            case R.id.btn_exit:
+                Intent intent = new Intent();
+                intent.setAction(Constant.BC_EXIT);
+                sendBroadcast(intent);
+                Constant.editorSetting.putBoolean(Constant.EMAIL_SAVE_ACCOUNT,false).commit();
+                mBinding.btnExit.setVisibility(View.GONE);
+                break;
         }
     }
 
@@ -65,5 +75,12 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> implem
     @Override
     public void setFilterFileState(boolean checked) {
         mBinding.swFilter.setChecked(checked);
+    }
+
+    @Override
+    public void setExitButtonVisibility(boolean visibility) {
+        if (visibility){
+            mBinding.btnExit.setVisibility(View.VISIBLE);
+        }
     }
 }

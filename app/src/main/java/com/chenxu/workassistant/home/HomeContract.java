@@ -16,14 +16,20 @@ public interface HomeContract {
 
     interface View extends BaseView{
         void showJurisdictionDialog(List<PermissionItem> permissionItems);
-        void setEnclosureCount(int count);
+        void setEmailCountVisibility(int count);
+        void onEmailAutoLoginError();
     }
 
     interface Presenter extends BasePresenter{
         void checkPermission();
+        void startPollingEmail();
+        void initTimerTask();
+        void getUnReadEmailCount();
+        void exitEmail();
     };
 
     interface Model{
-        Observable<Integer> queryEnclosureCount();
+        Observable<Boolean> loginEmail();
+        Observable<Integer> getUnreadEmailCount();
     }
 }

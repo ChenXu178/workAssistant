@@ -3,12 +3,11 @@
     android:shape="oval">
 
     <size
-        android:width="60dp"
-        android:height="60dp"/>
+        android:width="23dp"
+        android:height="23dp"/>
 
     <gradient
         android:startColor="@color/loginMultiWaveColor1"
         android:endColor="@color/loginMultiWaveColor2"
         android:angle="90"/>
-
 </shape>

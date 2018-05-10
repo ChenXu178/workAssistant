@@ -44,7 +44,7 @@
 
     <style name="barText" parent="min">
         <item name="android:layout_centerInParent">true</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/barText</item>
     </style>
 
@@ -69,6 +69,23 @@
         <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
         <item name="android:clickable">true</item>
+    </style>
+
+    <style name="HomeBtnView2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="HomeBtnCount" parent="min">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/home_tag_count</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <style name="HomeBtnImg">
@@ -97,14 +114,7 @@
         <item name="android:layout_marginRight">15dp</item>
     </style>
 
-    <style name="HomeMenuNumber">
-        <item name="android:layout_width">30dp</item>
-        <item name="android:layout_height">30dp</item>
-        <item name="android:background">@drawable/sign_number</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">14sp</item>
-    </style>
+
 
     <!--登录-->
     <style name="loginInput">
@@ -158,6 +168,7 @@
         <item name="android:layout_height">60dp</item>
         <item name="android:paddingLeft">20dp</item>
         <item name="android:paddingRight">20dp</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="settingOptionTitle" parent="min">

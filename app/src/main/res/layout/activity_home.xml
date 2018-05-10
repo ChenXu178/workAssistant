@@ -4,136 +4,69 @@
 
     </data>
 
-    <com.chenxu.workassistant.widget.SlideMenu
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/home_bg"
-        android:id="@+id/sm_main"
-        tools:context="com.chenxu.workassistant.home.HomeActivity">
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        tools:context=".home.HomeActivity"
+        android:id="@+id/rl_home">
+
+        <FrameLayout
+            style="@style/max">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/app_name"
+                    android:textSize="20sp"
+                    android:textColor="@color/barText"/>
+
+            </RelativeLayout>
+
+        </FrameLayout>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="100dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/left_menu_user_name"
-                android:textSize="16sp"
-                android:textColor="@color/barText"
-                android:layout_marginLeft="20dp"
-                android:id="@+id/tv_username"/>
+        <FrameLayout
+            style="@style/HomeBtnFrame">
 
             <LinearLayout
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/tv_username"
-                android:layout_marginTop="40dp">
+                style="@style/max"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    style="@style/HomeMenuView"
-                    android:id="@+id/ll_enclosure">
-
-                    <TextView
-                        style="@style/HomeMenuTitle"
-                        android:text="@string/left_menu_enclosure"/>
-
-                    <TextView
-                        style="@style/HomeMenuNumber"
-                        android:id="@+id/tv_enclosure_number"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/HomeMenuView"
-                    android:id="@+id/ll_inbox">
-
-                    <TextView
-                        style="@style/HomeMenuTitle"
-                        android:text="@string/left_menu_Inbox"/>
-
-                    <TextView
-                        style="@style/HomeMenuNumber"
-                        android:id="@+id/tv_inbox_number"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_alignParentBottom="true"
-                android:gravity="center_vertical"
-                android:text="@string/left_menu_login"
-                android:textSize="18sp"
-                android:textColor="@color/barText"
-                android:paddingLeft="20dp"
-                android:id="@+id/tv_user_state"/>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:fitsSystemWindows="true"
-            android:id="@+id/rl_home">
-
-            <FrameLayout
-                style="@style/max">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="@string/app_name"
-                        android:textSize="20sp"
-                        android:textColor="@color/barText"/>
-
-                </RelativeLayout>
-
-            </FrameLayout>
-
-
-            <FrameLayout
-                style="@style/HomeBtnFrame">
-
-                <LinearLayout
-                    style="@style/max"
-                    android:orientation="vertical">
+                    style="@style/HomeBtnLine">
 
                     <LinearLayout
-                        style="@style/HomeBtnLine">
+                        style="@style/HomeBtnView"
+                        android:background="@drawable/home_btn_bg_selector"
+                        android:id="@+id/ll_files">
+
+                        <ImageView
+                            style="@style/HomeBtnImg"
+                            android:src="@drawable/btn_files_selector"/>
+
+                        <TextView
+                            style="@style/HomeBtnText"
+                            android:text="@string/btn_title_files"
+                            android:id="@+id/tv_file"/>
+
+                    </LinearLayout>
+
+                    <FrameLayout
+                        style="@style/HomeBtnView2">
 
                         <LinearLayout
-                            style="@style/HomeBtnView"
-                            android:background="@drawable/home_btn_bg_selector"
-                            android:id="@+id/ll_files">
-
-                            <ImageView
-                                style="@style/HomeBtnImg"
-                                android:src="@drawable/btn_files_selector"/>
-
-                            <TextView
-                                style="@style/HomeBtnText"
-                                android:text="@string/btn_title_files"
-                                android:id="@+id/tv_file"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/HomeBtnView"
+                            style="@style/max"
+                            android:orientation="vertical"
+                            android:gravity="center"
                             android:background="@drawable/home_btn_bg_selector"
                             android:id="@+id/ll_email">
 
@@ -148,156 +81,165 @@
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                        <RelativeLayout
+                            style="@style/max"
+                            android:padding="35dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <TextView
+                                style="@style/HomeBtnCount"
+                                android:id="@+id/tv_email_count"/>
 
-                        <ImageView
-                            android:layout_width="295dp"
-                            android:layout_height="0.5dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@color/mainBtnLine"/>
+                        </RelativeLayout>
 
-                    </RelativeLayout>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="295dp"
+                        android:layout_height="0.5dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@color/mainBtnLine"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    style="@style/HomeBtnLine">
 
                     <LinearLayout
-                        style="@style/HomeBtnLine">
+                        style="@style/HomeBtnView"
+                        android:background="@drawable/home_btn_bg_selector"
+                        android:id="@+id/ll_collection">
 
-                        <LinearLayout
-                            style="@style/HomeBtnView"
-                            android:background="@drawable/home_btn_bg_selector"
-                            android:id="@+id/ll_collection">
+                        <ImageView
+                            style="@style/HomeBtnImg"
+                            android:src="@drawable/btn_collection_selector"/>
 
-                            <ImageView
-                                style="@style/HomeBtnImg"
-                                android:src="@drawable/btn_collection_selector"/>
-
-                            <TextView
-                                style="@style/HomeBtnText"
-                                android:text="@string/btn_title_collection"
-                                android:id="@+id/tv_collection"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/HomeBtnView"
-                            android:background="@drawable/home_btn_bg_selector"
-                            android:id="@+id/ll_photo">
-
-                            <ImageView
-                                style="@style/HomeBtnImg"
-                                android:src="@drawable/btn_photo_selector"/>
-
-                            <TextView
-                                style="@style/HomeBtnText"
-                                android:text="@string/btn_title_photo"
-                                android:id="@+id/tv_photo"/>
-
-                        </LinearLayout>
+                        <TextView
+                            style="@style/HomeBtnText"
+                            android:text="@string/btn_title_collection"
+                            android:id="@+id/tv_collection"/>
 
                     </LinearLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <LinearLayout
+                        style="@style/HomeBtnView"
+                        android:background="@drawable/home_btn_bg_selector"
+                        android:id="@+id/ll_photo">
 
                         <ImageView
-                            android:layout_width="295dp"
-                            android:layout_height="0.5dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@color/mainBtnLine"/>
+                            style="@style/HomeBtnImg"
+                            android:src="@drawable/btn_photo_selector"/>
 
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        style="@style/HomeBtnLine">
-
-                        <LinearLayout
-                            style="@style/HomeBtnView"
-                            android:background="@drawable/home_btn_bg_selector"
-                            android:id="@+id/ll_setting">
-
-                            <ImageView
-                                style="@style/HomeBtnImg"
-                                android:src="@drawable/btn_setting_selector"/>
-
-                            <TextView
-                                style="@style/HomeBtnText"
-                                android:text="@string/btn_title_setting"
-                                android:id="@+id/tv_setting"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/HomeBtnView">
-
-                        </LinearLayout>
+                        <TextView
+                            style="@style/HomeBtnText"
+                            android:text="@string/btn_title_photo"
+                            android:id="@+id/tv_photo"/>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-            </FrameLayout>
-
-            <FrameLayout
-                style="@style/HomeBtnFrame">
-
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="0.5dp"
-                        android:layout_height="435dp"
-                        android:layout_centerInParent="true"
+                        android:layout_width="295dp"
+                        android:layout_height="0.5dp"
+                        android:layout_centerHorizontal="true"
                         android:src="@color/mainBtnLine"/>
 
                 </RelativeLayout>
+
+                <LinearLayout
+                    style="@style/HomeBtnLine">
+
+                    <LinearLayout
+                        style="@style/HomeBtnView"
+                        android:background="@drawable/home_btn_bg_selector"
+                        android:id="@+id/ll_setting">
+
+                        <ImageView
+                            style="@style/HomeBtnImg"
+                            android:src="@drawable/btn_setting_selector"/>
+
+                        <TextView
+                            style="@style/HomeBtnText"
+                            android:text="@string/btn_title_setting"
+                            android:id="@+id/tv_setting"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/HomeBtnView">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/HomeBtnFrame">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="0.5dp"
+                    android:layout_height="435dp"
+                    android:layout_centerInParent="true"
+                    android:src="@color/mainBtnLine"/>
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            style="@style/max">
+
+            <FrameLayout
+                style="@style/max">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="bottom|right"
+                    android:src="@drawable/search_bg"
+                    android:id="@+id/iv_search_bg"/>
 
             </FrameLayout>
 
             <FrameLayout
                 style="@style/max">
 
-                <FrameLayout
-                    style="@style/max">
+                <RelativeLayout
+                    style="@style/max"
+                    android:paddingRight="30dp"
+                    android:paddingBottom="30dp">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="bottom|right"
-                        android:src="@drawable/search_bg"
-                        android:id="@+id/iv_search_bg"/>
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/search"
+                        android:id="@+id/iv_search"/>
 
-                </FrameLayout>
-
-                <FrameLayout
-                    style="@style/max">
-
-                    <RelativeLayout
-                        style="@style/max"
-                        android:paddingRight="30dp"
-                        android:paddingBottom="30dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/search"
-                            android:id="@+id/iv_search"/>
-
-                    </RelativeLayout>
-
-                </FrameLayout>
+                </RelativeLayout>
 
             </FrameLayout>
 
-        </RelativeLayout>
+        </FrameLayout>
 
-
-    </com.chenxu.workassistant.widget.SlideMenu>
+    </RelativeLayout>
 </layout>
 

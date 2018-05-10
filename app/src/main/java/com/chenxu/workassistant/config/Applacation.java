@@ -14,6 +14,8 @@ import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
 import com.chenxu.workassistant.R;
 import com.chenxu.workassistant.dao.GreenDaoManager;
+import com.chenxu.workassistant.utils.ACache;
+import com.sun.mail.imap.IMAPStore;
 
 
 /**
@@ -25,6 +27,8 @@ public class Applacation extends Application {
     private static Context instance;
     private static String baiduToken;
     private static int baiduError = 200;
+    public static ACache mACache;
+    private static IMAPStore store;
 
     @Override
     public void onCreate() {
@@ -35,6 +39,8 @@ public class Applacation extends Application {
         Constant.spSetting = getSharedPreferences("setting",MODE_PRIVATE);
         Constant.editorSetting = Constant.spSetting.edit();
 
+        mACache = ACache.get(this);
+
         GreenDaoManager.getInstance();
 
         initOCRAccessToken();
@@ -42,6 +48,18 @@ public class Applacation extends Application {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
+    }
+
+    public static IMAPStore getStore() {
+        return store;
+    }
+
+    public static void setStore(IMAPStore store) {
+        Applacation.store = store;
+    }
+
+    public static ACache getACache() {
+        return mACache;
     }
 
     public static Context getInstance() {

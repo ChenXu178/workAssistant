@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            style="@style/bar"
+            android:background="@color/white"
+            android:id="@+id/rl_bar">
+
+            <ImageButton
+                style="@style/barBack"
+                android:id="@+id/btn_back"/>
+
+            <TextView
+                style="@style/barText"
+                android:text="@string/read_email_title"
+                android:id="@+id/tv_bar_title"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/dialog_line"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/barText"
+                    tools:text="邮件标题是第三方斯蒂芬是否都dsdsfsdds鼎折覆餗放松放松是"
+                    android:id="@+id/tv_email_title"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textSize="13sp"
+                    android:textColor="@color/dialogInput"
+                    tools:text="2018年5月12日 14:21"
+                    android:id="@+id/tv_email_time"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:animateLayoutChanges="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/read_email_sender"
+                        android:textColor="@color/dialogInput"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:gravity="center"
+                        android:background="@drawable/email_user_address_bg"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:visibility="gone"
+                        tools:text="1782408400@qq.com"
+                        android:id="@+id/tv_email_sender"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:visibility="visible"
+                    android:id="@+id/rl_loading">
+
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:id="@+id/avi_load"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        style="@style/AVLoadingIndicatorView"
+                        android:visibility="visible"
+                        app:indicatorName="BallScaleMultipleIndicator"
+                        app:indicatorColor="@color/mainBlue"/>
+
+                </RelativeLayout>
+
+                <WebView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:id="@+id/wv_content">
+
+                </WebView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</layout>

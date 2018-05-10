@@ -6,10 +6,15 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 
 import com.chenxu.workassistant.R;
+import com.chenxu.workassistant.config.Applacation;
 import com.chenxu.workassistant.config.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.mail.MessagingException;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -25,6 +30,9 @@ public class HomePresenter implements HomeContract.Presenter {
     private HomeContract.View mView;
     private HomeContract.Model mModel;
     private Context mContext;
+    private boolean emailLoginState = false;
+    private Timer timer;
+    private Task task;
 
     public HomePresenter(HomeContract.View view,Context context){
         this.mView = view;
@@ -35,16 +43,6 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void start() {
         checkPermission();
-
-        mModel.queryEnclosureCount()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Integer>() {
-                    @Override
-                    public void accept(Integer integer) throws Exception {
-                        mView.setEnclosureCount(integer);
-                    }
-                });
     }
 
     @Override
@@ -64,5 +62,63 @@ public class HomePresenter implements HomeContract.Presenter {
             Constant.permissionEditor.putBoolean("storage",true).putBoolean("camera",true).commit();
         }
 
+    }
+
+    @Override
+    public void startPollingEmail() {
+        mModel.loginEmail()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (aBoolean){
+                            initTimerTask();
+                        }else {
+                            Constant.editorSetting.putBoolean(Constant.EMAIL_SAVE_ACCOUNT,false).commit();
+                            mView.onEmailAutoLoginError();
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void initTimerTask() {
+        timer = new Timer();
+        task = new Task();
+        timer.schedule(task,1000,Constant.spSetting.getLong(Constant.EMAIL_REFRESH_TIME,10000));
+    }
+
+    @Override
+    public void getUnReadEmailCount() {
+        mModel.getUnreadEmailCount()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        mView.setEmailCountVisibility(integer);
+                    }
+                });
+    }
+
+    @Override
+    public void exitEmail() {
+        task.cancel();
+        timer.cancel();
+        try {
+            Applacation.getStore().close();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        Applacation.setStore(null);
+    }
+
+    public class Task extends TimerTask{
+
+        @Override
+        public void run() {
+            getUnReadEmailCount();
+        }
     }
 }

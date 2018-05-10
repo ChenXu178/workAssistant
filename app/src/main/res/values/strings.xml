@@ -14,14 +14,19 @@
     <string name="btn_title_history">浏览历史</string>
     <string name="btn_title_photo">图像解析</string>
     <string name="btn_title_setting">软件设置</string>
+    <string name="home_email_login_err">邮箱自动登录失败，请尝试手动登录</string>
 
     <!--登录-->
     <string name="login_title">登录</string>
     <string name="login_hint_email">邮箱</string>
-    <string name="login_hint_password">密码</string>
+    <string name="login_hint_password">密码/授权码</string>
     <string name="login_is_save">记住我</string>
     <string name="login_btn_login">登录</string>
     <string name="login_btn_cancel">取消</string>
+    <string name="login_loading">登录中</string>
+    <string name="login_err1">邮箱格式不正确</string>
+    <string name="login_err2">请输入密码/授权码</string>
+    <string name="login_err3">登录失败，账号/密码错误</string>
 
     <!--文件管理-->
     <string name="file_menage_title">文件管理</string>
@@ -72,10 +77,26 @@
     <string name="setting_title">软件设置</string>
     <string name="setting_option1">显示隐藏文件</string>
     <string name="setting_option2">搜索时过滤缓存文件</string>
+    <string name="setting_exit_account">退出登录</string>
 
     <!--我的收藏-->
     <string name="collection_title">收藏夹</string>
     <string name="item_collection_btn">取消收藏</string>
+
+    <!--邮箱-->
+    <string name="email_title">邮件中心</string>
+    <string name="email_login_err1">自动登录失败，邮箱/密码错误</string>
+    <string name="email_search_hint">搜索</string>
+    <string name="email_item_menu_delete">删除</string>
+    <string name="email_loading_error">邮件加载中，请稍后再试</string>
+
+
+    <!--邮件阅读-->
+    <string name="read_email_title">邮件阅读</string>
+    <string name="read_email_sender">发件人</string>
+
+    <!--发送邮件-->
+    <string name="send_email_title">发送邮件</string>
 
     <!--弹窗-->
     <string name="dialog_file_rename_title">重命名</string>

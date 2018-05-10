@@ -26,7 +26,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.chenxu.workassistant"
-            android:targetClass="com.chenxu.workassistant.LoginActivity" />
+            android:targetClass="com.chenxu.workassistant.login.LoginActivity" />
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
 </shortcuts>

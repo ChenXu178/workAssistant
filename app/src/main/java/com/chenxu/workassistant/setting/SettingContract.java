@@ -7,6 +7,7 @@ public interface SettingContract {
     interface View extends BaseView{
         void setShowHideFileState(boolean checked);
         void setFilterFileState(boolean checked);
+        void setExitButtonVisibility(boolean visibility);
     }
 
     interface Presenter extends BasePresenter{

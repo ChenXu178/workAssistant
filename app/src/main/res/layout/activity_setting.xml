@@ -11,11 +11,11 @@
         android:layout_height="match_parent"
         tools:context=".setting.SettingActivity"
         android:orientation="vertical"
-        android:fitsSystemWindows="true"
-        android:background="@color/white">
+        android:fitsSystemWindows="true">
 
         <RelativeLayout
             style="@style/bar"
+            android:background="@color/white"
             android:id="@+id/rl_bar">
 
             <ImageButton
@@ -54,6 +54,18 @@
                 android:id="@+id/sw_filter"/>
 
         </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/base_btn_bg"
+            android:text="@string/setting_exit_account"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:id="@+id/btn_exit"/>
 
     </LinearLayout>
 </layout>

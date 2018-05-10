@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/base_btn_bg"
+    android:clickable="true"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+    
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/email_unread"
+        android:scaleType="fitXY"
+        android:layout_marginRight="10dp"
+        android:id="@+id/iv_email_state"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="1782408400@qq.com"
+                android:textSize="15sp"
+                android:textColor="@color/barText"
+                android:id="@+id/tv_email_form"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="10分钟前"
+                android:textSize="12sp"
+                android:textColor="@color/dialogInputHint"
+                android:id="@+id/tv_email_time"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="您有一封邮件您有一封邮件您有一封邮件您有一封邮件您有一封邮件"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@color/mainBlue"
+            android:textSize="16sp"
+            android:id="@+id/tv_email_title"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
