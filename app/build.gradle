@@ -24,6 +24,7 @@ android {
     repositories {
         mavenCentral()
         google()
+        jcenter()
         maven {
             url "https://jitpack.io"
         }
@@ -83,6 +84,10 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-5'
     //多重水波纹
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
+    //富文本编辑器
+    implementation 'jp.wasabeef:richeditor-android:1.2.2'
+    //颜色选择器
+    implementation 'com.github.QuadFlask:colorpicker:0.0.13'
     //数据库
     implementation 'org.greenrobot:greendao:3.2.2'
     //数据库调试

@@ -26,6 +26,8 @@
 
     <color name="gray1">#dedede</color>
     <color name="gray2">#91AFC7</color>
+    <color name="gray3">#bebebe</color>
+    <color name="gray4">#727272</color>
 
     <color name="dialog_line">#E4E4E4</color>
 
@@ -50,6 +52,9 @@
     <color name="CollectionRightItemCancelBG">#ff423b</color>
 
     <color name="EmailRightItemDeleteBG">#ff423b</color>
+
+    <color name="sendItemDeleteBG">#ff423b</color>
+    <color name="sendItemDeleteBGOn">#d7312b</color>
 
     <color name="SnackBarBG">#FF3AA7FF</color>
     <color name="SnackBarText">#FFFFFF</color>

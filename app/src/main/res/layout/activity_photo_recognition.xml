@@ -176,6 +176,7 @@
                         android:layout_centerInParent="true"
                         style="?android:attr/borderlessButtonStyle"
                         android:text="@string/photo_btn_copy"
+                        android:visibility="invisible"
                         android:textSize="12sp"
                         android:enabled="false"
                         android:textColor="@drawable/photo_btn_text_selector"

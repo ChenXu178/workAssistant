@@ -239,12 +239,14 @@ public class PhotoRecognitionActivity extends BaseActivity<ActivityPhotoRecognit
         mBinding.ivImage.setVisibility(View.VISIBLE);
         mBinding.rlRetry.setVisibility(View.GONE);
         mBinding.rlImage.setBackground(this.getDrawable(R.drawable.analysis_top_bg));
+        mBinding.btnCopy.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void resetView() {
         mBinding.rvText.setVisibility(View.GONE);
         mBinding.llBtns.setVisibility(View.VISIBLE);
+        mBinding.btnCopy.setVisibility(View.INVISIBLE);
         mBinding.ivImage.setVisibility(View.GONE);
         mBinding.ivIcon.setVisibility(View.VISIBLE);
         mBinding.rlRetry.setVisibility(View.GONE);

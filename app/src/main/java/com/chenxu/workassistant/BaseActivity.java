@@ -18,11 +18,12 @@ import android.view.View;
 public abstract class BaseActivity<VB extends ViewDataBinding> extends Activity {
 
     protected VB mBinding;
+    protected View rootView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View rootView = getLayoutInflater().inflate(this.getLayoutId(), null, false);
+        rootView = getLayoutInflater().inflate(this.getLayoutId(), null, false);
         mBinding = DataBindingUtil.bind(rootView);
         fullScreen();
         super.setContentView(rootView);

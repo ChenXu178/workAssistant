@@ -96,6 +96,7 @@ public class FilesAdapter extends RecyclerView.Adapter {
         int position = mFileBeans.indexOf(fileBean);
         mFileBeans.remove(fileBean);
         this.notifyItemRemoved(position);
+        this.notifyItemRangeChanged(0,mFileBeans.size());
     }
 
     /**

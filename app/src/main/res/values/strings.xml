@@ -97,6 +97,15 @@
 
     <!--发送邮件-->
     <string name="send_email_title">发送邮件</string>
+    <string name="send_email_content_reader">收件人</string>
+    <string name="send_email_content_title">主题</string>
+    <string name="send_email_content_enclosure">待发附件</string>
+    <string name="send_email_format_text_color">文字颜色</string>
+    <string name="send_email_format_background_color">背景颜色</string>
+    <string name="send_email_hint">编辑邮件内容...</string>
+    <string name="send_email_item_delete">删除</string>
+    <string name="send_email_enclosure_detail_no">暂无附件，请去文件管理添加</string>
+    <string name="send_email_enclosure_detail">个附件，共</string>
 
     <!--弹窗-->
     <string name="dialog_file_rename_title">重命名</string>
@@ -123,6 +132,8 @@
     <string name="dialog_file_detail_number_hint">加载中...</string>
     <string name="dialog_file_detail_number_text1">个文件，</string>
     <string name="dialog_file_detail_number_text2">个文件夹</string>
+
+    <string name="dialog_confirm">确定</string>
 
 
     <!--其他-->

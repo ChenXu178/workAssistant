@@ -35,7 +35,6 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts"/>
-
         </activity>
         <activity android:name=".fileMenage.FileMenageActivity" />
         <activity android:name=".login.LoginActivity" />
@@ -44,7 +43,9 @@
         <activity android:name=".fileSearch.FileSearchActivity"/>
         <activity android:name=".collection.CollectionActivity"/>
         <activity android:name=".readEmail.ReadEmailActivity"/>
-        <activity android:name=".sendEmail.SendEmailActivity"/>
+        <activity android:name=".sendEmail.SendEmailActivity">
+
+        </activity>
     </application>
 
 </manifest>
