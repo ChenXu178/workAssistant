@@ -201,6 +201,30 @@
         <item name="android:layout_centerVertical">true</item>
     </style>
 
+    <!--文件搜索-->
+    <style name="searchDetailBtnV">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.333</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/base_btn_bg</item>
+    </style>
+
+    <style name="searchDetailBtnIcon">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+    </style>
+
+    <style name="searchDetailBtnText" parent="min">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/barText</item>
+        <item name="android:layout_marginTop">3dp</item>
+    </style>
+
     <!--item-->
     <style name="catalog" parent="min">
         <item name="android:paddingLeft">5dp</item>

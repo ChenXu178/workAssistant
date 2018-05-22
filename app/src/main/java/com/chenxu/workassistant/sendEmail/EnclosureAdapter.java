@@ -18,10 +18,6 @@ public class EnclosureAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private OnItemButtonClickListener onItemButtonClickListener;
 
-    public <E> EnclosureAdapter(ArrayList<E> es) {
-
-    }
-
     interface OnItemButtonClickListener{
         void onItemButtonClick(int position);
     }

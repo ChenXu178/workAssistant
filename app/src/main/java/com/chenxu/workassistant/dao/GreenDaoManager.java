@@ -71,4 +71,12 @@ public class GreenDaoManager {
             return getInstance().getDaoSession().getEnclosureEntityDao();
         }
     }
+
+    public static SearchEntityDao getSearchEntityDao(){
+        if (mDaoSession != null){
+            return mDaoSession.getSearchEntityDao();
+        }else {
+            return getInstance().getDaoSession().getSearchEntityDao();
+        }
+    }
 }

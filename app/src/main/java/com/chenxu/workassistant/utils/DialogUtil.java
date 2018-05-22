@@ -28,10 +28,10 @@ public class DialogUtil {
     public static PopupWindow initLoadDialog(final Activity activity){
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_file_loading,null);
         PopupWindow window = new PopupWindow(view);
-        window.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-        window.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        window.setFocusable(true);
-        window.setTouchable(true);
+        window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setFocusable(false);
+        window.setOutsideTouchable(false);
         window.setAnimationStyle(R.style.fadeDialogAnim);
         BackgroundUtil.setBackgroundAlpha(0.8f,activity);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -48,10 +48,10 @@ public class DialogUtil {
         TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
         tvTitle.setText(title);
         PopupWindow window = new PopupWindow(view);
-        window.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-        window.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        window.setFocusable(true);
-        window.setTouchable(true);
+        window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setFocusable(false);
+        window.setOutsideTouchable(false);
         window.setAnimationStyle(R.style.fadeDialogAnim);
         BackgroundUtil.setBackgroundAlpha(0.8f,activity);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -62,4 +62,24 @@ public class DialogUtil {
         });
         return window;
     }
+
+
+    public static PopupWindow initSendLoadDialog(final Activity activity){
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_send_loading,null);
+        PopupWindow window = new PopupWindow(view);
+        window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setAnimationStyle(R.style.fadeDialogAnim);
+        window.setFocusable(false);
+        window.setOutsideTouchable(false);
+        BackgroundUtil.setBackgroundAlpha(0.8f,activity);
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                BackgroundUtil.setBackgroundAlpha(1f,activity);
+            }
+        });
+        return window;
+    }
+
 }

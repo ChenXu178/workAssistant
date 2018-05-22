@@ -18,6 +18,7 @@ import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.collection.CollectionActivity;
 import com.chenxu.workassistant.email.EmailActivity;
 import com.chenxu.workassistant.fileMenage.FileMenageActivity;
+import com.chenxu.workassistant.fileSearch.FileSearchActivity;
 import com.chenxu.workassistant.login.LoginActivity;
 import com.chenxu.workassistant.photoRecognition.PhotoRecognitionActivity;
 import com.chenxu.workassistant.R;
@@ -111,7 +112,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+                        startActivity(new Intent(HomeActivity.this,FileSearchActivity.class));
                         overridePendingTransition(R.anim.fade_in_anim,R.anim.fade_out_anim);
                     }
 

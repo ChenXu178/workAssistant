@@ -2,6 +2,10 @@ package com.chenxu.workassistant.readEmail;
 
 import android.content.Context;
 
+import com.chenxu.workassistant.R;
+
+import java.util.List;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -80,6 +84,21 @@ public class ReadEmailPresenter implements ReadEmailContract.Presenter {
     }
 
     @Override
+    public void getEnclosure() {
+        mModel.getEnclosure()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<String>>() {
+                    @Override
+                    public void accept(List<String> stringList) throws Exception {
+                        if (stringList.size()>0){
+                            mView.existEnclosure(stringList);
+                        }
+                    }
+                });
+    }
+
+    @Override
     public void getContent() {
         mModel.getContent()
                 .subscribeOn(Schedulers.io())
@@ -94,8 +113,28 @@ public class ReadEmailPresenter implements ReadEmailContract.Presenter {
                                     @Override
                                     public void accept(String encoding) throws Exception {
                                         mView.setHTMLContent(content,encoding);
+                                        getEnclosure();
                                     }
                                 });
+                    }
+                });
+    }
+
+    @Override
+    public void downloadEnclosure(int position) {
+        mView.showDownLoading();
+        mModel.downEnclosureByPosition(position)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean result) throws Exception {
+                        mView.cancelDownLoading();
+                        if (result){
+                            mView.showSnackBar(R.string.read_email_download_200);
+                        }else {
+                            mView.showErrorSnackBar(R.string.read_email_download_err);
+                        }
                     }
                 });
     }

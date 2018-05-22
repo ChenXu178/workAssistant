@@ -25,7 +25,7 @@ public class FileManageModel implements FileMenageContract.Model {
     }
 
     @Override
-    public Observable<Boolean> insertCollection(CollectionEntity entity) {
+    public synchronized Observable<Boolean> insertCollection(CollectionEntity entity) {
         return Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> e) throws Exception {
@@ -41,7 +41,7 @@ public class FileManageModel implements FileMenageContract.Model {
     }
 
     @Override
-    public Observable<Boolean> insertEnclosure(EnclosureEntity entity) {
+    public synchronized Observable<Boolean> insertEnclosure(EnclosureEntity entity){
         return Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> e) throws Exception {

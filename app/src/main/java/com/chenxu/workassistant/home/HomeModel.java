@@ -71,7 +71,7 @@ public class HomeModel implements HomeContract.Model {
         return Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                if (folder != null){
+                if (folder != null && folder.isOpen()){
                     e.onNext(folder.getUnreadMessageCount());
                 }else {
                     e.onNext(0);

@@ -1,9 +1,18 @@
 package com.chenxu.workassistant.readEmail;
 
+import android.os.Environment;
+
 import com.chenxu.workassistant.config.Applacation;
 import com.chenxu.workassistant.email.MailReceiver;
+import com.chenxu.workassistant.utils.FileUtil;
 import com.sun.mail.imap.IMAPFolder;
 import com.sun.mail.imap.IMAPStore;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
 
 import javax.mail.Folder;
 import javax.mail.internet.MimeMessage;
@@ -88,6 +97,47 @@ public class ReadEmailModel implements ReadEmailContract.Model {
                     e.onNext("UTF-8");
                 }else {
                     e.onNext(encoding);
+                }
+            }
+        });
+    }
+
+    @Override
+    public Observable<List<String>> getEnclosure() {
+        return Observable.create(new ObservableOnSubscribe<List<String>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<String>> emitter) throws Exception {
+                emitter.onNext(mailReceiver.getAttachments());
+            }
+        });
+    }
+
+    @Override
+    public Observable<Boolean> downEnclosureByPosition(int position) {
+        return Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                String filename = mailReceiver.getAttachments().get(position);
+                File file = new File(Environment.getExternalStorageDirectory().toString() + File.separator + filename);
+                if (file.exists()){
+                    file = new File(Environment.getExternalStorageDirectory().toString() + File.separator + FileUtil.repeatFileName(filename));
+                }
+                file.createNewFile();
+                try{
+                    InputStream is = mailReceiver.getAttachmentsInputStreams().get(position);
+                    OutputStream os = new FileOutputStream(file);
+                    byte bt[] = new byte[1024];
+                    int c;
+                    while ((c = is.read(bt)) > 0) {
+                        os.write(bt, 0, c);
+                    }
+                    os.flush();
+                    is.close();
+                    os.close();
+                    emitter.onNext(true);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    emitter.onNext(false);
                 }
             }
         });

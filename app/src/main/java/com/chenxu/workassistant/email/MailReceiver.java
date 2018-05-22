@@ -273,7 +273,12 @@ public class MailReceiver implements Serializable {
             mailContent.append(content);
         } else if (part.isMimeType("text/html") && !connName) {
             html = true;
-            String content = parseInputStream((InputStream) part.getContent());
+            String content = null;
+            try{
+                content = parseInputStream((InputStream) part.getContent());
+            }catch (Exception e){
+                content = parseString((String) part.getContent());
+            }
             mailContent.append(content);
         } else if (part.isMimeType("multipart/*") || part.isMimeType("message/rfc822")) {
             if (part.getContent() instanceof Multipart) {
@@ -354,6 +359,20 @@ public class MailReceiver implements Serializable {
             e.printStackTrace();
         }
         return str.toString();
+    }
+
+    /**
+     * 解析字符串
+     *
+     * @return
+     * @throws IOException
+     * @throws MessagingException
+     */
+    private String parseString(String string) throws IOException, MessagingException {
+        if (charset != null) {
+            string = new String(string.getBytes(charset),"utf-8");
+        }
+        return string;
     }
 
     /**

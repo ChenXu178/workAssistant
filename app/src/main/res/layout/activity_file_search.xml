@@ -10,7 +10,178 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:orientation="vertical"
         android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/file_search_bg"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/search"
+                    android:padding="7dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/iv_search_icon"/>
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/search_close"
+                    android:scaleType="fitXY"
+                    android:background="@null"
+                    android:padding="6dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:visibility="invisible"
+                    android:id="@+id/iv_search_close"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:hint="@string/file_search_hint"
+                    android:textSize="14sp"
+                    android:textColor="@color/barText"
+                    android:lines="1"
+                    android:maxLength="15"
+                    android:layout_toRightOf="@id/iv_search_icon"
+                    android:layout_toLeftOf="@id/iv_search_close"
+                    android:id="@+id/et_search"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:id="@+id/fl_search_detail">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    style="@style/searchDetailBtnV"
+                    android:id="@+id/ll_search_doc">
+
+                    <ImageView
+                        style="@style/searchDetailBtnIcon"
+                        android:src="@drawable/search_word"/>
+
+                    <TextView
+                        style="@style/searchDetailBtnText"
+                        android:text="@string/file_search_word"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/searchDetailBtnV"
+                    android:id="@+id/ll_search_xls">
+
+                    <ImageView
+                        style="@style/searchDetailBtnIcon"
+                        android:src="@drawable/search_excel"/>
+
+                    <TextView
+                        style="@style/searchDetailBtnText"
+                        android:text="@string/file_search_excel"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/searchDetailBtnV"
+                    android:id="@+id/ll_search_ppt">
+
+                    <ImageView
+                        style="@style/searchDetailBtnIcon"
+                        android:src="@drawable/search_ppt"/>
+
+                    <TextView
+                        style="@style/searchDetailBtnText"
+                        android:text="@string/file_search_ppt"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:visibility="gone"
+                android:id="@+id/rv_search_history">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </FrameLayout>
+
+        <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/smrv_files">
+
+        </com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/ll_no_file">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="370dp"
+                android:scaleType="fitXY"
+                android:id="@+id/iv_no_file"/>
+
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/file_search_no_file1"
+                    android:textSize="30sp"
+                    android:textColor="@color/barText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/file_search_no_file2"
+                    android:textSize="16sp"
+                    android:textColor="@color/barText"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

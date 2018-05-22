@@ -142,6 +142,7 @@ public class PhotoRecognitionPresenter implements PhotoRecognitionContract.Prese
     @Override
     public void cleanData() {
         data.clear();
+        selectData.clear();
     }
 
     @Override

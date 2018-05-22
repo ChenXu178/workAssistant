@@ -135,7 +135,6 @@ public class PhotoRecognitionActivity extends BaseActivity<ActivityPhotoRecognit
                 break;
             case R.id.btn_reset:
                 resetView();
-                mPresenter.cleanData();
                 break;
             case R.id.btn_retry:
                 if(imageFile.exists()){
@@ -244,6 +243,7 @@ public class PhotoRecognitionActivity extends BaseActivity<ActivityPhotoRecognit
 
     @Override
     public void resetView() {
+        mPresenter.cleanData();
         mBinding.rvText.setVisibility(View.GONE);
         mBinding.llBtns.setVisibility(View.VISIBLE);
         mBinding.btnCopy.setVisibility(View.INVISIBLE);

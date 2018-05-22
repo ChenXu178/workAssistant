@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/base_dialog_bg">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/close"
+        android:padding="15dp"
+        android:id="@+id/iv_confirm_close"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/dialog_confirm_title"
+            android:textSize="@dimen/dialog_title"
+            android:textColor="@color/barText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="邮件附件过大，发送可能需要时间，是否继续？"
+            android:textSize="14sp"
+            android:textColor="@color/gray4"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/tv_confirm_hint"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="25dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:background="@drawable/main_btn_cancel_selector"
+                android:text="@string/dialog_cancel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/loginInput"
+                android:elevation="@dimen/elevation"
+                android:id="@+id/btn_confirm_cancel"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:background="@drawable/main_btn_selector"
+                android:text="@string/dialog_confirm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/loginInput"
+                android:elevation="@dimen/elevation"
+                android:id="@+id/btn_confirm_confirm"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    
+</RelativeLayout>

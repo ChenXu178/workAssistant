@@ -49,6 +49,7 @@ public class EmailModel implements EmailContract.Model {
                         Session session = Session.getInstance(prop);
                         store = (IMAPStore) session.getStore("imap");
                         store.connect(account,password);
+                        Applacation.setStore(store);
                         emitter.onNext(true);
                     }catch (Exception e){
                         e.printStackTrace();

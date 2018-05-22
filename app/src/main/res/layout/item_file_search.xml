@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:background="@drawable/file_item_bg">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/file_folder"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/iv_file_type"
+        android:layout_marginRight="10dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="5dp"
+        android:animateLayoutChanges="true"
+        android:id="@+id/ll_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/file_size_text"
+            tools:text="100个文件"
+            android:id="@+id/tv_file_detail"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_file_type"
+        android:layout_toLeftOf="@id/ll_right"
+        android:textColor="@color/file_name_text"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="15sp"
+        tools:text="文件名"
+        android:id="@+id/tv_file_name"/>
+
+</RelativeLayout>

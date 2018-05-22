@@ -107,7 +107,9 @@ public class HomePresenter implements HomeContract.Presenter {
         task.cancel();
         timer.cancel();
         try {
-            Applacation.getStore().close();
+            if (Applacation.getStore()!= null){
+                Applacation.getStore().close();
+            }
         } catch (MessagingException e) {
             e.printStackTrace();
         }

@@ -1,10 +1,12 @@
 package com.chenxu.workassistant.sendEmail;
 
 import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Constant;
 import com.chenxu.workassistant.dao.EnclosureEntity;
 import com.chenxu.workassistant.dao.EnclosureEntityDao;
 import com.chenxu.workassistant.dao.GreenDaoManager;
 import com.chenxu.workassistant.utils.FileUtil;
+import com.chenxu.workassistant.utils.SendEmailUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,11 +23,14 @@ public class SendEmailModel implements SendEmailContract.Model {
     private SendEmailContract.Presenter mPresenter;
     public static final String MAP_ENCLOSURE_COUNT = "map:enclosure_count";
     public static final String MAP_ENCLOSURE_SIZE = "map:enclosure_size";
+    public static final String MAP_PARAM_READER = "map:param_reader";
+    public static final String MAP_PARAM_TITLE = "map:param_title";
+    public static final String MAP_PARAM_CONTENT = "map:param_content";
+    public static final String MAP_PARAM_ENCLOSURE = "map:param_enclosure";
 
     public SendEmailModel(SendEmailContract.Presenter presenter){
         this.mPresenter = presenter;
     }
-
 
     @Override
     public Observable<List<File>> getEnclosure() {
@@ -37,7 +42,7 @@ public class SendEmailModel implements SendEmailContract.Model {
                 for(EnclosureEntity entity : list){
                     File file = new File(entity.getPath());
                     if (file.exists()){
-                        data.add(file);
+                        data.add(file) ;
                     }else {
                         GreenDaoManager.getEnclosureEntityDao().delete(entity);
                     }
@@ -71,6 +76,30 @@ public class SendEmailModel implements SendEmailContract.Model {
                     GreenDaoManager.getEnclosureEntityDao().delete(enclosureEntity);
                 }
                 e.onNext(true);
+            }
+        });
+    }
+
+    @Override
+    public Observable<Boolean> sendEmail(Map<String, Object> param) {
+        return Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                String reader = (String) param.get(MAP_PARAM_READER);
+                String title = (String) param.get(MAP_PARAM_TITLE);
+                String content = (String) param.get(MAP_PARAM_CONTENT);
+                List<File> files = (List<File>) param.get(MAP_PARAM_ENCLOSURE);
+                String smtp = Constant.EMAIL_SERVER_SMTP[Constant.spSetting.getInt(Constant.EMAIL_SERVER_TYPE,0)];
+                String account = Constant.spSetting.getString(Constant.EMAIL_ACCOUNT,"");
+                String password = Constant.spSetting.getString(Constant.EMAIL_PASSWORD,"");
+                try{
+                    SendEmailUtil util = new SendEmailUtil(smtp,account,password,reader,title,content,files);
+                    util.send();
+                    emitter.onNext(true);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    emitter.onNext(false);
+                }
             }
         });
     }

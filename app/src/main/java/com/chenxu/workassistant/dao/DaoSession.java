@@ -9,10 +9,12 @@ import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
 import com.chenxu.workassistant.dao.CollectionEntity;
+import com.chenxu.workassistant.dao.SearchEntity;
 import com.chenxu.workassistant.dao.HistoryEntity;
 import com.chenxu.workassistant.dao.EnclosureEntity;
 
 import com.chenxu.workassistant.dao.CollectionEntityDao;
+import com.chenxu.workassistant.dao.SearchEntityDao;
 import com.chenxu.workassistant.dao.HistoryEntityDao;
 import com.chenxu.workassistant.dao.EnclosureEntityDao;
 
@@ -26,10 +28,12 @@ import com.chenxu.workassistant.dao.EnclosureEntityDao;
 public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig collectionEntityDaoConfig;
+    private final DaoConfig searchEntityDaoConfig;
     private final DaoConfig historyEntityDaoConfig;
     private final DaoConfig enclosureEntityDaoConfig;
 
     private final CollectionEntityDao collectionEntityDao;
+    private final SearchEntityDao searchEntityDao;
     private final HistoryEntityDao historyEntityDao;
     private final EnclosureEntityDao enclosureEntityDao;
 
@@ -40,6 +44,9 @@ public class DaoSession extends AbstractDaoSession {
         collectionEntityDaoConfig = daoConfigMap.get(CollectionEntityDao.class).clone();
         collectionEntityDaoConfig.initIdentityScope(type);
 
+        searchEntityDaoConfig = daoConfigMap.get(SearchEntityDao.class).clone();
+        searchEntityDaoConfig.initIdentityScope(type);
+
         historyEntityDaoConfig = daoConfigMap.get(HistoryEntityDao.class).clone();
         historyEntityDaoConfig.initIdentityScope(type);
 
@@ -47,22 +54,29 @@ public class DaoSession extends AbstractDaoSession {
         enclosureEntityDaoConfig.initIdentityScope(type);
 
         collectionEntityDao = new CollectionEntityDao(collectionEntityDaoConfig, this);
+        searchEntityDao = new SearchEntityDao(searchEntityDaoConfig, this);
         historyEntityDao = new HistoryEntityDao(historyEntityDaoConfig, this);
         enclosureEntityDao = new EnclosureEntityDao(enclosureEntityDaoConfig, this);
 
         registerDao(CollectionEntity.class, collectionEntityDao);
+        registerDao(SearchEntity.class, searchEntityDao);
         registerDao(HistoryEntity.class, historyEntityDao);
         registerDao(EnclosureEntity.class, enclosureEntityDao);
     }
     
     public void clear() {
         collectionEntityDaoConfig.clearIdentityScope();
+        searchEntityDaoConfig.clearIdentityScope();
         historyEntityDaoConfig.clearIdentityScope();
         enclosureEntityDaoConfig.clearIdentityScope();
     }
 
     public CollectionEntityDao getCollectionEntityDao() {
         return collectionEntityDao;
+    }
+
+    public SearchEntityDao getSearchEntityDao() {
+        return searchEntityDao;
     }
 
     public HistoryEntityDao getHistoryEntityDao() {

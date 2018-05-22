@@ -1,18 +1,28 @@
 package com.chenxu.workassistant.sendEmail;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.PopupWindow;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.R;
+import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Constant;
 import com.chenxu.workassistant.databinding.ActivitySendEmailBinding;
+import com.chenxu.workassistant.utils.ConfirmDialog;
+import com.chenxu.workassistant.utils.DialogUtil;
+import com.chenxu.workassistant.utils.SnackBarUtils;
 import com.chenxu.workassistant.utils.StatusBarUtil;
 import com.chenxu.workassistant.utils.Utils;
 import com.chenxu.workassistant.widget.ColorPicker;
@@ -28,12 +38,14 @@ import java.util.List;
 
 import jp.wasabeef.richeditor.RichEditor;
 
-public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> implements SendEmailContract.View, View.OnClickListener{
+public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> implements SendEmailContract.View, View.OnClickListener {
 
     private SendEmailContract.Presenter mPresenter;
     private EnclosureAdapter adapter;
 
-    private int textSize = 12;
+    private PopupWindow sendLoadDialog;
+
+    private int textSize = 3;
     private int textColor = Color.parseColor("#000000"), bgColor = Color.parseColor("#FFFFFF");
     private boolean isKey = false;
     private int colorType = 0; // 0其他 1字体 2背景
@@ -49,19 +61,23 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
         this.mPresenter = new SendEmailPresenter(this, this);
         mBinding.ivSendEnclosureState.setTag(R.drawable.send_email_down);
         mBinding.rvEnclosure.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration decoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        DividerItemDecoration decoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         decoration.setDrawable(this.getResources().getDrawable(R.drawable.file_divider));
         mBinding.rvEnclosure.addItemDecoration(decoration);
-        adapter = new EnclosureAdapter(new ArrayList<>(),this);
+        adapter = new EnclosureAdapter(new ArrayList<>(), this);
         mBinding.rvEnclosure.setAdapter(adapter);
         mBinding.vFormatColor.setBackgroundColor(textColor);
         mBinding.vFormatBgcolor.setBackgroundColor(bgColor);
+        mBinding.tvFormatSize.setText(textSize+"");
+        mBinding.reContent.setFontSize(textSize);
         mBinding.reContent.setPlaceholder(this.getResources().getString(R.string.send_email_hint));
         mPresenter.start();
     }
 
     @Override
     protected void bindEvent() {
+        mBinding.btnSend.setOnClickListener(this::onClick);
+        mBinding.btnBack.setOnClickListener(this::onClick);
         mBinding.rlEnclosureTitle.setOnClickListener(this::onClick);
         mBinding.btnFormatUndo.setOnClickListener(this::onClick);
         mBinding.btnFormatRedo.setOnClickListener(this::onClick);
@@ -89,10 +105,31 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
         mBinding.btnFormatNumbers.setOnClickListener(this::onClick);
         mBinding.btnSend.setOnClickListener(this::onClick);
 
+        mBinding.sbSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
+                if (fromUser){
+                    textSize = i;
+                    mBinding.tvFormatSize.setText(textSize+"");
+                    mBinding.reContent.setFontSize(textSize);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         mBinding.reContent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if (b && isKey){
+                if (b && isKey) {
                     initTextFormat();
                 }
             }
@@ -101,8 +138,8 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
             @Override
             public void onKeyboardChange(boolean isShow, int keyboardHeight) {
                 isKey = isShow;
-                if (isShow){
-                    if (mBinding.reContent.isFocused()){
+                if (isShow) {
+                    if (mBinding.reContent.isFocused()) {
                         initTextFormat();
                     }
                 }
@@ -113,7 +150,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
             @Override
             public void onItemButtonClick(int position) {
                 //删除附件
-                Log.e("onItemButtonClick",position+"");
+                Log.e("onItemButtonClick", position + "");
                 mPresenter.deleteEnclosure(position);
             }
         });
@@ -124,6 +161,12 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
     public void onClick(View view) {
         colorType = 0;
         switch (view.getId()) {
+            case R.id.btn_send:
+                sendEmail();
+                break;
+            case R.id.btn_back:
+                onBackPressed();
+                break;
             case R.id.rl_enclosure_title:
                 mPresenter.enclosureTitleClick();
                 break;
@@ -134,7 +177,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
                 mBinding.reContent.redo();
                 break;
             case R.id.ll_format_size:
-
+                toggleSizeSeekBar();
                 break;
             case R.id.btn_format_bold:
                 mBinding.reContent.setBold();
@@ -201,9 +244,6 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
             case R.id.btn_format_numbers:
                 mBinding.reContent.setNumbers();
                 break;
-            case R.id.btn_send:
-                Toast.makeText(this, mBinding.reContent.getHtml(), Toast.LENGTH_LONG).show();
-                break;
         }
     }
 
@@ -255,14 +295,18 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
                 .show();
     }
 
-    private void initTextFormat(){
-        switch (colorType){
+    private void initTextFormat() {
+        switch (colorType) {
             case 1:
                 mBinding.reContent.setTextColor(textColor);
                 break;
             case 2:
                 mBinding.reContent.setTextBackgroundColor(bgColor);
                 break;
+        }
+        mBinding.reContent.setFontSize(textSize);
+        if (mBinding.rlEnclosure.getVisibility() == View.VISIBLE) {
+            toggleEnclosureIconAndShowEnclosure();
         }
     }
 
@@ -284,7 +328,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
     @Override
     public void toggleEnclosureIcon() {
         int iconID = (int) mBinding.ivSendEnclosureState.getTag();
-        switch (iconID){
+        switch (iconID) {
             case R.drawable.send_email_down:
                 mBinding.ivSendEnclosureState.setImageResource(R.drawable.send_email_up);
                 mBinding.ivSendEnclosureState.setTag(R.drawable.send_email_up);
@@ -299,7 +343,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
     @Override
     public void toggleEnclosureIconAndShowEnclosure() {
         int iconID = (int) mBinding.ivSendEnclosureState.getTag();
-        switch (iconID){
+        switch (iconID) {
             case R.drawable.send_email_down:
                 Utils.closeKeyboard(this);
                 mBinding.ivSendEnclosureState.setImageResource(R.drawable.send_email_up);
@@ -314,8 +358,84 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
         }
     }
 
+    private void toggleSizeSeekBar(){
+        if (mBinding.rlSize.getVisibility() == View.GONE){
+            mBinding.rlSize.setVisibility(View.VISIBLE);
+        }else {
+            mBinding.rlSize.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void removeAdopterItem(int position) {
         adapter.removeItem(position);
+    }
+
+    @Override
+    public void sendEmail() {
+        String reader = mBinding.etSendReader.getText().toString().trim();
+        String title = mBinding.etSendTitle.getText().toString().trim();
+        String content = mBinding.reContent.getHtml();
+        mPresenter.checkEmailInfo(reader, title, content);
+    }
+
+    @Override
+    public void showErrorSnackBar(int text) {
+        Utils.closeKeyboard(this);
+        SnackBarUtils.showSnackBarMSG(mBinding.rlBar, text, R.color.white, R.color.red);
+    }
+
+    @Override
+    public void showSnackBar(int text) {
+        Utils.closeKeyboard(this);
+        SnackBarUtils.showSnackBarMSG(mBinding.rlBar, text, R.color.white, R.color.mainBlue);
+    }
+
+    @Override
+    public void showConfirmDialog(String reader, String title, String content) {
+        Utils.closeKeyboard(this);
+        ConfirmDialog.with(this)
+                .setHint(R.string.send_email_big_enclosure_hint)
+                .setRelyView(mBinding.rlBar)
+                .setOnCancelListener(new ConfirmDialog.ConfirmListener.OnDialogCancelClickListener() {
+                    @Override
+                    public void onCancelButtonClick() {
+
+                    }
+                })
+                .setOnConfirmListener(new ConfirmDialog.ConfirmListener.OnDialogConfirmClickListener() {
+                    @Override
+                    public void onConfirmButtonClick() {
+                        mPresenter.sendEmail(reader, title, content);
+                    }
+                })
+                .build()
+                .show();
+    }
+
+    @Override
+    public void showLoadDialog() {
+        Utils.closeKeyboard(this);
+        sendLoadDialog = DialogUtil.initSendLoadDialog(this);
+        sendLoadDialog.showAtLocation(mBinding.rlBar, Gravity.CENTER, 0, 0);
+    }
+
+    @Override
+    public void cancelLoadDialog() {
+        if (sendLoadDialog != null) {
+            sendLoadDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void sendEmailSuccess() {
+        mBinding.etSendTitle.setText("");
+        mBinding.reContent.setHtml("");
+        showSnackBar(R.string.send_email_200);
+    }
+
+    @Override
+    public void sendEmailFinal() {
+        showErrorSnackBar(R.string.send_email_err400);
     }
 }

@@ -3,6 +3,9 @@ package com.chenxu.workassistant.readEmail;
 import com.chenxu.workassistant.BasePresenter;
 import com.chenxu.workassistant.BaseView;
 
+import java.util.List;
+import java.util.Map;
+
 import io.reactivex.Observable;
 
 public interface ReadEmailContract {
@@ -13,7 +16,17 @@ public interface ReadEmailContract {
 
         void setSender(String sender);
 
+        void existEnclosure(List<String> list);
+
         void setHTMLContent(String content,String encoding);
+
+        void showDownLoading();
+
+        void cancelDownLoading();
+
+        void showErrorSnackBar(int text);
+
+        void showSnackBar(int text);
     }
 
     interface Presenter extends BasePresenter{
@@ -25,7 +38,11 @@ public interface ReadEmailContract {
 
         void getSender();
 
+        void getEnclosure();
+
         void getContent();
+
+        void downloadEnclosure(int position);
 
     }
 
@@ -41,6 +58,10 @@ public interface ReadEmailContract {
         Observable<String> getContent();
 
         Observable<String> getEncoding();
+
+        Observable<List<String>> getEnclosure();
+
+        Observable<Boolean> downEnclosureByPosition(int position);
     }
 
 }

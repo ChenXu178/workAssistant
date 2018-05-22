@@ -5,8 +5,11 @@ import android.content.Context;
 import com.chenxu.workassistant.R;
 import com.chenxu.workassistant.dao.EnclosureEntity;
 import com.chenxu.workassistant.utils.FileUtil;
+import com.chenxu.workassistant.utils.SnackBarUtils;
+import com.chenxu.workassistant.utils.Utils;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -83,6 +86,51 @@ public class SendEmailPresenter implements SendEmailContract.Presenter {
                         fileList.remove(position);
                         mView.removeAdopterItem(position);
                         formatEnclosureDetail(fileList);
+                    }
+                });
+    }
+
+    @Override
+    public void checkEmailInfo(String reader, String title, String content) {
+        if (!Utils.emailFormat(reader)){
+            mView.showErrorSnackBar(R.string.send_email_err1);
+            return;
+        }
+        if ("".equals(title)){
+            mView.showErrorSnackBar(R.string.send_email_err2);
+            return;
+        }
+        if ("".equals(content)){
+            mView.showErrorSnackBar(R.string.send_email_err3);
+            return;
+        }
+        if (allEnclosureSize > 1024 * 1024 * 5){
+            mView.showConfirmDialog(reader, title, content);
+            return;
+        }
+        sendEmail(reader, title, content);
+    }
+
+    @Override
+    public void sendEmail(String reader, String title, String content) {
+        mView.showLoadDialog();
+        Map<String,Object> param = new HashMap<>();
+        param.put(SendEmailModel.MAP_PARAM_READER,reader);
+        param.put(SendEmailModel.MAP_PARAM_TITLE,title);
+        param.put(SendEmailModel.MAP_PARAM_CONTENT,content);
+        param.put(SendEmailModel.MAP_PARAM_ENCLOSURE,fileList);
+        mModel.sendEmail(param)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean result) throws Exception {
+                        mView.cancelLoadDialog();
+                        if (result){
+                            mView.sendEmailSuccess();
+                        }else {
+                            mView.sendEmailFinal();
+                        }
                     }
                 });
     }

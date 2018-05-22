@@ -28,6 +28,7 @@
     <color name="gray2">#91AFC7</color>
     <color name="gray3">#bebebe</color>
     <color name="gray4">#727272</color>
+    <color name="gray5">#a4a4a4</color>
 
     <color name="dialog_line">#E4E4E4</color>
 
@@ -48,6 +49,7 @@
 
     <color name="fileRightItemCollectionBG">#ff423b</color>
     <color name="fileRightItemEnclosureBG">#FF3AA7FF</color>
+    <color name="fileRightItemListBG">#ffa03a</color>
 
     <color name="CollectionRightItemCancelBG">#ff423b</color>
 
@@ -55,6 +57,9 @@
 
     <color name="sendItemDeleteBG">#ff423b</color>
     <color name="sendItemDeleteBGOn">#d7312b</color>
+
+    <color name="readItemDownloadBG">#FF3AA7FF</color>
+    <color name="readItemDownloadBGOn">#278bdc</color>
 
     <color name="SnackBarBG">#FF3AA7FF</color>
     <color name="SnackBarText">#FFFFFF</color>
