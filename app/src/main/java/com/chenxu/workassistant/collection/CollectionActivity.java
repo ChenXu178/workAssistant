@@ -6,6 +6,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -18,6 +19,7 @@ import com.chenxu.workassistant.fileReader.ImageFileReaderActivity;
 import com.chenxu.workassistant.fileReader.OfficeFileReaderActivity;
 import com.chenxu.workassistant.utils.SizeUtils;
 import com.chenxu.workassistant.utils.StatusBarUtil;
+import com.chenxu.workassistant.utils.Utils;
 import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge;
@@ -46,12 +48,24 @@ public class CollectionActivity extends BaseActivity<ActivityCollectionBinding> 
         ViewCompat.setTransitionName(mBinding.tvBarTitle,VIEW_ANIM);
         StatusBarUtil.darkMode(this);
         this.mPresenter = new CollectionPresenter(this,this);
-
+        DividerItemDecoration decoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        decoration.setDrawable(this.getResources().getDrawable(R.drawable.file_divider));
+        mBinding.smrvMain.addItemDecoration(decoration);
         mBinding.smrvMain.setLayoutManager(new LinearLayoutManager(this));
 
         mBinding.smrvMain.setSwipeMenuCreator(new SwipeMenuCreator() {
             @Override
             public void onCreateMenu(SwipeMenu swipeLeftMenu, SwipeMenu swipeRightMenu, int viewType) {
+                SwipeMenuItem listItem = new SwipeMenuItem(Applacation.getInstance());
+                // 各种文字和图标属性设置。
+                listItem.setHeight(MATCH_PARENT);
+                listItem.setWidth(SizeUtils.dp2px(Applacation.getInstance(),80));
+                listItem.setText(R.string.file_right_list_item_name);
+                listItem.setTextSize(16);
+                listItem.setBackgroundColor(Applacation.getInstance().getResources().getColor(R.color.fileRightItemListBG));
+                listItem.setTextColor(Applacation.getInstance().getResources().getColor(R.color.white));
+                swipeRightMenu.addMenuItem(listItem);
+
                 SwipeMenuItem collectionItem = new SwipeMenuItem(Applacation.getInstance());
                 // 各种文字和图标属性设置。
                 collectionItem.setHeight(MATCH_PARENT);
@@ -70,28 +84,31 @@ public class CollectionActivity extends BaseActivity<ActivityCollectionBinding> 
                 menuBridge.closeMenu();
                 int adapterPosition = menuBridge.getAdapterPosition(); // RecyclerView的Item的position。
                 int menuPosition = menuBridge.getPosition(); // 菜单在RecyclerView的Item中的Position。
-                mPresenter.deleteByPosition(adapterPosition);
+                mPresenter.swipeMenuItemClick(adapterPosition,menuPosition);
             }
         });
 
         mBinding.smrvMain.setSwipeItemClickListener(new SwipeItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
+                if (Utils.checkClickTime()){
+                    return;
+                }
                 mPresenter.openFile(position,itemView);
             }
         });
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mPresenter.start();
             }
         },500);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -140,6 +157,15 @@ public class CollectionActivity extends BaseActivity<ActivityCollectionBinding> 
         Intent intent = new Intent(this, FileMenageActivity.class);
         intent.putExtra(FileMenageActivity.OPEN_TYPE,2);
         intent.putExtra(FileMenageActivity.FILE_PATH,file.getPath());
+        startActivity(intent);
+    }
+
+    @Override
+    public void openPath(File file) {
+        Intent intent = new Intent(this, FileMenageActivity.class);
+        intent.putExtra(FileMenageActivity.OPEN_TYPE,3);
+        intent.putExtra(FileMenageActivity.FILE_PATH,file.getParent());
+        intent.putExtra(FileMenageActivity.FILE_INDEX,0);
         startActivity(intent);
     }
 }

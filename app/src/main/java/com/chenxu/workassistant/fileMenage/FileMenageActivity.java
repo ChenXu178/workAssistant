@@ -2,6 +2,7 @@ package com.chenxu.workassistant.fileMenage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -31,9 +32,11 @@ import com.chenxu.workassistant.config.Applacation;
 import com.chenxu.workassistant.databinding.ActivityFileMenageBinding;
 import com.chenxu.workassistant.utils.BackgroundUtil;
 import com.chenxu.workassistant.utils.DialogUtil;
+import com.chenxu.workassistant.utils.FileUtil;
 import com.chenxu.workassistant.utils.SizeUtils;
 import com.chenxu.workassistant.utils.SnackBarUtils;
 import com.chenxu.workassistant.utils.StatusBarUtil;
+import com.chenxu.workassistant.utils.Utils;
 import com.yanzhenjie.recyclerview.swipe.SwipeItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeItemLongClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
@@ -637,6 +640,16 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
             @Override
             public void onCreateMenu(SwipeMenu swipeLeftMenu, SwipeMenu swipeRightMenu, int viewType) {
 
+                SwipeMenuItem shareItem = new SwipeMenuItem(context);
+                // 各种文字和图标属性设置。
+                shareItem.setHeight(MATCH_PARENT);
+                shareItem.setWidth(SizeUtils.dp2px(Applacation.getInstance(),80));
+                shareItem.setText(R.string.file_right_share_item_name);
+                shareItem.setTextSize(16);
+                shareItem.setBackgroundColor(context.getResources().getColor(R.color.fileRightItemShareBG));
+                shareItem.setTextColor(context.getResources().getColor(R.color.white));
+                swipeRightMenu.addMenuItem(shareItem);
+
                 SwipeMenuItem enclosureItem = new SwipeMenuItem(context);
                 // 各种文字和图标属性设置。
                 enclosureItem.setHeight(MATCH_PARENT);
@@ -684,6 +697,9 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
                         filesAdapter.setFileChecked(true,position);
                     }
                 }else {
+                    if (Utils.checkClickTime()){
+                        return;
+                    }
                     mPresenter.onFileItemClick(position,fileManager.findFirstVisibleItemPosition(),itemView);
                 }
             }
@@ -792,6 +808,16 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
             TextView tvNumber = dialogDetail.getContentView().findViewById(R.id.tv_detail_number);
             tvNumber.setText(fileNumber+this.getResources().getString(R.string.dialog_file_detail_number_text1)+folderNumber+this.getResources().getString(R.string.dialog_file_detail_number_text2));
         }
+    }
+
+    @Override
+    public void shareFile(File file) {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+        share.setType(FileUtil.getMimeType(file.getAbsolutePath()));//此处可发送多种文件
+        share.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(share, "分享文件"));
     }
 
     /**

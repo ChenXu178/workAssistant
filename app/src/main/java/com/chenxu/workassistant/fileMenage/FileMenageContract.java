@@ -86,6 +86,8 @@ public interface FileMenageContract {
         void showDetailDialog(int type,String name,String time,String size,String path); //显示文件详情窗口 type 1文件 2文件夹
 
         void setDialogDetailFileNumber(int fileNumber,int folderNumber); //设置详情窗口文件数量
+
+        void shareFile(File file);
     }
 
     interface Presenter extends BasePresenter{

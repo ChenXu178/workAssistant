@@ -870,7 +870,7 @@ public class ACache {
 	/**
 	 * 获取缓存大小
 	 */
-	public String CacheSize() {
+	public String cacheSize() {
 		double size = mCache.cacheSize.get();
 		double kiloByte = size / 1024;
 		if (kiloByte < 1) {

@@ -1,6 +1,8 @@
 package com.chenxu.workassistant.fileReader;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -13,6 +15,7 @@ import com.chenxu.workassistant.photoRecognition.PhotoRecognitionActivity;
 import com.chenxu.workassistant.R;
 import com.chenxu.workassistant.databinding.ActivityFileImageReaderBinding;
 import com.chenxu.workassistant.utils.StatusBarUtil;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.File;
 
@@ -20,6 +23,7 @@ public class ImageFileReaderActivity extends BaseActivity<ActivityFileImageReade
 
     public static final String VIEW_DETAIL = "view:detail";
     public static final String FILE_ID = "file:id";
+    private static final int showTime = 1500;
     private String imagePath;
 
     @Override
@@ -33,7 +37,7 @@ public class ImageFileReaderActivity extends BaseActivity<ActivityFileImageReade
         imagePath = getIntent().getStringExtra(FILE_ID);
         ViewCompat.setTransitionName(mBinding.ivImage,VIEW_DETAIL);
         Glide.with(this).load(new File(imagePath)).into(mBinding.ivImage);
-
+        handler.sendEmptyMessageDelayed(1,showTime);
     }
 
     @Override
@@ -46,6 +50,7 @@ public class ImageFileReaderActivity extends BaseActivity<ActivityFileImageReade
         });
 
         mBinding.btnAnalysis.setOnClickListener(this);
+        mBinding.ivImage.setOnClickListener(this::onClick);
     }
 
     @Override
@@ -58,6 +63,33 @@ public class ImageFileReaderActivity extends BaseActivity<ActivityFileImageReade
                 ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.btnAnalysis, PhotoRecognitionActivity.VIEW_ANIM));
                 ActivityCompat.startActivity(this, intent, compat.toBundle());
                 break;
+            case R.id.iv_image:
+                if (mBinding.rlBar.getVisibility() == View.GONE){
+                    setShowBar(true);
+                }
+                break;
         }
     }
+
+    private void setShowBar(boolean isShow){
+        handler.removeMessages(0);
+        if (!isShow){
+            mBinding.rlBar.setVisibility(View.GONE);
+            mBinding.ivLine.setVisibility(View.GONE);
+            mBinding.btnAnalysis.setVisibility(View.GONE);
+        }else {
+            mBinding.rlBar.setVisibility(View.VISIBLE);
+            mBinding.ivLine.setVisibility(View.VISIBLE);
+            mBinding.btnAnalysis.setVisibility(View.VISIBLE);
+            handler.sendEmptyMessageDelayed(0,showTime);
+        }
+    }
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            setShowBar(false);
+        }
+    };
 }

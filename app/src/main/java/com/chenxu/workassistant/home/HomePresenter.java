@@ -4,10 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.util.Log;
 
 import com.chenxu.workassistant.R;
 import com.chenxu.workassistant.config.Applacation;
 import com.chenxu.workassistant.config.Constant;
+import com.chenxu.workassistant.utils.FileUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ import me.weyye.hipermission.PermissionItem;
  */
 
 public class HomePresenter implements HomeContract.Presenter {
-
+    private static final String TAG = "HomePresenter";
     private HomeContract.View mView;
     private HomeContract.Model mModel;
     private Context mContext;
@@ -114,6 +116,31 @@ public class HomePresenter implements HomeContract.Presenter {
             e.printStackTrace();
         }
         Applacation.setStore(null);
+    }
+
+    /**
+     * 第三方软件调用文件浏览
+     * @param filePath 路径
+     */
+    @Override
+    public void openFile(String filePath) {
+        Log.e(TAG, "openFile: "+filePath);
+        int fileType = FileUtil.fileType(filePath);
+        switch (fileType){
+            case 5:
+            case 7:
+            case 8:
+            case 9:
+            case 11:
+                mView.openOfficeFile(filePath);
+                break;
+            case 6:
+                mView.openImageFile(filePath);
+                break;
+            default:
+                  mView.onError(R.string.open_file_error);
+                break;
+        }
     }
 
     public class Task extends TimerTask{

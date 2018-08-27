@@ -30,6 +30,13 @@
 
         </RelativeLayout>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:src="@color/fileDivider"
+            android:layout_below="@id/ll_file_catalog"
+            android:id="@+id/iv_line2"/>
+
         <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

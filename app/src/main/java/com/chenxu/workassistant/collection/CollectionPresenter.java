@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.chenxu.workassistant.R;
 import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.utils.FileUtil;
 
 import java.io.File;
 import java.util.List;
@@ -58,109 +59,31 @@ public class CollectionPresenter implements CollectionContract.Presenter {
     @Override
     public void openFile(int position, View view) {
         File file = list.get(position).getFile();
-        if (file.isDirectory()) {
-            mView.openFolder(file);
-        } else {
-            String suffix = file.getName().substring(file.getName().lastIndexOf(".") + 1);
-            switch (suffix) {
-                case "mp3":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "wav":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "flac":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "ape":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "java":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "html":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "js":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "css":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "json":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "xml":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-
-                case "xlsx":
-                    mView.openOffice(file, view);
-                    break;
-                case "xls":
-                    mView.openOffice(file, view);
-                    break;
-                case "png":
-                    mView.openImage(file, view);
-                    break;
-                case "jpg":
-                    mView.openImage(file, view);
-                    break;
-                case "gif":
-                    mView.openImage(file, view);
-                    break;
-                case "bmp":
-                    mView.openImage(file, view);
-                    break;
-                case "pdf":
-                    mView.openOffice(file, view);
-                    break;
-                case "ppt":
-                    mView.openOffice(file, view);
-                    break;
-                case "pptx":
-                    mView.openOffice(file, view);
-                    break;
-                case "txt":
-                    mView.openOffice(file, view);
-                    break;
-                case "mp4":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "flv":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "avi":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "3gp":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "mkv":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "rmvb":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "wmv":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "doc":
-                    mView.openOffice(file, view);
-                    break;
-                case "docx":
-                    mView.openOffice(file, view);
-                    break;
-                case "rar":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                case "zip":
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    Toast.makeText(Applacation.getInstance(), R.string.file_menage_open_err, Toast.LENGTH_SHORT).show();
-                    break;
-            }
+        int fileType = FileUtil.fileType(file);
+        switch (fileType){//1文件夹、2音乐、3文件、4代码、5Excel、6图片、7PDF、8PPT、9TXT、10视频、11Word、12压缩
+            case 1: mView.openFolder(file); break;
+            case 2: FileUtil.openFiles(Applacation.getInstance(),file.getPath()); break;
+            case 3: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+            case 4: FileUtil.openFiles(Applacation.getInstance(),file.getPath()); break;
+            case 5: mView.openOffice(file,view); break;
+            case 6: mView.openImage(file,view); break;
+            case 7: mView.openOffice(file,view); break;
+            case 8: mView.openOffice(file,view); break;
+            case 9: mView.openOffice(file,view); break;
+            case 10: FileUtil.openFiles(Applacation.getInstance(),file.getPath()); break;
+            case 11: mView.openOffice(file,view); break;
+            case 12: FileUtil.openFiles(Applacation.getInstance(),file.getPath()); break;
         }
     }
+
+    @Override
+    public void swipeMenuItemClick(int adapterPosition, int menuPosition) {
+        if (menuPosition == 0){
+            mView.openPath(list.get(adapterPosition).getFile());
+        }
+        if (menuPosition == 1){
+            deleteByPosition(adapterPosition);
+        }
+    }
+    
 }

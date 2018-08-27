@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ import com.chenxu.workassistant.utils.StatusBarUtil;
 import com.tencent.smtt.sdk.TbsReaderView;
 
 public class OfficeFileReaderActivity extends BaseActivity<ActivityFileOfficeReaderBinding> implements TbsReaderView.ReaderCallback{
-
+    private static final String TAG = "OfficeFileReader";
     TbsReaderView tbsReaderView;
     String filePath,cachePath;
 
@@ -34,6 +35,7 @@ public class OfficeFileReaderActivity extends BaseActivity<ActivityFileOfficeRea
         tbsReaderView = new TbsReaderView(this,this);
         mBinding.rlMain.addView(tbsReaderView,new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
         filePath = getIntent().getStringExtra(FILE_ID);
+        Log.e(TAG, "initView: "+filePath);
         cachePath = getExternalCacheDir().getPath();
         ViewCompat.setTransitionName(mBinding.rlMain,VIEW_DETAIL);
 

@@ -90,8 +90,8 @@ public class ReadEmailActivity extends BaseActivity<ActivityReadEmailBinding> im
         //扩大比例的缩放
         mBinding.wvContent.getSettings().setUseWideViewPort(true);
         //自适应屏幕
-//        mBinding.wvContent.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//        mBinding.wvContent.getSettings().setLoadWithOverviewMode(true);
+        mBinding.wvContent.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        mBinding.wvContent.getSettings().setLoadWithOverviewMode(true);
         mBinding.wvContent.loadDataWithBaseURL(null, content, "text/html", encoding, null);
     }
 

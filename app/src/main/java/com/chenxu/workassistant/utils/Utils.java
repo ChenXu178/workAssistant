@@ -2,6 +2,7 @@ package com.chenxu.workassistant.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.view.inputmethod.InputMethodManager;
 
 import java.util.regex.Matcher;
@@ -29,5 +30,32 @@ public class Utils {
             tag = false;
         }
         return tag;
+    }
+
+    /**
+     * 获取版本号名称
+     *
+     * @param context 上下文
+     * @return
+     */
+    public static String getVerName(Context context) {
+        String verName = "";
+        try {
+            verName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return verName;
+    }
+
+    public static long clickTime = 0;
+    public static boolean checkClickTime(){
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - clickTime < 500){
+            return true;
+        }else {
+            clickTime = currentTime;
+            return false;
+        }
     }
 }

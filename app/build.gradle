@@ -7,8 +7,8 @@ android {
         applicationId "com.chenxu.workassistant"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.2(180827)"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk { abiFilters "armeabi" }
     }
@@ -67,6 +67,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     //图片加载
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    //图片浏览
+    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
     //加载动画
     implementation 'com.wang.avi:library:2.1.3'
     //事件绑定

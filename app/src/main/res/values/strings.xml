@@ -7,6 +7,7 @@
     <string name="left_menu_Inbox">收件箱</string>
     <string name="left_menu_login">登陆</string>
     <string name="left_menu_logout">注销</string>
+    <string name="open_file_error">打开文件失败，请再次尝试</string>
 
     <string name="btn_title_files">文件管理</string>
     <string name="btn_title_email">邮件中心</string>
@@ -55,9 +56,11 @@
     <string name="file_right_menu_err1">文件目录无法加入至附件</string>
     <string name="file_right_menu_err2">文件已经收藏过了</string>
     <string name="file_right_menu_err3">文件已经在代发附件列表了</string>
+    <string name="file_right_menu_err4">文件目录无法无法分享</string>
     <string name="file_right_collection_item_name">收藏</string>
     <string name="file_right_enclosure_item_name">附件</string>
-    <string name="file_right_list_item_name">打开列表</string>
+    <string name="file_right_share_item_name">分享</string>
+    <string name="file_right_list_item_name">打开位置</string>
 
 
     <!--文件浏览-->
@@ -78,6 +81,7 @@
     <string name="setting_title">软件设置</string>
     <string name="setting_option1">显示隐藏文件</string>
     <string name="setting_option2">搜索时过滤缓存目录</string>
+    <string name="setting_option3">清除缓存</string>
     <string name="setting_exit_account">退出登录</string>
 
     <!--我的收藏-->
@@ -192,6 +196,10 @@
     <string name="error_parse_no_text">未识别出任何信息</string>
     <string name="error_parse">解析失败</string>
     <string name="error_ok">成功</string>
+
+    <string name="about_title">关于</string>
+    <string name="about_hint">意见反馈、bug提交：</string>
+    <string name="about_email">1782408400@qq.com</string>
 
     <string name="shortcut_search">文件搜索</string>
     <string name="shortcut_search_message">文件搜索暂时无法使用</string>

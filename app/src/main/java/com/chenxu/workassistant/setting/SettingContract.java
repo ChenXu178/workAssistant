@@ -8,10 +8,12 @@ public interface SettingContract {
         void setShowHideFileState(boolean checked);
         void setFilterFileState(boolean checked);
         void setExitButtonVisibility(boolean visibility);
+        void setCacheSize(String text);
     }
 
     interface Presenter extends BasePresenter{
         void setSPForHideFileState(boolean state);
         void setSPForFilterFileState(boolean state);
+        void clearCache();
     }
 }

@@ -18,11 +18,13 @@ public interface CollectionContract {
         void openImage(File file, android.view.View view);
         void openOffice(File file, android.view.View view);
         void openFolder(File file);
+        void openPath(File file);
     }
 
     interface Presenter extends BasePresenter{
         void deleteByPosition(int position);
         void openFile(int position, android.view.View view);
+        void swipeMenuItemClick(int adapterPosition,int menuPosition);//列表侧滑菜单点击
     }
 
     interface Model{

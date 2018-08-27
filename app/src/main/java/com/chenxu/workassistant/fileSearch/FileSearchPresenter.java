@@ -139,17 +139,17 @@ public class FileSearchPresenter implements FileSearchContract.Presenter {
     public void onFileItemClick(int position, View view) {
         File file = fileList.get(position).getFile();
         switch (FileUtil.fileType(file)){//1文件夹、2音乐、3文件、4代码、5Excel、6图片、7PDF、8PPT、9TXT、10视频、11Word、12压缩
-            case 2: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+            case 2: FileUtil.openFiles(Applacation.getInstance(),file.getPath()); break;
             case 3: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
-            case 4: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+            case 4: FileUtil.openFiles(Applacation.getInstance(),file.getPath()); break;
             case 5: mView.openOfficeFile(file.getPath(),view); break;
             case 6: mView.openImageFile(file.toString(),view); break;
             case 7: mView.openOfficeFile(file.getPath(),view); break;
             case 8: mView.openOfficeFile(file.getPath(),view); break;
             case 9: mView.openOfficeFile(file.getPath(),view); break;
-            case 10: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+            case 10: FileUtil.openFiles(Applacation.getInstance(),file.getPath()); break;
             case 11: mView.openOfficeFile(file.getPath(),view); break;
-            case 12: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+            case 12: FileUtil.openFiles(Applacation.getInstance(),file.getPath()); break;
         }
     }
 

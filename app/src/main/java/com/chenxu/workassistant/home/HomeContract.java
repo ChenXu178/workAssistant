@@ -18,6 +18,9 @@ public interface HomeContract {
         void showJurisdictionDialog(List<PermissionItem> permissionItems);
         void setEmailCountVisibility(int count);
         void onEmailAutoLoginError();
+        void onError(int str);
+        void openOfficeFile(String filePath);
+        void openImageFile(String filePath);
     }
 
     interface Presenter extends BasePresenter{
@@ -26,6 +29,7 @@ public interface HomeContract {
         void initTimerTask();
         void getUnReadEmailCount();
         void exitEmail();
+        void openFile(String filePath);
     };
 
     interface Model{

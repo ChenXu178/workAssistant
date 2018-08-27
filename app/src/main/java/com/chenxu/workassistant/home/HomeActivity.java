@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -18,6 +20,8 @@ import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.collection.CollectionActivity;
 import com.chenxu.workassistant.email.EmailActivity;
 import com.chenxu.workassistant.fileMenage.FileMenageActivity;
+import com.chenxu.workassistant.fileReader.ImageFileReaderActivity;
+import com.chenxu.workassistant.fileReader.OfficeFileReaderActivity;
 import com.chenxu.workassistant.fileSearch.FileSearchActivity;
 import com.chenxu.workassistant.login.LoginActivity;
 import com.chenxu.workassistant.photoRecognition.PhotoRecognitionActivity;
@@ -27,6 +31,8 @@ import com.chenxu.workassistant.databinding.ActivityHomeBinding;
 import com.chenxu.workassistant.setting.SettingActivity;
 import com.chenxu.workassistant.utils.BackgroundUtil;
 import com.chenxu.workassistant.utils.ClickUtil;
+import com.chenxu.workassistant.utils.FilePathFormat;
+import com.chenxu.workassistant.utils.FileUtil;
 import com.chenxu.workassistant.utils.SnackBarUtils;
 import com.chenxu.workassistant.utils.StatusBarUtil;
 
@@ -85,6 +91,28 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
 
         if (Constant.spSetting.getBoolean(Constant.EMAIL_SAVE_ACCOUNT,false)){
             mPresenter.startPollingEmail();
+        }
+
+        String action = getIntent().getAction();
+        if (Intent.ACTION_VIEW.equals(action)){
+            String str = getIntent().getDataString();
+            Log.e("Uri",str);
+            if (str != null){
+                Uri uri = Uri.parse(str);
+                String filePath = FilePathFormat.getRealPathFromURI(this,uri);
+                if (filePath != null){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mPresenter.openFile(filePath);
+                        }
+                    }, 1000);
+                }else {
+                    onError(R.string.open_file_error);
+                }
+            }else {
+                onError(R.string.open_file_error);
+            }
         }
     }
 
@@ -175,6 +203,27 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
     @Override
     public void onEmailAutoLoginError() {
         SnackBarUtils.showSnackBarMSG(mBinding.rlHome,R.string.home_email_login_err,R.color.white,R.color.red);
+    }
+
+    @Override
+    public void onError(int str) {
+        SnackBarUtils.showSnackBarMSG(mBinding.rlHome,str,R.color.white,R.color.red);
+    }
+
+    @Override
+    public void openOfficeFile(String filePath) {
+        Intent intent = new Intent(this, OfficeFileReaderActivity.class);
+        intent.putExtra(OfficeFileReaderActivity.FILE_ID,filePath);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.rlBar, OfficeFileReaderActivity.VIEW_DETAIL));
+        ActivityCompat.startActivity(this, intent, compat.toBundle());
+    }
+
+    @Override
+    public void openImageFile(String filePath) {
+        Intent intent = new Intent(this, ImageFileReaderActivity.class);
+        intent.putExtra(ImageFileReaderActivity.FILE_ID,filePath);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.rlBar, ImageFileReaderActivity.VIEW_DETAIL));
+        ActivityCompat.startActivity(this, intent, compat.toBundle());
     }
 
 

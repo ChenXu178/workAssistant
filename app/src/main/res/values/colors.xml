@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#FF3AA7FF</color>
 
+    <color name="defaultBG">#f9f9f9</color>
+
     <color name="mainBlue">#FF3AA7FF</color>
     <color name="mainBtnRelease">#FF3AA7FF</color>
     <color name="mainBtnPress">#2d94e7</color>
@@ -49,6 +51,7 @@
 
     <color name="fileRightItemCollectionBG">#ff423b</color>
     <color name="fileRightItemEnclosureBG">#FF3AA7FF</color>
+    <color name="fileRightItemShareBG">#ffa03a</color>
     <color name="fileRightItemListBG">#ffa03a</color>
 
     <color name="CollectionRightItemCancelBG">#ff423b</color>

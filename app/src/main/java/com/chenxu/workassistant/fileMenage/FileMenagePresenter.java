@@ -127,17 +127,17 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
         }else {
             //文件，打开
             switch (fileBean.getType()){//1文件夹、2音乐、3文件、4代码、5Excel、6图片、7PDF、8PPT、9TXT、10视频、11Word、12压缩
-                case 2: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+                case 2: FileUtil.openFiles(Applacation.getInstance(),fileBean.getFile().getPath()); break;
                 case 3: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
-                case 4: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+                case 4: FileUtil.openFiles(Applacation.getInstance(),fileBean.getFile().getPath()); break;
                 case 5: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
                 case 6: mView.openImageFile(fileBean.getFile().toString(),view); break;
                 case 7: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
                 case 8: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
                 case 9: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
-                case 10: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+                case 10: FileUtil.openFiles(Applacation.getInstance(),fileBean.getFile().getPath()); break;
                 case 11: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
-                case 12: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+                case 12: FileUtil.openFiles(Applacation.getInstance(),fileBean.getFile().getPath()); break;
             }
         }
     }
@@ -419,6 +419,14 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
     public void swipeMenuItemClick(int adapterPosition, int menuPosition) {
         File file = fileList.get(adapterPosition).getFile();
         if(menuPosition == 0){
+            //分享
+            if (file.isDirectory()){
+                mView.showSnackBar(R.string.file_right_menu_err4,R.color.SnackBarText,R.color.SnackBarBG);
+            }else {
+                mView.shareFile(file);
+            }
+        }
+        if(menuPosition == 1){
             //附件
             if (file.isDirectory()){
                 mView.showSnackBar(R.string.file_right_menu_err1,R.color.SnackBarText,R.color.SnackBarBG);
@@ -426,7 +434,7 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
                 insertEnclosure(file);
             }
         }
-        if (menuPosition == 1){
+        if (menuPosition == 2){
             //收藏
             insertCollection(file);
         }

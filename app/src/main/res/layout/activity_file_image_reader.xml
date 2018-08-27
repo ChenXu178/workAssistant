@@ -7,7 +7,8 @@
     <RelativeLayout
         style="@style/max"
         android:background="@color/white"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:animateLayoutChanges="true">
 
         <RelativeLayout
             style="@style/bar"
@@ -35,13 +36,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/iv_line"
+            android:animateLayoutChanges="true"
             android:id="@+id/rl_main">
 
-            <ImageView
+            <com.github.chrisbanes.photoview.PhotoView
+                android:id="@+id/iv_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:id="@+id/iv_image"/>
+                android:layout_centerInParent="true"/>
 
             <Button
                 android:layout_width="55dp"

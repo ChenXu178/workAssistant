@@ -37,7 +37,6 @@ public class CollectionHolder extends RecyclerView.ViewHolder {
             case 11: ivCollectionIcon.setImageResource(R.drawable.file_word); break;
             case 12: ivCollectionIcon.setImageResource(R.drawable.file_zip); break;
         }
-        ivCollectionIcon.setImageResource(FileUtil.fileIconForType(fileBean.getFile()));
         tvCollectionName.setText(fileBean.getFile().getName());
         tvCollectionTime.setText(fileBean.getTime());
     }

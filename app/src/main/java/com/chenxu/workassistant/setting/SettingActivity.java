@@ -1,6 +1,9 @@
 package com.chenxu.workassistant.setting;
 
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +12,7 @@ import android.widget.CompoundButton;
 
 import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.R;
+import com.chenxu.workassistant.about.AboutActivity;
 import com.chenxu.workassistant.config.Constant;
 import com.chenxu.workassistant.databinding.ActivitySettingBinding;
 import com.chenxu.workassistant.utils.StatusBarUtil;
@@ -36,7 +40,9 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> implem
     @Override
     protected void bindEvent() {
         mBinding.btnBack.setOnClickListener(this::onClick);
+        mBinding.rlCache.setOnClickListener(this::onClick);
         mBinding.btnExit.setOnClickListener(this::onClick);
+        mBinding.rlAbout.setOnClickListener(this::onClick);
         mBinding.swShow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -53,12 +59,21 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> implem
 
     @Override
     public void onClick(View view) {
+        Intent intent = null;
         switch (view.getId()){
             case R.id.btn_back:
                 onBackPressed();
                 break;
+            case R.id.rl_cache:
+                mPresenter.clearCache();
+                break;
+            case R.id.rl_about:
+                intent = new Intent(this, AboutActivity.class);
+                ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.rlAbout, AboutActivity.VIEW_ANIM));
+                ActivityCompat.startActivity(this, intent, compat.toBundle());
+                break;
             case R.id.btn_exit:
-                Intent intent = new Intent();
+                intent = new Intent();
                 intent.setAction(Constant.BC_EXIT);
                 sendBroadcast(intent);
                 Constant.editorSetting.putBoolean(Constant.EMAIL_SAVE_ACCOUNT,false).commit();
@@ -82,5 +97,10 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding> implem
         if (visibility){
             mBinding.btnExit.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void setCacheSize(String text) {
+        mBinding.tvCache.setText(text);
     }
 }
