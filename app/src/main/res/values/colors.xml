@@ -6,6 +6,8 @@
 
     <color name="defaultBG">#f9f9f9</color>
 
+    <color name="itemSelectBG">#f8f8f8</color>
+
     <color name="mainBlue">#FF3AA7FF</color>
     <color name="mainBtnRelease">#FF3AA7FF</color>
     <color name="mainBtnPress">#2d94e7</color>

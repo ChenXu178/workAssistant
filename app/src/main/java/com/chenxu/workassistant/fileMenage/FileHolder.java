@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +19,7 @@ import com.chenxu.workassistant.utils.FileUtil;
 
 public class FileHolder extends RecyclerView.ViewHolder {
 
+    RelativeLayout rlBg;
     ImageView ivFileType;
     TextView tvFileDetail;
     TextView tvFileName;
@@ -25,6 +27,7 @@ public class FileHolder extends RecyclerView.ViewHolder {
 
     public FileHolder(View itemView) {
         super(itemView);
+        rlBg = (RelativeLayout) itemView.findViewById(R.id.rl_bg);
         ivFileType = (ImageView) itemView.findViewById(R.id.iv_file_type);
         tvFileDetail = (TextView) itemView.findViewById(R.id.tv_file_detail);
         tvFileName = (TextView) itemView.findViewById(R.id.tv_file_name);

@@ -153,6 +153,11 @@ public class FilesAdapter extends RecyclerView.Adapter {
         });
 
         fileHolder.cbSelect.setChecked(mFileBeans.get(position).isChecked());
+        if (mFileBeans.get(position).isChecked()){
+            fileHolder.rlBg.setBackgroundColor(mContext.getResources().getColor(R.color.itemSelectBG));
+        }else {
+            fileHolder.rlBg.setBackgroundColor(mContext.getResources().getColor(R.color.white));
+        }
     }
 
     @Override
