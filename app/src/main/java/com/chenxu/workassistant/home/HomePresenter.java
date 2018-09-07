@@ -7,7 +7,7 @@ import android.os.Build;
 import android.util.Log;
 
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.config.Constant;
 import com.chenxu.workassistant.utils.FileUtil;
 
@@ -109,13 +109,13 @@ public class HomePresenter implements HomeContract.Presenter {
         task.cancel();
         timer.cancel();
         try {
-            if (Applacation.getStore()!= null){
-                Applacation.getStore().close();
+            if (Application.getStore()!= null){
+                Application.getStore().close();
             }
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        Applacation.setStore(null);
+        Application.setStore(null);
     }
 
     /**

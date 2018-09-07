@@ -28,7 +28,7 @@ import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.fileReader.ImageFileReaderActivity;
 import com.chenxu.workassistant.fileReader.OfficeFileReaderActivity;
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.databinding.ActivityFileMenageBinding;
 import com.chenxu.workassistant.utils.BackgroundUtil;
 import com.chenxu.workassistant.utils.DialogUtil;
@@ -643,7 +643,7 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
                 SwipeMenuItem shareItem = new SwipeMenuItem(context);
                 // 各种文字和图标属性设置。
                 shareItem.setHeight(MATCH_PARENT);
-                shareItem.setWidth(SizeUtils.dp2px(Applacation.getInstance(),80));
+                shareItem.setWidth(SizeUtils.dp2px(Application.getInstance(),80));
                 shareItem.setText(R.string.file_right_share_item_name);
                 shareItem.setTextSize(16);
                 shareItem.setBackgroundColor(context.getResources().getColor(R.color.fileRightItemShareBG));
@@ -653,17 +653,17 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
                 SwipeMenuItem enclosureItem = new SwipeMenuItem(context);
                 // 各种文字和图标属性设置。
                 enclosureItem.setHeight(MATCH_PARENT);
-                enclosureItem.setWidth(SizeUtils.dp2px(Applacation.getInstance(),80));
+                enclosureItem.setWidth(SizeUtils.dp2px(Application.getInstance(),80));
                 enclosureItem.setText(R.string.file_right_enclosure_item_name);
                 enclosureItem.setTextSize(16);
                 enclosureItem.setBackgroundColor(context.getResources().getColor(R.color.fileRightItemEnclosureBG));
                 enclosureItem.setTextColor(context.getResources().getColor(R.color.white));
                 swipeRightMenu.addMenuItem(enclosureItem);
 
-                SwipeMenuItem collectionItem = new SwipeMenuItem(Applacation.getInstance());
+                SwipeMenuItem collectionItem = new SwipeMenuItem(Application.getInstance());
                 // 各种文字和图标属性设置。
                 collectionItem.setHeight(MATCH_PARENT);
-                collectionItem.setWidth(SizeUtils.dp2px(Applacation.getInstance(),80));
+                collectionItem.setWidth(SizeUtils.dp2px(Application.getInstance(),80));
                 collectionItem.setText(R.string.file_right_collection_item_name);
                 collectionItem.setTextSize(16);
                 collectionItem.setBackgroundColor(context.getResources().getColor(R.color.fileRightItemCollectionBG));

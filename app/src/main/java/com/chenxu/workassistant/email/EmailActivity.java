@@ -1,8 +1,6 @@
 package com.chenxu.workassistant.email;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
@@ -13,12 +11,11 @@ import android.widget.Toast;
 
 import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.databinding.ActivityEmailBinding;
 import com.chenxu.workassistant.login.LoginActivity;
 import com.chenxu.workassistant.readEmail.ReadEmailActivity;
 import com.chenxu.workassistant.sendEmail.SendEmailActivity;
-import com.chenxu.workassistant.utils.ImageLoadUtil;
 import com.chenxu.workassistant.utils.SizeUtils;
 import com.chenxu.workassistant.utils.SnackBarUtils;
 import com.chenxu.workassistant.utils.StatusBarUtil;
@@ -31,7 +28,6 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuCreator;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,10 +65,10 @@ public class EmailActivity extends BaseActivity<ActivityEmailBinding> implements
         mBinding.smrvEmail.setSwipeMenuCreator(new SwipeMenuCreator() {
             @Override
             public void onCreateMenu(SwipeMenu swipeLeftMenu, SwipeMenu swipeRightMenu, int viewType) {
-                SwipeMenuItem collectionItem = new SwipeMenuItem(Applacation.getInstance());
+                SwipeMenuItem collectionItem = new SwipeMenuItem(Application.getInstance());
                 // 各种文字和图标属性设置。
                 collectionItem.setHeight(MATCH_PARENT);
-                collectionItem.setWidth(SizeUtils.dp2px(Applacation.getInstance(),80));
+                collectionItem.setWidth(SizeUtils.dp2px(Application.getInstance(),80));
                 collectionItem.setText(R.string.email_item_menu_delete);
                 collectionItem.setTextSize(16);
                 collectionItem.setBackgroundColor(EmailActivity.this.getResources().getColor(R.color.EmailRightItemDeleteBG));

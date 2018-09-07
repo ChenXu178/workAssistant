@@ -2,7 +2,7 @@ package com.chenxu.workassistant.readEmail;
 
 import android.os.Environment;
 
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.email.MailReceiver;
 import com.chenxu.workassistant.utils.FileUtil;
 import com.sun.mail.imap.IMAPFolder;
@@ -38,7 +38,7 @@ public class ReadEmailModel implements ReadEmailContract.Model {
 
             @Override
             public void subscribe(ObservableEmitter<Object> e) throws Exception {
-                store = Applacation.getStore();
+                store = Application.getStore();
                 folder = (IMAPFolder) store.getFolder("INBOX");
                 folder.open(Folder.READ_WRITE);
                 mailReceiver = new MailReceiver((MimeMessage) folder.getMessageByUID(UID));

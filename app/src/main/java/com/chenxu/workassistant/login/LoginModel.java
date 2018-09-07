@@ -1,13 +1,12 @@
 package com.chenxu.workassistant.login;
 
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.config.Constant;
 import com.sun.mail.imap.IMAPStore;
 
 import java.util.Properties;
 
 import javax.mail.Session;
-import javax.mail.Store;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -35,7 +34,7 @@ public class LoginModel implements LoginContract.Model {
                     Session session = Session.getInstance(prop);
                     IMAPStore store = (IMAPStore) session.getStore("imap");
                     store.connect(account,password);
-                    Applacation.setStore(store);
+                    Application.setStore(store);
                     emitter.onNext(true);
                 }catch (Exception e){
                     e.printStackTrace();

@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.databinding.ActivityCollectionBinding;
 import com.chenxu.workassistant.fileMenage.FileMenageActivity;
 import com.chenxu.workassistant.fileReader.ImageFileReaderActivity;
@@ -56,20 +56,20 @@ public class CollectionActivity extends BaseActivity<ActivityCollectionBinding> 
         mBinding.smrvMain.setSwipeMenuCreator(new SwipeMenuCreator() {
             @Override
             public void onCreateMenu(SwipeMenu swipeLeftMenu, SwipeMenu swipeRightMenu, int viewType) {
-                SwipeMenuItem listItem = new SwipeMenuItem(Applacation.getInstance());
+                SwipeMenuItem listItem = new SwipeMenuItem(Application.getInstance());
                 // 各种文字和图标属性设置。
                 listItem.setHeight(MATCH_PARENT);
-                listItem.setWidth(SizeUtils.dp2px(Applacation.getInstance(),80));
+                listItem.setWidth(SizeUtils.dp2px(Application.getInstance(),80));
                 listItem.setText(R.string.file_right_list_item_name);
                 listItem.setTextSize(16);
-                listItem.setBackgroundColor(Applacation.getInstance().getResources().getColor(R.color.fileRightItemListBG));
-                listItem.setTextColor(Applacation.getInstance().getResources().getColor(R.color.white));
+                listItem.setBackgroundColor(Application.getInstance().getResources().getColor(R.color.fileRightItemListBG));
+                listItem.setTextColor(Application.getInstance().getResources().getColor(R.color.white));
                 swipeRightMenu.addMenuItem(listItem);
 
-                SwipeMenuItem collectionItem = new SwipeMenuItem(Applacation.getInstance());
+                SwipeMenuItem collectionItem = new SwipeMenuItem(Application.getInstance());
                 // 各种文字和图标属性设置。
                 collectionItem.setHeight(MATCH_PARENT);
-                collectionItem.setWidth(SizeUtils.dp2px(Applacation.getInstance(),90));
+                collectionItem.setWidth(SizeUtils.dp2px(Application.getInstance(),90));
                 collectionItem.setText(R.string.item_collection_btn);
                 collectionItem.setTextSize(16);
                 collectionItem.setBackgroundColor(CollectionActivity.this.getResources().getColor(R.color.CollectionRightItemCancelBG));

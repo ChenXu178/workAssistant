@@ -3,12 +3,11 @@ package com.chenxu.workassistant.email;
 import android.content.Context;
 import android.util.Log;
 
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.config.Constant;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -16,7 +15,6 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.chenxu.workassistant.config.Constant.EMAIL_STATE;
 import static com.chenxu.workassistant.email.EmailActivity.EMAIL_DATA_EMAIL;
-import static com.chenxu.workassistant.email.EmailActivity.EMAIL_DATA_MAIL;
 
 public class EmailPresenter implements EmailContract.Presenter {
 
@@ -38,7 +36,7 @@ public class EmailPresenter implements EmailContract.Presenter {
         int emailType = Constant.spSetting.getInt(Constant.EMAIL_SERVER_TYPE,0);
         String account = Constant.spSetting.getString(Constant.EMAIL_ACCOUNT,"");
         String password = Constant.spSetting.getString(Constant.EMAIL_PASSWORD,"");
-        emails = (ArrayList<Email>) Applacation.getACache().getAsObject(EMAIL_DATA_EMAIL);
+        emails = (ArrayList<Email>) Application.getACache().getAsObject(EMAIL_DATA_EMAIL);
         if (emails!=null){
             mView.initData(emails);
         }
@@ -160,8 +158,8 @@ public class EmailPresenter implements EmailContract.Presenter {
 
     @Override
     public void closeInbox() {
-        Applacation.getACache().remove(EMAIL_DATA_EMAIL);
-        Applacation.getACache().put(EMAIL_DATA_EMAIL,emails);
+        Application.getACache().remove(EMAIL_DATA_EMAIL);
+        Application.getACache().put(EMAIL_DATA_EMAIL,emails);
         mModel.exitStore()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

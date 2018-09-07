@@ -1,24 +1,16 @@
 package com.chenxu.workassistant.sendEmail;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
-import com.chenxu.workassistant.config.Constant;
 import com.chenxu.workassistant.databinding.ActivitySendEmailBinding;
 import com.chenxu.workassistant.utils.ConfirmDialog;
 import com.chenxu.workassistant.utils.DialogUtil;
@@ -27,16 +19,10 @@ import com.chenxu.workassistant.utils.StatusBarUtil;
 import com.chenxu.workassistant.utils.Utils;
 import com.chenxu.workassistant.widget.ColorPicker;
 import com.chenxu.workassistant.widget.KeyboardChangeListener;
-import com.flask.colorpicker.ColorPickerView;
-import com.flask.colorpicker.OnColorSelectedListener;
-import com.flask.colorpicker.builder.ColorPickerClickListener;
-import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import jp.wasabeef.richeditor.RichEditor;
 
 public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> implements SendEmailContract.View, View.OnClickListener {
 

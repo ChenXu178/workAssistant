@@ -1,6 +1,6 @@
 package com.chenxu.workassistant.dao;
 
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 
 public class GreenDaoManager {
     private static DaoMaster mDaoMaster;
@@ -30,7 +30,7 @@ public class GreenDaoManager {
      * 初始化数据
      */
     private void init() {
-        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(Applacation.getInstance(), "workassistant.db");
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(Application.getInstance(), "workassistant.db");
         mDaoMaster = new DaoMaster(devOpenHelper.getWritableDatabase());
         mDaoSession = mDaoMaster.newSession();
     }

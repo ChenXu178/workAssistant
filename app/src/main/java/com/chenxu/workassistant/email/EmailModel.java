@@ -2,7 +2,7 @@ package com.chenxu.workassistant.email;
 
 import android.util.Log;
 
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.config.Constant;
 import com.sun.mail.imap.IMAPFolder;
 import com.sun.mail.imap.IMAPStore;
@@ -14,9 +14,7 @@ import java.util.Properties;
 import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
-import javax.mail.Part;
 import javax.mail.Session;
-import javax.mail.Store;
 import javax.mail.internet.MimeMessage;
 
 import io.reactivex.Observable;
@@ -40,7 +38,7 @@ public class EmailModel implements EmailContract.Model {
         return Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-                if (Applacation.getStore() == null){
+                if (Application.getStore() == null){
                     String emailIMAP = Constant.EMAIL_SERVER_IMAP[emailType];
                     Properties prop = System.getProperties();
                     prop.put("mail.store.protocol", "imap");
@@ -49,14 +47,14 @@ public class EmailModel implements EmailContract.Model {
                         Session session = Session.getInstance(prop);
                         store = (IMAPStore) session.getStore("imap");
                         store.connect(account,password);
-                        Applacation.setStore(store);
+                        Application.setStore(store);
                         emitter.onNext(true);
                     }catch (Exception e){
                         e.printStackTrace();
                         emitter.onNext(false);
                     }
                 }else {
-                    store = Applacation.getStore();
+                    store = Application.getStore();
                     emitter.onNext(true);
                 }
             }

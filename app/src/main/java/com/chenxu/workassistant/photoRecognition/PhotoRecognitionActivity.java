@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.chenxu.workassistant.BaseActivity;
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.databinding.ActivityPhotoRecognitionBinding;
 import com.chenxu.workassistant.utils.ClickUtil;
 import com.chenxu.workassistant.utils.DialogUtil;
@@ -107,8 +107,8 @@ public class PhotoRecognitionActivity extends BaseActivity<ActivityPhotoRecognit
         new ClickUtil() {
             @Override
             public void method() {
-                if (Applacation.getBaiduError() != 200){
-                    mPresenter.onError(Applacation.getBaiduError());
+                if (Application.getBaiduError() != 200){
+                    mPresenter.onError(Application.getBaiduError());
                     return;
                 }
                 startImageSelect();
@@ -118,8 +118,8 @@ public class PhotoRecognitionActivity extends BaseActivity<ActivityPhotoRecognit
         new ClickUtil() {
             @Override
             public void method() {
-                if (Applacation.getBaiduError() != 200){
-                    mPresenter.onError(Applacation.getBaiduError());
+                if (Application.getBaiduError() != 200){
+                    mPresenter.onError(Application.getBaiduError());
                     return;
                 }
                 startCamera();

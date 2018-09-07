@@ -1,8 +1,7 @@
 package com.chenxu.workassistant.home;
 
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.config.Constant;
-import com.chenxu.workassistant.dao.GreenDaoManager;
 import com.sun.mail.imap.IMAPFolder;
 import com.sun.mail.imap.IMAPStore;
 
@@ -31,7 +30,7 @@ public class HomeModel implements HomeContract.Model {
         return Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-                if (Applacation.getStore() == null){
+                if (Application.getStore() == null){
                     int emailType = Constant.spSetting.getInt(Constant.EMAIL_SERVER_TYPE,0);
                     String account = Constant.spSetting.getString(Constant.EMAIL_ACCOUNT,"");
                     String password = Constant.spSetting.getString(Constant.EMAIL_PASSWORD,"");
@@ -46,7 +45,7 @@ public class HomeModel implements HomeContract.Model {
                             Session session = Session.getInstance(prop);
                             store = (IMAPStore) session.getStore("imap");
                             store.connect(account,password);
-                            Applacation.setStore(store);
+                            Application.setStore(store);
                             folder = (IMAPFolder) store.getFolder("INBOX");
                             folder.open(Folder.READ_WRITE);
                             emitter.onNext(true);
@@ -56,7 +55,7 @@ public class HomeModel implements HomeContract.Model {
                         }
                     }
                 }else {
-                    store = Applacation.getStore();
+                    store = Application.getStore();
                     folder = (IMAPFolder) store.getFolder("INBOX");
                     folder.open(Folder.READ_WRITE);
                     emitter.onNext(true);

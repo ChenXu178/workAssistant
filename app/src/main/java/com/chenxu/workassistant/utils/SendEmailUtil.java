@@ -1,8 +1,6 @@
 package com.chenxu.workassistant.utils;
 
 
-import com.chenxu.workassistant.config.Applacation;
-
 import java.io.File;
 import java.util.List;
 import java.util.Properties;

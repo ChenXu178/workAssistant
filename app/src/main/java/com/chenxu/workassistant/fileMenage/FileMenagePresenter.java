@@ -8,11 +8,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.config.Constant;
 import com.chenxu.workassistant.dao.CollectionEntity;
 import com.chenxu.workassistant.dao.EnclosureEntity;
-import com.chenxu.workassistant.dao.HistoryEntity;
 import com.chenxu.workassistant.setting.SettingActivity;
 import com.chenxu.workassistant.utils.FileUtil;
 
@@ -23,7 +22,6 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -127,17 +125,17 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
         }else {
             //文件，打开
             switch (fileBean.getType()){//1文件夹、2音乐、3文件、4代码、5Excel、6图片、7PDF、8PPT、9TXT、10视频、11Word、12压缩
-                case 2: FileUtil.openFiles(Applacation.getInstance(),fileBean.getFile().getPath()); break;
-                case 3: Toast.makeText(Applacation.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
-                case 4: FileUtil.openFiles(Applacation.getInstance(),fileBean.getFile().getPath()); break;
+                case 2: FileUtil.openFiles(Application.getInstance(),fileBean.getFile().getPath()); break;
+                case 3: Toast.makeText(Application.getInstance(),R.string.file_menage_open_err,Toast.LENGTH_SHORT).show(); break;
+                case 4: FileUtil.openFiles(Application.getInstance(),fileBean.getFile().getPath()); break;
                 case 5: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
                 case 6: mView.openImageFile(fileBean.getFile().toString(),view); break;
                 case 7: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
                 case 8: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
                 case 9: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
-                case 10: FileUtil.openFiles(Applacation.getInstance(),fileBean.getFile().getPath()); break;
+                case 10: FileUtil.openFiles(Application.getInstance(),fileBean.getFile().getPath()); break;
                 case 11: mView.openOfficeFile(fileBean.getFile().getPath(),view); break;
-                case 12: FileUtil.openFiles(Applacation.getInstance(),fileBean.getFile().getPath()); break;
+                case 12: FileUtil.openFiles(Application.getInstance(),fileBean.getFile().getPath()); break;
             }
         }
     }

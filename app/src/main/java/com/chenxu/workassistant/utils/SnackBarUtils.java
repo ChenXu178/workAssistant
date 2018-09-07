@@ -1,6 +1,6 @@
 package com.chenxu.workassistant.utils;
 
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.TextView;
@@ -20,8 +20,8 @@ public class SnackBarUtils {
         Snackbar snackbar = Snackbar.make(view,msg, Snackbar.LENGTH_SHORT);
         View snackbarView = snackbar.getView();//获取SnackBar的view
         if(snackbarView!=null){
-            snackbarView.setBackgroundColor(Applacation.getInstance().getResources().getColor(backgroundColor));//修改view的背景色
-            ((TextView) snackbarView.findViewById(R.id.snackbar_text)).setTextColor(Applacation.getInstance().getResources().getColor(messageColor));//获取Snackbar的message控件，修改字体颜色
+            snackbarView.setBackgroundColor(Application.getInstance().getResources().getColor(backgroundColor));//修改view的背景色
+            ((TextView) snackbarView.findViewById(R.id.snackbar_text)).setTextColor(Application.getInstance().getResources().getColor(messageColor));//获取Snackbar的message控件，修改字体颜色
         }
         snackbar.show();
     }
@@ -38,8 +38,8 @@ public class SnackBarUtils {
         Snackbar snackbar = Snackbar.make(view,msg, Snackbar.LENGTH_SHORT);
         View snackbarView = snackbar.getView();//获取SnackBar的view
         if(snackbarView!=null){
-            snackbarView.setBackgroundColor(Applacation.getInstance().getResources().getColor(backgroundColor));//修改view的背景色
-            ((TextView) snackbarView.findViewById(R.id.snackbar_text)).setTextColor(Applacation.getInstance().getResources().getColor(messageColor));//获取Snackbar的message控件，修改字体颜色
+            snackbarView.setBackgroundColor(Application.getInstance().getResources().getColor(backgroundColor));//修改view的背景色
+            ((TextView) snackbarView.findViewById(R.id.snackbar_text)).setTextColor(Application.getInstance().getResources().getColor(messageColor));//获取Snackbar的message控件，修改字体颜色
         }
         snackbar.show();
     }

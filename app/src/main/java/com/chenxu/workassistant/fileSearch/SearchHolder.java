@@ -7,10 +7,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.utils.FileUtil;
-
-import java.io.File;
 
 public class SearchHolder extends RecyclerView.ViewHolder {
     ImageView ivFileType;
@@ -31,7 +29,7 @@ public class SearchHolder extends RecyclerView.ViewHolder {
             case 3: ivFileType.setImageResource(R.drawable.file_blank); break;
             case 4: ivFileType.setImageResource(R.drawable.file_code); break;
             case 5: ivFileType.setImageResource(R.drawable.file_excel); break;
-            case 6: Glide.with(Applacation.getInstance()).load(searchBean.getFile()).into(ivFileType); break;
+            case 6: Glide.with(Application.getInstance()).load(searchBean.getFile()).into(ivFileType); break;
             case 7: ivFileType.setImageResource(R.drawable.file_pdf); break;
             case 8: ivFileType.setImageResource(R.drawable.file_ppt); break;
             case 9: ivFileType.setImageResource(R.drawable.file_txt); break;

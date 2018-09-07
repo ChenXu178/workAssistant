@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 import com.chenxu.workassistant.utils.FileUtil;
 
 public class CollectionHolder extends RecyclerView.ViewHolder {
@@ -29,7 +29,7 @@ public class CollectionHolder extends RecyclerView.ViewHolder {
             case 3: ivCollectionIcon.setImageResource(R.drawable.file_blank); break;
             case 4: ivCollectionIcon.setImageResource(R.drawable.file_code); break;
             case 5: ivCollectionIcon.setImageResource(R.drawable.file_excel); break;
-            case 6: Glide.with(Applacation.getInstance()).load(fileBean.getFile()).into(ivCollectionIcon); break;
+            case 6: Glide.with(Application.getInstance()).load(fileBean.getFile()).into(ivCollectionIcon); break;
             case 7: ivCollectionIcon.setImageResource(R.drawable.file_pdf); break;
             case 8: ivCollectionIcon.setImageResource(R.drawable.file_ppt); break;
             case 9: ivCollectionIcon.setImageResource(R.drawable.file_txt); break;

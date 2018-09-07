@@ -1,16 +1,13 @@
 package com.chenxu.workassistant.sendEmail;
 
-import com.chenxu.workassistant.config.Applacation;
 import com.chenxu.workassistant.config.Constant;
 import com.chenxu.workassistant.dao.EnclosureEntity;
 import com.chenxu.workassistant.dao.EnclosureEntityDao;
 import com.chenxu.workassistant.dao.GreenDaoManager;
-import com.chenxu.workassistant.utils.FileUtil;
 import com.chenxu.workassistant.utils.SendEmailUtil;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

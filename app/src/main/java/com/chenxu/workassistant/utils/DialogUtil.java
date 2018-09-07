@@ -1,7 +1,6 @@
 package com.chenxu.workassistant.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.chenxu.workassistant.R;
-import com.chenxu.workassistant.config.Applacation;
+import com.chenxu.workassistant.config.Application;
 
 public class DialogUtil {
 
@@ -20,7 +19,7 @@ public class DialogUtil {
         window.setOutsideTouchable(true);
         window.setFocusable(true);
         window.setTouchable(true);
-        window.setBackgroundDrawable(Applacation.getInstance().getDrawable(R.drawable.base_dialog_bg));
+        window.setBackgroundDrawable(Application.getInstance().getDrawable(R.drawable.base_dialog_bg));
         window.setAnimationStyle(R.style.baseDialogAnim);
         return window;
     }
