@@ -3,7 +3,7 @@ package com.chenxu.workassistant.readEmail;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.View;
-import android.webkit.WebSettings;
+import com.tencent.smtt.sdk.WebSettings;
 import android.widget.PopupWindow;
 
 import com.chenxu.workassistant.BaseActivity;

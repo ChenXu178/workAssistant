@@ -1,157 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
 
     </data>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/white"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rl_bar"
             style="@style/bar"
-            android:background="@color/white"
-            android:id="@+id/rl_bar">
+            android:background="@color/white">
 
             <ImageButton
-                style="@style/barBack"
-                android:id="@+id/btn_back"/>
+                android:id="@+id/btn_back"
+                style="@style/barBack" />
 
             <TextView
+                android:id="@+id/tv_bar_title"
                 style="@style/barText"
-                android:text="@string/read_email_title"
-                android:id="@+id/tv_bar_title"/>
+                android:text="@string/read_email_title" />
 
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/dialog_line"/>
+            android:background="@color/dialog_line" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:animateLayoutChanges="true">
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_email_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
                 android:paddingTop="10dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
-                android:textSize="16sp"
                 android:textColor="@color/barText"
-                tools:text="邮件标题是第三方斯蒂芬是否都dsdsfsdds鼎折覆餗放松放松是"
-                android:id="@+id/tv_email_title"/>
+                android:textSize="16sp"
+                tools:text="邮件标题是第三方斯蒂芬是否都dsdsfsdds鼎折覆餗放松放松是" />
 
             <TextView
+                android:id="@+id/tv_email_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:gravity="center_vertical"
+                android:lines="1"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:lines="1"
-                android:ellipsize="end"
-                android:textSize="13sp"
                 android:textColor="@color/dialogInput"
-                tools:text="2018年5月12日 14:21"
-                android:id="@+id/tv_email_time"/>
+                android:textSize="13sp"
+                tools:text="2018年5月12日 14:21" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:orientation="horizontal"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
                 android:layout_marginBottom="10dp"
                 android:animateLayoutChanges="true"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
                 <TextView
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:text="@string/read_email_sender"
                     android:textColor="@color/dialogInput"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_email_sender"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:gravity="center"
                     android:background="@drawable/email_user_address_bg"
+                    android:gravity="center"
                     android:paddingLeft="7dp"
                     android:paddingRight="7dp"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:visibility="gone"
-                    tools:text="1782408400@qq.com"
-                    android:id="@+id/tv_email_sender"/>
+                    tools:text="1782408400@qq.com" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_enclosure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/ll_enclosure">
+                android:visibility="gone">
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/dialog_line"/>
+                    android:background="@color/dialog_line" />
 
                 <RelativeLayout
+                    android:id="@+id/rl_enclosure_title"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:clickable="true"
                     android:background="?android:attr/selectableItemBackground"
-                    android:id="@+id/rl_enclosure_title">
+                    android:clickable="true"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/read_email_enclosure"
-                        android:textSize="14sp"
-                        android:textColor="@color/loginInput"
+                        android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true"/>
+                        android:text="@string/read_email_enclosure"
+                        android:textColor="@color/loginInput"
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:gravity="center_vertical">
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_enclosure_detail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="3个附件"
-                            android:textSize="14sp"
                             android:textColor="@color/mainBlue"
-                            android:id="@+id/tv_enclosure_detail"/>
+                            android:textSize="14sp"
+                            tools:text="3个附件" />
 
                         <ImageView
+                            android:id="@+id/iv_read_enclosure_state"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:src="@drawable/send_email_down"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="5dp"
-                            android:id="@+id/iv_read_enclosure_state"/>
+                            android:src="@drawable/send_email_down" />
 
                     </LinearLayout>
 
@@ -160,43 +160,43 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/dialog_line"/>
+                    android:background="@color/dialog_line" />
 
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_enclosure"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:id="@+id/rv_enclosure">
+                    android:visibility="gone">
 
                 </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_loading"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:visibility="visible"
-                android:id="@+id/rl_loading">
+                android:visibility="visible">
 
                 <com.wang.avi.AVLoadingIndicatorView
                     android:id="@+id/avi_load"
+                    style="@style/AVLoadingIndicatorView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerInParent="true"
-                    style="@style/AVLoadingIndicatorView"
                     android:visibility="visible"
-                    app:indicatorName="BallScaleMultipleIndicator"
-                    app:indicatorColor="@color/mainBlue"/>
+                    app:indicatorColor="@color/mainBlue"
+                    app:indicatorName="BallScaleMultipleIndicator" />
 
             </RelativeLayout>
 
-            <WebView
+            <com.tencent.smtt.sdk.WebView
+                android:id="@+id/wv_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
-                android:id="@+id/wv_content">
+                android:background="@color/white">
 
-            </WebView>
+            </com.tencent.smtt.sdk.WebView>
 
         </LinearLayout>
 

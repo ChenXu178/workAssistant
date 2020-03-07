@@ -11,9 +11,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.chenxu.workassistant.BaseActivity;
@@ -45,15 +44,12 @@ import me.weyye.hipermission.PermissionItem;
 public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements HomeContract.View,View.OnClickListener{
 
     private HomeContract.Presenter mPresenter;
-    private Animation ivSearchAnimation,ivSearchBgAnimation;
     private EmailLoginBroadcastReceiver emailLoginBroadcastReceiver;
     private EmailExitBroadcastReceiver emailExitBroadcastReceiver;
 
     @Override
     protected void onResume() {
         super.onResume();
-        mBinding.ivSearch.clearAnimation();
-        mBinding.ivSearchBg.clearAnimation();
         mPresenter.start();
     }
 
@@ -119,38 +115,52 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
     @Override
     protected void bindEvent() {
         mBinding.llFiles.setOnClickListener(this::onClick);
-        mBinding.llEmail.setOnClickListener(this::onClick);
         mBinding.llCollection.setOnClickListener(this::onClick);
         mBinding.llPhoto.setOnClickListener(this::onClick);
         mBinding.llSetting.setOnClickListener(this::onClick);
 
+        mBinding.llEmail.setOnTouchListener(new View.OnTouchListener() {
+            private long touchTime = 0;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        touchTime = System.currentTimeMillis();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (System.currentTimeMillis() - touchTime < 500){
+                            boolean isSave = Constant.spSetting.getBoolean(Constant.EMAIL_SAVE_ACCOUNT,false);
+                            Intent intent;
+                            if (isSave){
+                                intent = new Intent(HomeActivity.this, EmailActivity.class);
+                                intent.putExtra(EmailActivity.OPEN_TYPE,1);
+                                ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(HomeActivity.this,new Pair<View, String>(mBinding.tvEmail, EmailActivity.VIEW_ANIM));
+                                ActivityCompat.startActivity(HomeActivity.this, intent, compat.toBundle());
+                            }else {
+                                int [] location = new int[2];
+                                mBinding.llEmail.getLocationOnScreen(location);
+                                intent = new Intent(HomeActivity.this, LoginActivity.class);
+                                intent.putExtra("x", location[0] + (int)event.getX());
+                                intent.putExtra("y", location[1] + (int)event.getY());
+                                startActivity(intent);
+                            }
+                        }
+                        break;
+                }
+                return false;
+            }
+        });
         new ClickUtil() {
             @Override
             public void method() {
-                ivSearchAnimation = AnimationUtils.loadAnimation(HomeActivity.this,R.anim.home_search_anim);
-                mBinding.ivSearch.startAnimation(ivSearchAnimation);
-                ivSearchBgAnimation = AnimationUtils.loadAnimation(HomeActivity.this,R.anim.home_search_bg_anim);
-                mBinding.ivSearchBg.startAnimation(ivSearchBgAnimation);
-
-                ivSearchAnimation.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        startActivity(new Intent(HomeActivity.this,FileSearchActivity.class));
-                        overridePendingTransition(R.anim.fade_in_anim,R.anim.fade_out_anim);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
+                int[] xy = new int[2];
+                mBinding.rlSearch.getLocationInWindow(xy);
+                Intent i = new Intent(HomeActivity.this, FileSearchActivity.class);
+                i.putExtra("x", xy[0] + (mBinding.rlSearch.getWidth()/2));
+                i.putExtra("y", xy[1] + (mBinding.rlSearch.getHeight()/2));
+                startActivity(i);
             }
-        }.clickAntiShake(mBinding.ivSearchBg);
+        }.clickAntiShake(mBinding.rlSearch);
 
     }
 
@@ -240,17 +250,6 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
                     ActivityCompat.startActivity(this, intent, compat.toBundle());
                 }else {
                     mPresenter.checkPermission();
-                }
-                break;
-            case R.id.ll_email:
-                boolean isSave = Constant.spSetting.getBoolean(Constant.EMAIL_SAVE_ACCOUNT,false);
-                if (isSave){
-                    intent = new Intent(this, EmailActivity.class);
-                    intent.putExtra(EmailActivity.OPEN_TYPE,1);
-                    compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvEmail, EmailActivity.VIEW_ANIM));
-                    ActivityCompat.startActivity(this, intent, compat.toBundle());
-                }else {
-                    startActivity(new Intent(this,LoginActivity.class));
                 }
                 break;
             case R.id.ll_collection:

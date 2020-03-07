@@ -13,6 +13,7 @@ import com.baidu.ocr.sdk.model.AccessToken;
 import com.chenxu.workassistant.dao.GreenDaoManager;
 import com.chenxu.workassistant.utils.ACache;
 import com.sun.mail.imap.IMAPStore;
+import com.tencent.smtt.sdk.QbSdk;
 
 
 /**
@@ -31,6 +32,7 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        QbSdk.initX5Environment(this,null);
         Constant.spPermission = getSharedPreferences("permission",MODE_PRIVATE);
         Constant.permissionEditor = Constant.spPermission.edit();
         Constant.spSetting = getSharedPreferences("setting",MODE_PRIVATE);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.LayoutRes;
@@ -25,6 +26,7 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends Activity 
         super.onCreate(savedInstanceState);
         rootView = getLayoutInflater().inflate(this.getLayoutId(), null, false);
         mBinding = DataBindingUtil.bind(rootView);
+        getWindow().setFormat(PixelFormat.TRANSLUCENT);
         fullScreen();
         super.setContentView(rootView);
         initView();

@@ -1,5 +1,9 @@
 package com.chenxu.workassistant.fileSearch;
 
+import android.animation.Animator;
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -15,6 +19,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -50,10 +56,14 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> implements FileSearchContract.View,View.OnClickListener{
 
+    private static final String TAG = FileSearchActivity.class.getSimpleName();
+
     private FileSearchContract.Presenter mPresenter;
     private HistoryAdapter historyAdapter;
     private SearchAdapter searchAdapter;
     private PopupWindow searchDialog,dialogCollection,dialogEnclosure;
+    private int mX;
+    private int mY;
 
 
     @Override
@@ -66,6 +76,16 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
         StatusBarUtil.darkMode(this);
         mPresenter = new FileSearchPresenter(this,this);
 
+        mBinding.llCircular.post(new Runnable() {
+            @Override
+            public void run() {
+                mX = getIntent().getIntExtra("x", 0);
+                mY = getIntent().getIntExtra("y", 0);
+                Log.d(TAG, "searchContent.post: X = " + mX + " Y = " + mY);
+                Animator animator = createRevealAnimator(false, mX, mY);
+                animator.start();
+            }
+        });
         FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
         mBinding.rvSearchHistory.setLayoutManager(flowLayoutManager);
         historyAdapter = new HistoryAdapter(new ArrayList<>(),this);
@@ -363,6 +383,79 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
                 mPresenter.onFileItemClick(position,itemView);
             }
         });
+    }
+
+    private Animator createRevealAnimator(boolean reversed, int x, int y) {
+        float hypot = (float) Math.hypot(mBinding.llCircular.getHeight(), mBinding.llCircular.getWidth());
+        float startRadius = reversed ? hypot : 0;
+        float endRadius = reversed ? 0 : hypot;
+
+        Animator animator = ViewAnimationUtils.createCircularReveal(
+                mBinding.llCircular, x, y,
+                startRadius,
+                endRadius);
+        animator.setDuration(800);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        if (!reversed){
+            animator.addListener(animatorInListener);
+        }else {
+            animator.addListener(animatorExitListener);
+        }
+        return animator;
+    }
+
+    private Animator.AnimatorListener animatorInListener = new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(Animator animation) {
+            ValueAnimator animator = ObjectAnimator.ofInt(mBinding.llCircular, "backgroundColor", 0xFF3AA7FF, 0xFFFFFFFF);
+            animator.setDuration(1000);
+            animator.setEvaluator(new ArgbEvaluator());
+            animator.start();
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+        }
+    };
+
+    private Animator.AnimatorListener animatorExitListener = new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(Animator animation) {
+            ValueAnimator animator = ObjectAnimator.ofInt(mBinding.llCircular, "backgroundColor",0xFFFFFFFF,0xFF3AA7FF);
+            animator.setDuration(1000);
+            animator.setEvaluator(new ArgbEvaluator());
+            animator.start();
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            mBinding.llCircular.setVisibility(View.GONE);
+            FileSearchActivity.super.onBackPressed();
+            finish();
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+        }
+    };
+
+    @Override
+    public void onBackPressed() {
+        Animator animator = createRevealAnimator(true, mX, mY);
+        animator.start();
     }
 
     @Override

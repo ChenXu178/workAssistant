@@ -17,12 +17,12 @@
     <application
         android:name=".config.Application"
         android:allowBackup="true"
-        android:icon="@mipmap/icon"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.HomeActivity"
+        <activity
+            android:name=".home.HomeActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,30 +51,57 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name=".email.EmailActivity"
+        <activity
+            android:name=".email.EmailActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".fileReader.OfficeFileReaderActivity"
+        <activity
+            android:name=".fileReader.OfficeFileReaderActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".fileReader.ImageFileReaderActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".fileReader.ImageFileReaderActivity"
+        <activity
+            android:name=".fileMenage.FileMenageActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".fileMenage.FileMenageActivity"
+        <activity
+            android:name=".login.LoginActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".login.LoginActivity"
+        <activity
+            android:name=".photoRecognition.PhotoRecognitionActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".photoRecognition.PhotoRecognitionActivity"
+        <activity
+            android:name=".setting.SettingActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".setting.SettingActivity"
+        <activity
+            android:name=".fileSearch.FileSearchActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".fileSearch.FileSearchActivity"
+        <activity
+            android:name=".collection.CollectionActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".collection.CollectionActivity"
+        <activity
+            android:name=".readEmail.ReadEmailActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".readEmail.ReadEmailActivity"
+        <activity
+            android:name=".sendEmail.SendEmailActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".sendEmail.SendEmailActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".about.AboutActivity"
+        <activity
+            android:name=".about.AboutActivity"
             android:launchMode="singleTask" />
+
+        <activity
+            android:name="com.tencent.smtt.sdk.VideoActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="com.tencent.smtt.tbs.video.PLAY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

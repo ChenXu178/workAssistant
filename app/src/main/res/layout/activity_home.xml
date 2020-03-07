@@ -69,7 +69,8 @@
                             android:orientation="vertical"
                             android:gravity="center"
                             android:background="@drawable/home_btn_bg_selector"
-                            android:id="@+id/ll_email">
+                            android:id="@+id/ll_email"
+                            android:clickable="true">
 
                             <ImageView
                                 style="@style/HomeBtnImg"
@@ -207,37 +208,24 @@
         <FrameLayout
             style="@style/max">
 
-            <FrameLayout
-                style="@style/max">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:elevation="10dp"
+                android:background="@drawable/search_bg_selector"
+                android:id="@+id/rl_search">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="bottom|right"
-                    android:src="@drawable/search_bg"
-                    android:id="@+id/iv_search_bg"/>
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/search"
+                    android:scaleType="fitXY"/>
 
-            </FrameLayout>
-
-            <FrameLayout
-                style="@style/max">
-
-                <RelativeLayout
-                    style="@style/max"
-                    android:paddingRight="30dp"
-                    android:paddingBottom="30dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:src="@drawable/search"
-                        android:id="@+id/iv_search"/>
-
-                </RelativeLayout>
-
-            </FrameLayout>
+            </RelativeLayout>
 
         </FrameLayout>
 

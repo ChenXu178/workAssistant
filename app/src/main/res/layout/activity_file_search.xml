@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/mainBlue"
+        android:id="@+id/ll_circular">
 
         <RelativeLayout
             android:layout_width="match_parent"
