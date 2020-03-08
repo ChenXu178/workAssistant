@@ -50,18 +50,23 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void checkPermission() {
         List<PermissionItem> permissionItems = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= 23){
-            if (mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                permissionItems.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE,"存储", R.drawable.permission_ic_storage));
-            }
-            if (mContext.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-                permissionItems.add(new PermissionItem(Manifest.permission.CAMERA,"摄像头",R.drawable.permission_ic_camera));
-            }
-            if (permissionItems.size() > 0){
-                mView.showJurisdictionDialog(permissionItems);
-            }
+        if (mContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED){
+            permissionItems.add(new PermissionItem(Manifest.permission.READ_PHONE_STATE,"电话", R.drawable.permission_ic_phone));
         }else {
-            Constant.permissionEditor.putBoolean("storage",true).putBoolean("camera",true).commit();
+            Constant.permissionEditor.putBoolean("phone",true).commit();
+        }
+        if (mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            permissionItems.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE,"存储", R.drawable.permission_ic_storage));
+        }else {
+            Constant.permissionEditor.putBoolean("storage",true).commit();
+        }
+        if (mContext.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            permissionItems.add(new PermissionItem(Manifest.permission.CAMERA,"摄像头",R.drawable.permission_ic_camera));
+        }else {
+            Constant.permissionEditor.putBoolean("camera",true).commit();
+        }
+        if (permissionItems.size() > 0){
+            mView.showJurisdictionDialog(permissionItems);
         }
 
     }

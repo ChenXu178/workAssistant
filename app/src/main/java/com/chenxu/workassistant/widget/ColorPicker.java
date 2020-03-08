@@ -20,6 +20,7 @@ public class ColorPicker {
     private int title,density = 12;
     private int startColor = Color.parseColor("#FFFFFF");
     private View relyView;
+    private View bgView;
 
     private PopupWindow window;
     private View dialogView;
@@ -52,6 +53,11 @@ public class ColorPicker {
 
     public ColorPicker setRelyView(View view) {
         this.relyView = view;
+        return this;
+    }
+
+    public ColorPicker setBgView(View view) {
+        this.bgView = view;
         return this;
     }
 
@@ -98,14 +104,18 @@ public class ColorPicker {
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,context);
+                if (bgView != null){
+                    BackgroundUtil.setBackgroundAlpha(bgView,false);
+                }
             }
         });
         return this;
     }
 
     public ColorPicker show(){
-        BackgroundUtil.setBackgroundAlpha(0.8f,context);
+        if (bgView != null){
+            BackgroundUtil.setBackgroundAlpha(bgView,true);
+        }
         window.showAtLocation(relyView, Gravity.CENTER,0,0);
         return this;
     }

@@ -220,7 +220,7 @@ public class PhotoRecognitionActivity extends BaseActivity<ActivityPhotoRecognit
 
     @Override
     public void showLoading() {
-        loadDialog = DialogUtil.initLoadDialog(PhotoRecognitionActivity.this,R.string.photo_photo_loading);
+        loadDialog = DialogUtil.initLoadDialog(PhotoRecognitionActivity.this,R.string.photo_photo_loading,mBinding.vBg);
         loadDialog.showAtLocation(mBinding.rlBar, Gravity.CENTER,0,0);
     }
 

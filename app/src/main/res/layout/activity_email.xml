@@ -8,15 +8,13 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/max"
         android:fitsSystemWindows="true"
         android:background="@color/white"
         tools:context="com.chenxu.workassistant.email.EmailActivity">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/max"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -67,8 +65,7 @@
                     android:src="@drawable/search_email"/>
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    style="@style/max"
                     android:inputType="text"
                     android:background="@null"
                     android:paddingLeft="15dp"
@@ -87,8 +84,7 @@
                 android:background="@color/dialog_line"/>
 
             <com.scwang.smartrefresh.layout.SmartRefreshLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/max"
                 android:visibility="gone"
                 android:id="@+id/srl_refresh">
                 
@@ -99,8 +95,7 @@
                 </com.scwang.smartrefresh.header.DropBoxHeader>
 
                 <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    style="@style/max"
                     android:id="@+id/smrv_email">
 
                 </com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>

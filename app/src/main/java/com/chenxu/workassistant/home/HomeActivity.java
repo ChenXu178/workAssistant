@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
     @Override
     protected void onResume() {
         super.onResume();
+        mBinding.vBg.setVisibility(View.GONE);
         mPresenter.start();
     }
 
@@ -137,6 +139,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
                                 ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(HomeActivity.this,new Pair<View, String>(mBinding.tvEmail, EmailActivity.VIEW_ANIM));
                                 ActivityCompat.startActivity(HomeActivity.this, intent, compat.toBundle());
                             }else {
+                                mBinding.llEmail.playSoundEffect(SoundEffectConstants.CLICK);
                                 int [] location = new int[2];
                                 mBinding.llEmail.getLocationOnScreen(location);
                                 intent = new Intent(HomeActivity.this, LoginActivity.class);
@@ -157,7 +160,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
                 mBinding.rlSearch.getLocationInWindow(xy);
                 Intent i = new Intent(HomeActivity.this, FileSearchActivity.class);
                 i.putExtra("x", xy[0] + (mBinding.rlSearch.getWidth()/2));
-                i.putExtra("y", xy[1] + (mBinding.rlSearch.getHeight()/2));
+                i.putExtra("y", xy[1] );
                 startActivity(i);
             }
         }.clickAntiShake(mBinding.rlSearch);
@@ -167,23 +170,26 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
 
     @Override
     public void showJurisdictionDialog(List<PermissionItem> permissionItems) {
-        BackgroundUtil.setBackgroundAlpha(0.5f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         HiPermission.create(this).permissions(permissionItems).title(this.getResources().getString(R.string.dialog_permission_title)).msg(this.getResources().getString(R.string.dialog_permission_msg)).style(R.style.PermissionBlueStyle).filterColor(R.color.mainBlue).animStyle(R.style.PermissionAnimModal).checkMutiPermission(new PermissionCallback() {
             @Override
             public void onClose() {
-                Constant.permissionEditor.putBoolean("storage",false).putBoolean("camera",false).commit();
-                BackgroundUtil.setBackgroundAlpha(1f,HomeActivity.this);
+                Constant.permissionEditor.putBoolean("phone",false).putBoolean("storage",false).putBoolean("camera",false).commit();
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
 
             @Override
             public void onFinish() {
-                Constant.permissionEditor.putBoolean("storage",true).putBoolean("camera",true).commit();
-                BackgroundUtil.setBackgroundAlpha(1f,HomeActivity.this);
+                Constant.permissionEditor.putBoolean("phone",true).putBoolean("storage",true).putBoolean("camera",true).commit();
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
 
             @Override
             public void onDeny(String permission, int position) {
-                BackgroundUtil.setBackgroundAlpha(1f,HomeActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
+                if (permission == Manifest.permission.READ_PHONE_STATE){
+                    Constant.permissionEditor.putBoolean("phone",false).commit();
+                }
                 if (permission == Manifest.permission.WRITE_EXTERNAL_STORAGE){
                     Constant.permissionEditor.putBoolean("storage",false).commit();
                 }
@@ -195,7 +201,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
 
             @Override
             public void onGuarantee(String permission, int position) {
-                BackgroundUtil.setBackgroundAlpha(1f,HomeActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
         });
     }
@@ -243,14 +249,10 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
         ActivityOptionsCompat compat = null;
         switch (v.getId()){
             case R.id.ll_files:
-                if (Constant.spPermission.getBoolean("storage",true)){
-                    intent = new Intent(this, FileMenageActivity.class);
-                    intent.putExtra(FileMenageActivity.OPEN_TYPE,1);
-                    compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvFile, FileMenageActivity.VIEW_ANIM));
-                    ActivityCompat.startActivity(this, intent, compat.toBundle());
-                }else {
-                    mPresenter.checkPermission();
-                }
+                intent = new Intent(this, FileMenageActivity.class);
+                intent.putExtra(FileMenageActivity.OPEN_TYPE,1);
+                compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvFile, FileMenageActivity.VIEW_ANIM));
+                ActivityCompat.startActivity(this, intent, compat.toBundle());
                 break;
             case R.id.ll_collection:
                 intent = new Intent(this, CollectionActivity.class);
@@ -258,14 +260,10 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> implements H
                 ActivityCompat.startActivity(this, intent, compat.toBundle());
                 break;
             case R.id.ll_photo:
-                if (Constant.spPermission.getBoolean("camera",true)){
-                    intent = new Intent(this, PhotoRecognitionActivity.class);
-                    intent.putExtra(PhotoRecognitionActivity.OPEN_TYPE,1);
-                    compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvPhoto, PhotoRecognitionActivity.VIEW_ANIM));
-                    ActivityCompat.startActivity(this, intent, compat.toBundle());
-                }else {
-                    mPresenter.checkPermission();
-                }
+                intent = new Intent(this, PhotoRecognitionActivity.class);
+                intent.putExtra(PhotoRecognitionActivity.OPEN_TYPE,1);
+                compat = ActivityOptionsCompat.makeSceneTransitionAnimation(this,new Pair<View, String>(mBinding.tvPhoto, PhotoRecognitionActivity.VIEW_ANIM));
+                ActivityCompat.startActivity(this, intent, compat.toBundle());
                 break;
             case R.id.ll_setting:
                 intent = new Intent(this, SettingActivity.class);

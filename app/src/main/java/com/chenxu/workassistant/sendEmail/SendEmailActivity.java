@@ -240,6 +240,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
                 .setStartColor(textColor)
                 .setDensity(14)
                 .setRelyView(mBinding.rlBar)
+                .setBgView(mBinding.vBg)
                 .setColorSelectedListener(new ColorPicker.Listener.OnColorSelectedListener() {
                     @Override
                     public void onColorSelected(int selectColor) {
@@ -264,6 +265,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
                 .setStartColor(bgColor)
                 .setDensity(14)
                 .setRelyView(mBinding.rlBar)
+                .setBgView(mBinding.vBg)
                 .setColorSelectedListener(new ColorPicker.Listener.OnColorSelectedListener() {
                     @Override
                     public void onColorSelected(int selectColor) {
@@ -383,6 +385,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
         ConfirmDialog.with(this)
                 .setHint(R.string.send_email_big_enclosure_hint)
                 .setRelyView(mBinding.rlBar)
+                .setBgView(mBinding.vBg)
                 .setOnCancelListener(new ConfirmDialog.ConfirmListener.OnDialogCancelClickListener() {
                     @Override
                     public void onCancelButtonClick() {
@@ -402,7 +405,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
     @Override
     public void showLoadDialog() {
         Utils.closeKeyboard(this);
-        sendLoadDialog = DialogUtil.initSendLoadDialog(this);
+        sendLoadDialog = DialogUtil.initSendLoadDialog(this,mBinding.vBg);
         sendLoadDialog.showAtLocation(mBinding.rlBar, Gravity.CENTER, 0, 0);
     }
 

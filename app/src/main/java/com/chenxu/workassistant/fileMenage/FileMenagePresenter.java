@@ -238,12 +238,11 @@ public class FileMenagePresenter implements FileMenageContract.Presenter {
      */
     @Override
     public void allSelectFile(boolean isAll) {
+        selectedFiles.clear();
         if (isAll){
             for (FileBean fileBean:fileList) {
                 selectedFiles.add(fileBean);
             }
-        }else {
-            selectedFiles.clear();
         }
         mView.setSelectFileNumber(selectedFiles.size());
     }

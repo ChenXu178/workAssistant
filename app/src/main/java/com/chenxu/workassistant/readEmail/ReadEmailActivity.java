@@ -97,7 +97,7 @@ public class ReadEmailActivity extends BaseActivity<ActivityReadEmailBinding> im
 
     @Override
     public void showDownLoading() {
-        loadDialog = DialogUtil.initLoadDialog(this,R.string.read_email_download_hint);
+        loadDialog = DialogUtil.initLoadDialog(this,R.string.read_email_download_hint,mBinding.vBg);
         loadDialog.showAtLocation(mBinding.rlBar, Gravity.CENTER,0,0);
     }
 

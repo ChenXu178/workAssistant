@@ -230,7 +230,7 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
 
     @Override
     public void showLoading() {
-        searchDialog = DialogUtil.initLoadDialog(this,R.string.file_search_loading);
+        searchDialog = DialogUtil.initLoadDialog(this,R.string.file_search_loading,mBinding.vBg);
         searchDialog.showAtLocation(mBinding.etSearch, Gravity.CENTER,0,0);
     }
 
@@ -253,11 +253,11 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
     public void showCollectionDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_file_collection,null);
         dialogCollection = DialogUtil.initDialog(view);
-        BackgroundUtil.setBackgroundAlpha(0.7f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         dialogCollection.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,FileSearchActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
         });
         dialogCollection.showAtLocation(mBinding.etSearch,Gravity.CENTER,0,0);
@@ -273,11 +273,11 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
     public void showEnclosureDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_file_enclosure,null);
         dialogEnclosure = DialogUtil.initDialog(view);
-        BackgroundUtil.setBackgroundAlpha(0.7f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         dialogEnclosure.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,FileSearchActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
         });
         dialogEnclosure.showAtLocation(mBinding.etSearch,Gravity.CENTER,0,0);
@@ -394,7 +394,7 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
                 mBinding.llCircular, x, y,
                 startRadius,
                 endRadius);
-        animator.setDuration(800);
+        animator.setDuration(500);
         animator.setInterpolator(new AccelerateDecelerateInterpolator());
         if (!reversed){
             animator.addListener(animatorInListener);
@@ -407,7 +407,7 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
     private Animator.AnimatorListener animatorInListener = new Animator.AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animation) {
-            ValueAnimator animator = ObjectAnimator.ofInt(mBinding.llCircular, "backgroundColor", 0xFF3AA7FF, 0xFFFFFFFF);
+            ValueAnimator animator = ObjectAnimator.ofInt(mBinding.llCircular, "backgroundColor", 0xFF2D94E7, 0xFFFFFFFF);
             animator.setDuration(1000);
             animator.setEvaluator(new ArgbEvaluator());
             animator.start();

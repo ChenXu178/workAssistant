@@ -3,6 +3,7 @@ package com.chenxu.workassistant.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.view.View;
 import android.view.WindowManager;
 
 
@@ -17,15 +18,13 @@ public class BackgroundUtil {
 
     /**
      * 背景透明度
-     * @param bgAlpha
-     * @param context
+     * @param view
+     * @param show
      */
-    public static void setBackgroundAlpha(float bgAlpha, Context context) {
-        WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
-        lp.alpha = bgAlpha;
-        ((Activity) context).getWindow().setAttributes(lp);
+    public static void setBackgroundAlpha(View view, boolean show) {
+        if (view != null){
+            view.setVisibility( show ? View.VISIBLE : View.GONE);
+        }
     }
-
-
 
 }

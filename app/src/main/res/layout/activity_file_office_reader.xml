@@ -32,8 +32,7 @@
             android:id="@+id/iv_line"/>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/max"
             android:layout_below="@id/iv_line"
             android:id="@+id/rl_main">
 

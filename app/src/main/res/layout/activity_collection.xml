@@ -7,8 +7,7 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/max"
         android:fitsSystemWindows="true"
         android:background="@color/white"
         android:orientation="vertical"
@@ -38,8 +37,7 @@
             android:id="@+id/iv_line2"/>
 
         <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/max"
             android:id="@+id/smrv_main">
 
         </com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>

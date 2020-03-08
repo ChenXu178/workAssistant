@@ -73,4 +73,6 @@
     <color name="loginMultiWaveColor2">#3aceff</color>
 
     <color name="switch_track">#c1c1c1</color>
+
+    <color name="translucent">#4D000000</color>
 </resources>

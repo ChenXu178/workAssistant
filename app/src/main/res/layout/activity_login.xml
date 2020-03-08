@@ -8,8 +8,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/max"
         android:background="@color/white"
         tools:context="com.chenxu.workassistant.login.LoginActivity"
         android:id="@+id/rl_login_content">
@@ -38,8 +37,7 @@
             android:paddingTop="100dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/max"
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
                 android:id="@+id/linearLayout">
@@ -136,6 +134,11 @@
         </FrameLayout>
 
 
+        <View
+            style="@style/max"
+            android:visibility="gone"
+            android:background="@color/translucent"
+            android:id="@+id/v_bg"/>
 
     </RelativeLayout>
 

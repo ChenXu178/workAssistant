@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
  */
 
 public class Constant {
-    public static SharedPreferences spPermission = null;  //storage、camera
+    public static SharedPreferences spPermission = null;  //phone、storage、camera
     public static SharedPreferences.Editor permissionEditor = null;
     public static SharedPreferences spSetting = null;
     public static SharedPreferences.Editor editorSetting = null;

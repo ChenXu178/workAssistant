@@ -4,335 +4,328 @@
 
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:background="@color/white"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        style="@style/max">
 
         <RelativeLayout
-            style="@style/max">
+            style="@style/bar"
+            android:id="@+id/rl_bar">
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:orientation="horizontal"
+                android:animateLayoutChanges="true">
+
+                <ImageButton
+                    style="@style/barBack"
+                    android:visibility="visible"
+                    android:id="@+id/btn_back"/>
+
+                <TextView
+                    style="@style/max"
+                    android:text="@string/file_bar_btn_cancel"
+                    android:textColor="@color/mainBlue"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:background="@drawable/menu_btn_bg"
+                    android:clickable="true"
+                    android:id="@+id/tv_cancel_select"/>
+
+            </LinearLayout>
+
 
             <RelativeLayout
-                style="@style/bar"
-                android:id="@+id/rl_bar">
+                style="@style/min"
+                android:layout_centerInParent="true"
+                android:animateLayoutChanges="true">
+
+                <TextView
+                    style="@style/barText"
+                    android:text="@string/file_menage_title"
+                    android:id="@+id/tv_bar_title"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/barText"
+                    android:visibility="gone"
+                    android:id="@+id/tv_bar_file_number"/>
+
+            </RelativeLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true"
+                android:animateLayoutChanges="true">
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/add"
+                    android:scaleType="fitXY"
+                    android:padding="16dp"
+                    android:background="@drawable/menu_btn_bg"
+                    android:visibility="visible"
+                    android:id="@+id/btn_add"/>
+
 
                 <LinearLayout
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_alignParentLeft="true"
-                    android:orientation="horizontal"
-                    android:animateLayoutChanges="true">
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:background="@drawable/menu_btn_bg"
+                    android:clickable="true"
+                    android:id="@+id/ll_select_all">
 
-                    <ImageButton
-                        style="@style/barBack"
-                        android:visibility="visible"
-                        android:id="@+id/btn_back"/>
-
-                    <TextView
-                        style="@style/max"
-                        android:text="@string/file_bar_btn_cancel"
-                        android:textColor="@color/mainBlue"
-                        android:textSize="15sp"
-                        android:gravity="center"
-                        android:visibility="gone"
-                        android:background="@drawable/menu_btn_bg"
-                        android:clickable="true"
-                        android:id="@+id/tv_cancel_select"/>
-
-                </LinearLayout>
-
-
-                <RelativeLayout
-                    style="@style/min"
-                    android:layout_centerInParent="true"
-                    android:animateLayoutChanges="true">
-
-                    <TextView
-                        style="@style/barText"
-                        android:text="@string/file_menage_title"
-                        android:id="@+id/tv_bar_title"/>
+                    <CheckBox
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:button="@null"
+                        android:background="@drawable/checkbox_files_style"
+                        android:checked="false"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:id="@+id/cb_select_all"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/barText"
-                        android:visibility="gone"
-                        android:id="@+id/tv_bar_file_number"/>
-
-                </RelativeLayout>
-
-
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:orientation="vertical"
-                    android:layout_alignParentRight="true"
-                    android:animateLayoutChanges="true">
-
-                    <ImageButton
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/add"
-                        android:scaleType="fitXY"
-                        android:padding="16dp"
-                        android:background="@drawable/menu_btn_bg"
-                        android:visibility="visible"
-                        android:id="@+id/btn_add"/>
-
-
-                    <LinearLayout
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:visibility="gone"
-                        android:background="@drawable/menu_btn_bg"
-                        android:clickable="true"
-                        android:id="@+id/ll_select_all">
-
-                        <CheckBox
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:button="@null"
-                            android:background="@drawable/checkbox_files_style"
-                            android:checked="false"
-                            android:clickable="false"
-                            android:focusable="false"
-                            android:focusableInTouchMode="false"
-                            android:id="@+id/cb_select_all"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/file_bar_btn_select_all"
-                            android:textSize="10sp"
-                            android:textColor="@color/barText"/>
-
-                    </LinearLayout>
-
+                        android:text="@string/file_bar_btn_select_all"
+                        android:textSize="10sp"
+                        android:textColor="@color/barText"/>
 
                 </LinearLayout>
 
-            </RelativeLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:src="@color/fileDivider"
-                android:layout_below="@id/rl_bar"
-                android:id="@+id/iv_line1"/>
+            </LinearLayout>
 
-            <FrameLayout
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:src="@color/fileDivider"
+            android:layout_below="@id/rl_bar"
+            android:id="@+id/iv_line1"/>
+
+        <FrameLayout
+            style="@style/max"
+            android:layout_below="@id/iv_line1"
+            android:animateLayoutChanges="true">
+
+            <RelativeLayout
                 style="@style/max"
-                android:layout_below="@id/iv_line1"
                 android:animateLayoutChanges="true">
 
-                <RelativeLayout
-                    style="@style/max"
-                    android:animateLayoutChanges="true">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/ll_file_catalog">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:orientation="horizontal"
-                        android:id="@+id/ll_file_catalog">
+                    <RelativeLayout
+                        style="@style/catalog"
+                        android:clickable="true"
+                        android:background="@drawable/base_btn_bg"
+                        android:id="@+id/rl_root_catalog">
 
-                        <RelativeLayout
-                            style="@style/catalog"
-                            android:clickable="true"
-                            android:background="@drawable/base_btn_bg"
-                            android:id="@+id/rl_root_catalog">
+                        <TextView
+                            style="@style/catalog.text"
+                            android:text="@string/root_catalog"
+                            android:id="@+id/tv_catalog_name"/>
 
-                            <TextView
-                                style="@style/catalog.text"
-                                android:text="@string/root_catalog"
-                                android:id="@+id/tv_catalog_name"/>
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/right_arrow"
+                            android:layout_toRightOf="@id/tv_catalog_name"/>
 
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/right_arrow"
-                                android:layout_toRightOf="@id/tv_catalog_name"/>
+                    </RelativeLayout>
 
-                        </RelativeLayout>
+                    <android.support.v7.widget.RecyclerView
+                        style="@style/max"
+                        android:id="@+id/rv_file_catalog">
 
-                        <android.support.v7.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/rv_file_catalog">
+                    </android.support.v7.widget.RecyclerView>
 
-                        </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
 
-                    </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:src="@color/fileDivider"
+                    android:layout_below="@id/ll_file_catalog"
+                    android:id="@+id/iv_line2"/>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:src="@color/fileDivider"
-                        android:layout_below="@id/ll_file_catalog"
-                        android:id="@+id/iv_line2"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone"
+                    android:animateLayoutChanges="true"
+                    android:id="@+id/ll_bottom">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_alignParentBottom="true"
+                        android:background="@color/white"
                         android:visibility="gone"
-                        android:animateLayoutChanges="true"
-                        android:id="@+id/ll_bottom">
+                        android:id="@+id/ll_inquiry_btn">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:src="@color/fileDivider"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:background="@color/white"
-                            android:visibility="gone"
-                            android:id="@+id/ll_inquiry_btn">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="0.5dp"
-                                android:src="@color/fileDivider"/>
+                            <Button
+                                style="@style/fileInquiryBtn"
+                                android:text="@string/file_menage_inquiry_cancel"
+                                android:id="@+id/btn_inquiry_cancel"/>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
+                            <Button
+                                style="@style/fileInquiryBtn"
+                                android:enabled="false"
+                                tools:text="@string/file_menage_inquiry_copy"
+                                android:id="@+id/btn_inquiry_confirm"/>
 
-                                <Button
-                                    style="@style/fileInquiryBtn"
-                                    android:text="@string/file_menage_inquiry_cancel"
-                                    android:id="@+id/btn_inquiry_cancel"/>
-
-                                <Button
-                                    style="@style/fileInquiryBtn"
-                                    android:enabled="false"
-                                    tools:text="@string/file_menage_inquiry_copy"
-                                    android:id="@+id/btn_inquiry_confirm"/>
-
-
-                            </LinearLayout>
 
                         </LinearLayout>
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:id="@+id/ll_btns">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:visibility="visible"
-                            android:id="@+id/ll_btns">
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:src="@color/fileDivider"
+                            android:layout_weight="0.02"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:layout_weight="0.98">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                style="@style/fileBtnView"
+                                android:id="@+id/ll_copy">
+
+                                <ImageView
+                                    style="@style/fileBtnViewImg"
+                                    android:src="@drawable/file_copy_selector"
+                                    android:id="@+id/iv_copy"/>
+
+                                <TextView
+                                    style="@style/fileBtnViewText"
+                                    android:text="@string/file_menage_copy"
+                                    android:id="@+id/tv_copy"/>
 
                             </LinearLayout>
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:src="@color/fileDivider"
-                                android:layout_weight="0.02"/>
+                            <LinearLayout
+                                style="@style/fileBtnView"
+                                android:id="@+id/ll_move">
+
+                                <ImageView
+                                    style="@style/fileBtnViewImg"
+                                    android:src="@drawable/file_move_selector"
+                                    android:id="@+id/iv_move"/>
+
+                                <TextView
+                                    style="@style/fileBtnViewText"
+                                    android:text="@string/file_menage_move"
+                                    android:id="@+id/tv_move"/>
+
+                            </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:orientation="horizontal"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:layout_weight="0.98">
+                                style="@style/fileBtnView"
+                                android:id="@+id/ll_rename">
 
-                                <LinearLayout
-                                    style="@style/fileBtnView"
-                                    android:id="@+id/ll_copy">
+                                <ImageView
+                                    style="@style/fileBtnViewImg"
+                                    android:src="@drawable/file_rename_selector"
+                                    android:id="@+id/iv_rename"/>
 
-                                    <ImageView
-                                        style="@style/fileBtnViewImg"
-                                        android:src="@drawable/file_copy_selector"
-                                        android:id="@+id/iv_copy"/>
+                                <TextView
+                                    style="@style/fileBtnViewText"
+                                    android:text="@string/file_menage_rename"
+                                    android:id="@+id/tv_rename"/>
 
-                                    <TextView
-                                        style="@style/fileBtnViewText"
-                                        android:text="@string/file_menage_copy"
-                                        android:id="@+id/tv_copy"/>
+                            </LinearLayout>
 
-                                </LinearLayout>
+                            <LinearLayout
+                                style="@style/fileBtnView"
+                                android:id="@+id/ll_delete">
 
-                                <LinearLayout
-                                    style="@style/fileBtnView"
-                                    android:id="@+id/ll_move">
+                                <ImageView
+                                    style="@style/fileBtnViewImg"
+                                    android:src="@drawable/file_delete_selector"
+                                    android:id="@+id/iv_delete"/>
 
-                                    <ImageView
-                                        style="@style/fileBtnViewImg"
-                                        android:src="@drawable/file_move_selector"
-                                        android:id="@+id/iv_move"/>
+                                <TextView
+                                    style="@style/fileBtnViewText"
+                                    android:text="@string/file_menage_delete"
+                                    android:id="@+id/tv_delete"/>
 
-                                    <TextView
-                                        style="@style/fileBtnViewText"
-                                        android:text="@string/file_menage_move"
-                                        android:id="@+id/tv_move"/>
+                            </LinearLayout>
 
-                                </LinearLayout>
+                            <LinearLayout
+                                style="@style/fileBtnView"
+                                android:id="@+id/ll_detail">
 
-                                <LinearLayout
-                                    style="@style/fileBtnView"
-                                    android:id="@+id/ll_rename">
+                                <ImageView
+                                    style="@style/fileBtnViewImg"
+                                    android:src="@drawable/file_detail_selector"
+                                    android:id="@+id/iv_detail"/>
 
-                                    <ImageView
-                                        style="@style/fileBtnViewImg"
-                                        android:src="@drawable/file_rename_selector"
-                                        android:id="@+id/iv_rename"/>
-
-                                    <TextView
-                                        style="@style/fileBtnViewText"
-                                        android:text="@string/file_menage_rename"
-                                        android:id="@+id/tv_rename"/>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    style="@style/fileBtnView"
-                                    android:id="@+id/ll_delete">
-
-                                    <ImageView
-                                        style="@style/fileBtnViewImg"
-                                        android:src="@drawable/file_delete_selector"
-                                        android:id="@+id/iv_delete"/>
-
-                                    <TextView
-                                        style="@style/fileBtnViewText"
-                                        android:text="@string/file_menage_delete"
-                                        android:id="@+id/tv_delete"/>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    style="@style/fileBtnView"
-                                    android:id="@+id/ll_detail">
-
-                                    <ImageView
-                                        style="@style/fileBtnViewImg"
-                                        android:src="@drawable/file_detail_selector"
-                                        android:id="@+id/iv_detail"/>
-
-                                    <TextView
-                                        style="@style/fileBtnViewText"
-                                        android:text="@string/file_menage_detail"
-                                        android:id="@+id/tv_detail"/>
-
-                                </LinearLayout>
+                                <TextView
+                                    style="@style/fileBtnViewText"
+                                    android:text="@string/file_menage_detail"
+                                    android:id="@+id/tv_detail"/>
 
                             </LinearLayout>
 
@@ -340,40 +333,45 @@
 
                     </LinearLayout>
 
-
-                    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/iv_line2"
-                        android:layout_above="@id/ll_bottom"
-                        android:id="@+id/rv_files">
+                </LinearLayout>
 
 
-                    </com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
+                <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
                     style="@style/max"
-                    android:visibility="gone"
-                    android:id="@+id/rl_loading">
-
-                    <com.wang.avi.AVLoadingIndicatorView
-                        android:id="@+id/avi_load"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerInParent="true"
-                        style="@style/AVLoadingIndicatorView"
-                        android:visibility="visible"
-                        app:indicatorName="BallScaleMultipleIndicator"
-                        app:indicatorColor="@color/mainBlue"/>
-
-                </RelativeLayout>
+                    android:layout_below="@id/iv_line2"
+                    android:layout_above="@id/ll_bottom"
+                    android:id="@+id/rv_files">
 
 
-            </FrameLayout>
+                </com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView>
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-    </FrameLayout>
+            <RelativeLayout
+                style="@style/max"
+                android:visibility="gone"
+                android:id="@+id/rl_loading">
+
+                <com.wang.avi.AVLoadingIndicatorView
+                    android:id="@+id/avi_load"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    style="@style/AVLoadingIndicatorView"
+                    android:visibility="visible"
+                    app:indicatorName="BallScaleMultipleIndicator"
+                    app:indicatorColor="@color/mainBlue"/>
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <View
+            style="@style/max"
+            android:visibility="gone"
+            android:background="@color/translucent"
+            android:id="@+id/v_bg"/>
+
+    </RelativeLayout>
+
 </layout>

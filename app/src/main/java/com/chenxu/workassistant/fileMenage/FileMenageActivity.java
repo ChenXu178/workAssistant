@@ -283,18 +283,19 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
 
     /**
      * 显示新建文件夹
+     * 显示新建文件夹
      */
     @Override
     public void showDialogNewFolder() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_file_new,null);
         EditText etName = (EditText)view.findViewById(R.id.et_new_name);
         etName.setLongClickable(false);
-        BackgroundUtil.setBackgroundAlpha(0.5f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         dialogNewFile = DialogUtil.initDialog(view);
         dialogNewFile.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,FileMenageActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
         });
         ImageView ivCancel = (ImageView) view.findViewById(R.id.iv_new_close);
@@ -505,11 +506,11 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
         dialogDelete.setTouchable(true);
         dialogDelete.setBackgroundDrawable(getDrawable(R.color.white));
         dialogDelete.setAnimationStyle(R.style.deleteDialogAnim);
-        BackgroundUtil.setBackgroundAlpha(0.5f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         dialogDelete.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,FileMenageActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
         });
         dialogDelete.showAtLocation(mBinding.rvFiles,Gravity.BOTTOM,0,0);
@@ -529,12 +530,12 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
         etName.setLongClickable(false);
         btnConfirm.setOnClickListener(dialogViewClickListener);
         ivCancel.setOnClickListener(dialogViewClickListener);
-        BackgroundUtil.setBackgroundAlpha(0.5f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         dialogRename = DialogUtil.initDialog(view);
         dialogRename.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,FileMenageActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
         });
         dialogRename.showAtLocation(mBinding.rvFiles,Gravity.CENTER,0,0);
@@ -545,7 +546,7 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
      */
     @Override
     public void showLoadingDialog() {
-        dialogLoading = DialogUtil.initLoadDialog(this);
+        dialogLoading = DialogUtil.initLoadDialog(this,mBinding.vBg);
         dialogLoading.showAtLocation(mBinding.rvFiles,Gravity.CENTER,0,0);
     }
 
@@ -730,11 +731,11 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
     public void showCollectionDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_file_collection,null);
         dialogCollection = DialogUtil.initDialog(view);
-        BackgroundUtil.setBackgroundAlpha(0.7f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         dialogCollection.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,FileMenageActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
         });
         dialogCollection.showAtLocation(mBinding.rlBar,Gravity.CENTER,0,0);
@@ -750,11 +751,11 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
     public void showEnclosureDialog() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_file_enclosure,null);
         dialogEnclosure = DialogUtil.initDialog(view);
-        BackgroundUtil.setBackgroundAlpha(0.7f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         dialogEnclosure.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,FileMenageActivity.this);
+                BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             }
         });
         dialogEnclosure.showAtLocation(mBinding.rlBar,Gravity.CENTER,0,0);
@@ -795,10 +796,10 @@ public class FileMenageActivity extends BaseActivity<ActivityFileMenageBinding> 
         ivClose.setOnClickListener(dialogViewClickListener);
         dialogDetail = DialogUtil.initDialog(view);
         dialogDetail.setOnDismissListener(()->{
-            BackgroundUtil.setBackgroundAlpha(1f,FileMenageActivity.this);
+            BackgroundUtil.setBackgroundAlpha(mBinding.vBg,false);
             mPresenter.setRunFileNumber(false);
         });
-        BackgroundUtil.setBackgroundAlpha(0.5f,this);
+        BackgroundUtil.setBackgroundAlpha(mBinding.vBg,true);
         dialogDetail.showAtLocation(mBinding.rlBar,Gravity.CENTER,0,0);
     }
 

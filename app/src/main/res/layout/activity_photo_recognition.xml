@@ -7,12 +7,10 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/max"
         android:background="@color/white"
         android:fitsSystemWindows="true"
         tools:context=".photoRecognition.PhotoRecognitionActivity">
-
 
         <RelativeLayout
             style="@style/bar"
@@ -41,8 +39,7 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/max"
             android:layout_below="@id/rl_bar"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
@@ -57,15 +54,13 @@
                 android:id="@+id/rl_image">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    style="@style/max"
                     android:scaleType="fitCenter"
                     android:visibility="gone"
                     android:id="@+id/iv_image"/>
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    style="@style/max"
                     android:layout_centerInParent="true"
                     android:visibility="visible"
                     android:id="@+id/iv_icon"
@@ -90,8 +85,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    style="@style/max"
                     android:orientation="vertical"
                     android:animateLayoutChanges="true"
                     android:id="@+id/ll_bottom">
@@ -189,9 +183,15 @@
                 </LinearLayout>
                 
             </LinearLayout>
-            
 
         </LinearLayout>
 
+        <View
+            style="@style/max"
+            android:visibility="gone"
+            android:background="@color/translucent"
+            android:id="@+id/v_bg"/>
+
     </RelativeLayout>
+
 </layout>

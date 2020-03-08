@@ -5,200 +5,207 @@
 
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/max"
         android:background="@color/white"
-        android:fitsSystemWindows="true"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/rl_bar"
-            style="@style/bar"
-            android:background="@color/white">
-
-            <ImageButton
-                android:id="@+id/btn_back"
-                style="@style/barBack" />
-
-            <TextView
-                android:id="@+id/tv_bar_title"
-                style="@style/barText"
-                android:text="@string/read_email_title" />
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/dialog_line" />
+        android:fitsSystemWindows="true">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
+            style="@style/max"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_email_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:paddingTop="10dp"
-                android:paddingRight="15dp"
-                android:paddingBottom="5dp"
-                android:textColor="@color/barText"
-                android:textSize="16sp"
-                tools:text="邮件标题是第三方斯蒂芬是否都dsdsfsdds鼎折覆餗放松放松是" />
+            <RelativeLayout
+                android:id="@+id/rl_bar"
+                style="@style/bar"
+                android:background="@color/white">
 
-            <TextView
-                android:id="@+id/tv_email_time"
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    style="@style/barBack" />
+
+                <TextView
+                    android:id="@+id/tv_bar_title"
+                    style="@style/barText"
+                    android:text="@string/read_email_title" />
+
+            </RelativeLayout>
+
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:lines="1"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:textColor="@color/dialogInput"
-                android:textSize="13sp"
-                tools:text="2018年5月12日 14:21" />
+                android:layout_height="0.5dp"
+                android:background="@color/dialog_line" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginBottom="10dp"
+                style="@style/max"
                 android:animateLayoutChanges="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:id="@+id/tv_email_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/read_email_sender"
-                    android:textColor="@color/dialogInput"
-                    android:textSize="14sp" />
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/barText"
+                    android:textSize="16sp"
+                    tools:text="邮件标题是第三方斯蒂芬是否都dsdsfsdds鼎折覆餗放松放松是" />
 
                 <TextView
-                    android:id="@+id/tv_email_sender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:background="@drawable/email_user_address_bg"
-                    android:gravity="center"
-                    android:paddingLeft="7dp"
-                    android:paddingRight="7dp"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:visibility="gone"
-                    tools:text="1782408400@qq.com" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_enclosure"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <View
+                    android:id="@+id/tv_email_time"
                     android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/dialog_line" />
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textColor="@color/dialogInput"
+                    android:textSize="13sp"
+                    tools:text="2018年5月12日 14:21" />
 
-                <RelativeLayout
-                    android:id="@+id/rl_enclosure_title"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="10dp"
+                    android:animateLayoutChanges="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:text="@string/read_email_enclosure"
-                        android:textColor="@color/loginInput"
+                        android:text="@string/read_email_sender"
+                        android:textColor="@color/dialogInput"
                         android:textSize="14sp" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tv_email_sender"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:layout_height="25dp"
+                        android:background="@drawable/email_user_address_bg"
+                        android:gravity="center"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:visibility="gone"
+                        tools:text="1782408400@qq.com" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_enclosure"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/dialog_line" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_enclosure_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
 
                         <TextView
-                            android:id="@+id/tv_enclosure_detail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/mainBlue"
-                            android:textSize="14sp"
-                            tools:text="3个附件" />
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/read_email_enclosure"
+                            android:textColor="@color/loginInput"
+                            android:textSize="14sp" />
 
-                        <ImageView
-                            android:id="@+id/iv_read_enclosure_state"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="5dp"
-                            android:src="@drawable/send_email_down" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/tv_enclosure_detail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/mainBlue"
+                                android:textSize="14sp"
+                                tools:text="3个附件" />
+
+                            <ImageView
+                                android:id="@+id/iv_read_enclosure_state"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="5dp"
+                                android:src="@drawable/send_email_down" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/dialog_line" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_enclosure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:visibility="visible">
+
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:id="@+id/avi_load"
+                        style="@style/AVLoadingIndicatorView"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:visibility="visible"
+                        app:indicatorColor="@color/mainBlue"
+                        app:indicatorName="BallScaleMultipleIndicator" />
 
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/dialog_line" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_enclosure"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
-
-                </android.support.v7.widget.RecyclerView>
+                <com.tencent.smtt.sdk.WebView
+                    android:id="@+id/wv_content"
+                    style="@style/max"
+                    android:background="@color/white"/>
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/rl_loading"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:visibility="visible">
-
-                <com.wang.avi.AVLoadingIndicatorView
-                    android:id="@+id/avi_load"
-                    style="@style/AVLoadingIndicatorView"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerInParent="true"
-                    android:visibility="visible"
-                    app:indicatorColor="@color/mainBlue"
-                    app:indicatorName="BallScaleMultipleIndicator" />
-
-            </RelativeLayout>
-
-            <com.tencent.smtt.sdk.WebView
-                android:id="@+id/wv_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white">
-
-            </com.tencent.smtt.sdk.WebView>
-
         </LinearLayout>
 
-    </LinearLayout>
+        <View
+            style="@style/max"
+            android:visibility="gone"
+            android:background="@color/translucent"
+            android:id="@+id/v_bg"/>
+
+    </RelativeLayout>
+
 </layout>

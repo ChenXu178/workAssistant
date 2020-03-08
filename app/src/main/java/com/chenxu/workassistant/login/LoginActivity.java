@@ -114,7 +114,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
             SnackBarUtils.showSnackBarMSG(mBinding.btnLogin,R.string.login_err2,R.color.white,R.color.mainBlue);
             return;
         }
-        loadDialog = DialogUtil.initLoadDialog(this,R.string.login_loading);
+        loadDialog = DialogUtil.initLoadDialog(this,R.string.login_loading,mBinding.vBg);
         loadDialog.showAtLocation(mBinding.btnLogin, Gravity.CENTER,0,0);
         mPresenter.emailLogin(isSave,emailType,account,password);
     }
@@ -139,11 +139,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         finish();
     }
 
-    @Override
-    public void onBackPressed() {
-        Animator animator = createRevealAnimator(true, mX, mY);
-        animator.start();
-    }
 
     private Animator createRevealAnimator(boolean reversed, int x, int y) {
         float hypot = (float) Math.hypot(mBinding.rlLoginContent.getHeight(), mBinding.rlLoginContent.getWidth());
@@ -156,28 +151,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
                 endRadius);
         animator.setDuration(800);
         animator.setInterpolator(new AccelerateDecelerateInterpolator());
-        if (reversed){
-            animator.addListener(animatorExitListener);
-        }
         return animator;
     }
-
-    private Animator.AnimatorListener animatorExitListener = new Animator.AnimatorListener() {
-        @Override
-        public void onAnimationStart(Animator animation) {
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animation) {
-            finish();
-        }
-
-        @Override
-        public void onAnimationCancel(Animator animation) {
-        }
-
-        @Override
-        public void onAnimationRepeat(Animator animation) {
-        }
-    };
 }

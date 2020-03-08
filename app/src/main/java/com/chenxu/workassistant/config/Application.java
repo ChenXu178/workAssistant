@@ -22,6 +22,8 @@ import com.tencent.smtt.sdk.QbSdk;
 
 public class Application extends android.app.Application {
 
+    private static final String TAG = Application.class.getSimpleName();
+
     private static Context instance;
     private static String baiduToken;
     private static int baiduError = 200;
@@ -32,7 +34,18 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        QbSdk.initX5Environment(this,null);
+        QbSdk.initX5Environment(this, new QbSdk.PreInitCallback() {
+            @Override
+            public void onCoreInitFinished() {
+                Log.d(TAG, "onCoreInitFinished: ");
+            }
+
+            @Override
+            public void onViewInitFinished(boolean b) {
+                Log.d(TAG, "onViewInitFinished: " + b);
+            }
+        });
+        QbSdk.setDownloadWithoutWifi(true);
         Constant.spPermission = getSharedPreferences("permission",MODE_PRIVATE);
         Constant.permissionEditor = Constant.spPermission.edit();
         Constant.spSetting = getSharedPreferences("setting",MODE_PRIVATE);

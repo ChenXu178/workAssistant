@@ -17,6 +17,7 @@ public class ConfirmDialog {
     private Context context;
     private int hint;
     private View relyView;
+    private View bgView;
     private PopupWindow window;
 
     private ConfirmListener.OnDialogConfirmClickListener confirmClickListener;
@@ -50,6 +51,11 @@ public class ConfirmDialog {
 
     public ConfirmDialog setRelyView(View relyView) {
         this.relyView = relyView;
+        return this;
+    }
+
+    public ConfirmDialog setBgView(View bgView) {
+        this.bgView = bgView;
         return this;
     }
 
@@ -109,14 +115,18 @@ public class ConfirmDialog {
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,context);
+                if (bgView != null){
+                    BackgroundUtil.setBackgroundAlpha(bgView,false);
+                }
             }
         });
         return this;
     }
 
     public ConfirmDialog show(){
-        BackgroundUtil.setBackgroundAlpha(0.8f,context);
+        if (bgView != null){
+            BackgroundUtil.setBackgroundAlpha(bgView,true);
+        }
         if (window!=null){
             window.showAtLocation(relyView, Gravity.CENTER,0,0);
         }

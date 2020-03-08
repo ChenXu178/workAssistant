@@ -33,16 +33,14 @@
             android:id="@+id/iv_line"/>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/max"
             android:layout_below="@id/iv_line"
             android:animateLayoutChanges="true"
             android:id="@+id/rl_main">
 
             <com.github.chrisbanes.photoview.PhotoView
                 android:id="@+id/iv_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/max"
                 android:layout_centerInParent="true"/>
 
             <Button

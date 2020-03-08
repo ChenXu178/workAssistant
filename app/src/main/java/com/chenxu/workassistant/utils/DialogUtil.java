@@ -24,7 +24,7 @@ public class DialogUtil {
         return window;
     }
 
-    public static PopupWindow initLoadDialog(final Activity activity){
+    public static PopupWindow initLoadDialog(final Activity activity,View bgView){
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_file_loading,null);
         PopupWindow window = new PopupWindow(view);
         window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -32,17 +32,17 @@ public class DialogUtil {
         window.setFocusable(false);
         window.setOutsideTouchable(false);
         window.setAnimationStyle(R.style.fadeDialogAnim);
-        BackgroundUtil.setBackgroundAlpha(0.8f,activity);
+        BackgroundUtil.setBackgroundAlpha(bgView,true);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,activity);
+                BackgroundUtil.setBackgroundAlpha(bgView,false);
             }
         });
         return window;
     }
 
-    public static PopupWindow initLoadDialog(final Activity activity,int title){
+    public static PopupWindow initLoadDialog(final Activity activity,int title,View bgView){
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_loading,null);
         TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
         tvTitle.setText(title);
@@ -52,18 +52,18 @@ public class DialogUtil {
         window.setFocusable(false);
         window.setOutsideTouchable(false);
         window.setAnimationStyle(R.style.fadeDialogAnim);
-        BackgroundUtil.setBackgroundAlpha(0.8f,activity);
+        BackgroundUtil.setBackgroundAlpha(bgView,true);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,activity);
+                BackgroundUtil.setBackgroundAlpha(bgView,false);
             }
         });
         return window;
     }
 
 
-    public static PopupWindow initSendLoadDialog(final Activity activity){
+    public static PopupWindow initSendLoadDialog(final Activity activity,View bgView){
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_send_loading,null);
         PopupWindow window = new PopupWindow(view);
         window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -71,11 +71,11 @@ public class DialogUtil {
         window.setAnimationStyle(R.style.fadeDialogAnim);
         window.setFocusable(false);
         window.setOutsideTouchable(false);
-        BackgroundUtil.setBackgroundAlpha(0.8f,activity);
+        BackgroundUtil.setBackgroundAlpha(bgView,true);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                BackgroundUtil.setBackgroundAlpha(1f,activity);
+                BackgroundUtil.setBackgroundAlpha(bgView,false);
             }
         });
         return window;
