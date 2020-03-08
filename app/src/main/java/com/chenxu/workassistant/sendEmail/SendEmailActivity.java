@@ -234,7 +234,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
     }
 
     private void setTextColor() {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.etSendReader);
         ColorPicker.with(this)
                 .setTitle(R.string.send_email_format_text_color)
                 .setStartColor(textColor)
@@ -259,7 +259,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
     }
 
     private void setBgColor() {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.etSendReader);
         ColorPicker.with(this)
                 .setTitle(R.string.send_email_format_background_color)
                 .setStartColor(bgColor)
@@ -333,7 +333,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
         int iconID = (int) mBinding.ivSendEnclosureState.getTag();
         switch (iconID) {
             case R.drawable.send_email_down:
-                Utils.closeKeyboard(this);
+                Utils.closeKeyboard(this, mBinding.etSendReader);
                 mBinding.ivSendEnclosureState.setImageResource(R.drawable.send_email_up);
                 mBinding.ivSendEnclosureState.setTag(R.drawable.send_email_up);
                 mBinding.rlEnclosure.setVisibility(View.VISIBLE);
@@ -369,19 +369,19 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
 
     @Override
     public void showErrorSnackBar(int text) {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.etSendReader);
         SnackBarUtils.showSnackBarMSG(mBinding.rlBar, text, R.color.white, R.color.red);
     }
 
     @Override
     public void showSnackBar(int text) {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.etSendReader);
         SnackBarUtils.showSnackBarMSG(mBinding.rlBar, text, R.color.white, R.color.mainBlue);
     }
 
     @Override
     public void showConfirmDialog(String reader, String title, String content) {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.etSendReader);
         ConfirmDialog.with(this)
                 .setHint(R.string.send_email_big_enclosure_hint)
                 .setRelyView(mBinding.rlBar)
@@ -404,7 +404,7 @@ public class SendEmailActivity extends BaseActivity<ActivitySendEmailBinding> im
 
     @Override
     public void showLoadDialog() {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.etSendReader);
         sendLoadDialog = DialogUtil.initSendLoadDialog(this,mBinding.vBg);
         sendLoadDialog.showAtLocation(mBinding.rlBar, Gravity.CENTER, 0, 0);
     }

@@ -110,13 +110,13 @@ public class ReadEmailActivity extends BaseActivity<ActivityReadEmailBinding> im
 
     @Override
     public void showErrorSnackBar(int text) {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.wvContent);
         SnackBarUtils.showSnackBarMSG(mBinding.rlBar, text, R.color.white, R.color.red);
     }
 
     @Override
     public void showSnackBar(int text) {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.wvContent);
         SnackBarUtils.showSnackBarMSG(mBinding.rlBar, text, R.color.white, R.color.mainBlue);
     }
 

@@ -109,7 +109,7 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
                     switch (event.getAction()) {
                         case KeyEvent.ACTION_UP:
                             //发送请求
-                            Utils.closeKeyboard(FileSearchActivity.this);
+                            Utils.closeKeyboard(FileSearchActivity.this, mBinding.etSearch);
                             mPresenter.onFileSearch(mBinding.etSearch.getText().toString().trim());
                             return true;
                         default:
@@ -133,7 +133,7 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
                 if(FileSearchActivity.this.getCurrentFocus() != null){
                     Log.e("hide","hideSearchHistory");
                  hideSearchHistory();
-                 Utils.closeKeyboard(FileSearchActivity.this);
+                    Utils.closeKeyboard(FileSearchActivity.this, mBinding.etSearch);
                  if (searchAdapter.getItemCount() > 0){
                      hideSearchDetail();
                  }
@@ -177,7 +177,7 @@ public class FileSearchActivity extends BaseActivity<ActivityFileSearchBinding> 
         historyAdapter.setOnClickListener(new HistoryAdapter.OnClickListener() {
             @Override
             public void onClick(String text) {
-                Utils.closeKeyboard(FileSearchActivity.this);
+                Utils.closeKeyboard(FileSearchActivity.this, mBinding.etSearch);
                 hideSearchDetail();
                 mBinding.etSearch.setText(text);
                 mBinding.etSearch.setSelection(text.length());

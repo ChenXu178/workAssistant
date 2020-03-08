@@ -102,7 +102,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
 
     @Override
     public void submit() {
-        Utils.closeKeyboard(this);
+        Utils.closeKeyboard(this, mBinding.etPassword);
         int emailType = mBinding.spType.getSelectedItemPosition();
         String account = mBinding.etEmail.getText().toString().trim();
         String password = mBinding.etPassword.getText().toString().trim();

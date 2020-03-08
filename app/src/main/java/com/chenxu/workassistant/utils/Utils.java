@@ -3,10 +3,14 @@ package com.chenxu.workassistant.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class Utils {
 
@@ -14,11 +18,9 @@ public class Utils {
      * 关闭输入法键盘
      * @param activity 当前输入法所在的activity
      */
-    public static void closeKeyboard(Activity activity){
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm.isActive()) {
-            imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-        }
+    public static void closeKeyboard(Activity activity, View view) {
+        ((InputMethodManager) activity.getSystemService(INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public static boolean emailFormat(String email) {
